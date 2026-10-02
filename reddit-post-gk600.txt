@@ -1,0 +1,25 @@
+TITLE:
+[Guide] MSI Forge GK600 TKL: upload your OWN GIFs to the screen over USB — one-line fix MSI never shipped
+
+BODY:
+
+If you own the MSI Forge GK600 TKL Wireless, you've probably noticed the little screen only shows MSI's pre-loaded animations, and MSI says "no software needed." That's not the whole story. MSI's own driver can upload custom GIFs and do per-key RGB — it just refuses to detect the keyboard over USB out of the box. Here's the fix. No flashing, no firmware mods, fully reversible.
+
+**The cause:** the driver matches the keyboard by its USB product name, and MSI put the wrong name in the config for USB mode. (2.4G works because the name it looks for there is a correct prefix of the real one — that's why only wireless ever worked.)
+
+**The fix:**
+
+1. Download `MSI-FORGE-GK600-Driver-1.0.0.8.zip` from msi.com → Support → FORGE GK600 TKL WIRELESS. Don't bother with MSI Center, it doesn't see the screen — the tool is `DeviceDriver.exe` inside the zip.
+2. Install it, then copy the install folder to your Desktop (avoids Program Files permission hassle).
+3. Open `config.xml`, back it up, find the line with `desc="USB"`, and change `product_name` from:
+   `MSI FORGE GK600 GAMING KEYBOARD`
+   to:
+   `MSI FORGE GK600 TKL WIRELESS Keyboard`
+   Leave everything else on that line alone (keep `MI_00`).
+4. Save. Set the keyboard's switch to wired/USB, plug in the USB-C cable.
+5. Launch `DeviceDriver.exe` — it detects the keyboard now.
+6. GIFs: 160×96 px, 255 frames max, keep them short for smooth playback. Per-key RGB is in the lighting section.
+
+**If it still isn't detected:** the product string can vary by unit/firmware. Read your own in Device Manager → your keyboard → Properties → Details → "Bus reported device description", and copy that string verbatim into `product_name`.
+
+Verified on firmware V1.20 with driver 1.0.0.8. Happy to answer questions in the comments — and if someone with a different revision checks their product string, drop it below so we can build a list.

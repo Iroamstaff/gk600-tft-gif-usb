@@ -1,0 +1,10 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+# Do NOT commit MSI's driver package (redistribution) — link to msi.com instead
+*.zip
+*.exe
+config.xml

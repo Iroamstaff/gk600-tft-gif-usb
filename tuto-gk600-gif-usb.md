@@ -9,12 +9,21 @@
 
 ## 1. Télécharger le logiciel
 
-1. Allez sur **https://www.msi.com** (ou la version de votre pays).
-2. Cliquez sur **Support** (en haut), puis cherchez votre modèle : **FORGE GK600 TKL WIRELESS**.
-3. Ouvrez l'onglet **Download / Pilotes & Utilitaires**, catégorie **Driver/Utility**.
-4. Téléchargez le fichier **`MSI-FORGE-GK600-Driver-1.0.0.8.zip`**.
+> ℹ️ **Où le trouver depuis fin 2026 :** MSI a retiré la section téléchargement des pages du GK600 TKL « classiques » (SKY / Violet). Le **même paquet de pilotes** reste disponible sur la page de la **FORGE TKL WIRELESS FRIEREN EDITION**, et il couvre aussi le GK600 standard (les deux modèles sont déclarés dans sa configuration).
 
-> ⚠️ **N'utilisez pas MSI Center** pour cette manip. MSI Center ne reconnaît pas l'écran du clavier. C'est bien le petit logiciel du ZIP ci-dessus (son exécutable s'appelle `DeviceDriver.exe`) qui gère le GIF et le RGB.
+1. Allez sur la page support de la **FORGE TKL WIRELESS FRIEREN EDITION** :
+   **https://www.msi.com/Gaming-Gear/FORGE-TKL-WIRELESS-FRIEREN-EDITION/support**
+2. Ouvrez **Drivers & Downloads** → onglet **Driver**.
+3. Sélectionnez votre système (**Win11 64**), puis catégorie **Others Drivers**.
+4. Téléchargez le fichier **« Driver » version 1.0.0.8** (≈ 6,1 Mo, daté du 2026-06-08).
+
+> ⚠️ **N'utilisez pas MSI Center** pour cette manip. MSI Center ne reconnaît pas l'écran du clavier. C'est le petit logiciel du paquet ci-dessus (son exécutable s'appelle `DeviceDriver.exe`) qui gère le GIF et le RGB.
+>
+> 🔒 **Vérifier l'intégrité (facultatif mais conseillé) :** le SHA-256 du paquet Driver 1.0.0.8 affiché par MSI est
+> `73252a3d361f6b09d5c8c7153279c37725b9ccb83f129f92e1d8d2faeef0ec59`.
+> Sous Windows : `certutil -hashfile "le-fichier.zip" SHA256` doit renvoyer exactement cette valeur.
+>
+> 💡 Le « FW Update Tool » v1.17 présent sur la même page est un **flasheur de firmware** : **inutile pour afficher un GIF**, et à réserver aux utilisateurs avertis. Pour ce tuto, seul le **Driver** est nécessaire.
 
 ---
 
@@ -22,7 +31,8 @@
 
 1. Faites un clic droit sur le ZIP → **Extraire tout**.
 2. Lancez l'installateur et suivez les étapes (Suivant → Suivant → Installer).
-3. Notez le dossier d'installation (en général `C:\Program Files (x86)\...\MSI FORGE GK600 Driver` ou similaire). On va en avoir besoin à l'étape 3.
+3. Le logiciel s'installe sous le nom **« Erazer MK85Pro Driver »** — **c'est normal** (c'est le nom OEM interne, le GK600 partage sa plateforme avec d'autres claviers).
+4. Notez le dossier d'installation (en général `C:\Program Files (x86)\...` ou similaire). On va en avoir besoin à l'étape 3.
 
 ---
 
@@ -108,6 +118,7 @@ Toujours dans le même logiciel, la section **éclairage / RGB** permet de chois
 | L'écran reste éteint | Il s'allume en mode **filaire USB** ; vérifiez le câble et l'interrupteur. |
 | MSI Center ne voit rien | Normal. Utilisez **`DeviceDriver.exe`**, pas MSI Center. |
 | Le nom ne marche pas | Lisez le nom réel de votre clavier (fin de l'étape 3) et recopiez-le. |
+| Le driver n'est plus sur la page du GK600 | Normal depuis fin 2026 : prenez-le sur la page **Frieren Edition** (étape 1), même paquet. |
 
 ---
 

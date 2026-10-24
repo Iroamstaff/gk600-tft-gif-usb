@@ -23,9 +23,25 @@ Leave `hid_interface` on `MI_00` — the driver switches to the right channel on
 
 ---
 
+## Where to get the driver
+
+As of late 2026, MSI removed the download section from the "plain" GK600 TKL pages (SKY / Violet). **The same driver package is still available** on the **FORGE TKL WIRELESS FRIEREN EDITION** support page, and it covers the standard GK600 too (both SKUs are declared in its `config.xml`).
+
+- **Page:** https://www.msi.com/Gaming-Gear/FORGE-TKL-WIRELESS-FRIEREN-EDITION/support
+- **Drivers & Downloads → Driver → (Win11 64) → Others Drivers**
+
+| File | Version | Date | Size | SHA-256 |
+|---|---|---|---|---|
+| **Driver** (needed) | 1.0.0.8 | 2026-06-08 | 6.10 MB | `73252a3d361f6b09d5c8c7153279c37725b9ccb83f129f92e1d8d2faeef0ec59` |
+| FW Update Tool (ISP, *not* needed for GIFs) | 1.17 | 2026-06-25 | 1.02 MB | `c75112f78c893e755f66c033e7022b71719ade4c4b3e655f34e1886fd0c37639` |
+
+Verify your download on Windows: `certutil -hashfile <file>.zip SHA256`. The driver installs as **"Erazer MK85Pro Driver"** — that's expected (shared OEM platform). The FW Update Tool is a firmware flasher; only touch it if you know what you're doing.
+
+---
+
 ## Steps
 
-1. **Download** `MSI-FORGE-GK600-Driver-1.0.0.8.zip` from msi.com → Support → *FORGE GK600 TKL WIRELESS* → Download. (Do **not** use MSI Center — it doesn't see the screen. The tool you want is `DeviceDriver.exe` inside the package.)
+1. **Download** the Driver 1.0.0.8 from the Frieren Edition page above. (Do **not** use MSI Center — it doesn't see the screen. The tool you want is `DeviceDriver.exe` inside the package.)
 2. **Install**, then copy the install folder somewhere writable (e.g. Desktop) to avoid Program Files permission issues.
 3. **Edit** `config.xml` as shown in the TL;DR. Back it up first.
 4. Set the keyboard's 3-way switch to **wired/USB**, connect the USB-C cable.

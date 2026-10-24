@@ -7,9 +7,15 @@ If you own the MSI Forge GK600 TKL Wireless, you've probably noticed the little 
 
 **The cause:** the driver matches the keyboard by its USB product name, and MSI put the wrong name in the config for USB mode. (2.4G works because the name it looks for there is a correct prefix of the real one — that's why only wireless ever worked.)
 
+**Where to get the driver:** MSI removed the download section from the plain GK600 TKL pages, but the same package is still on the FORGE TKL WIRELESS FRIEREN EDITION support page, and it covers the standard GK600 too (both SKUs are in its config):
+https://www.msi.com/Gaming-Gear/FORGE-TKL-WIRELESS-FRIEREN-EDITION/support
+→ Drivers & Downloads → Driver → (Win11 64) → Others Drivers → "Driver" v1.0.0.8 (6.10 MB).
+SHA-256: 73252a3d361f6b09d5c8c7153279c37725b9ccb83f129f92e1d8d2faeef0ec59
+It installs as "Erazer MK85Pro Driver" — that's normal. (The FW Update Tool on the same page is a firmware flasher; you don't need it for GIFs.)
+
 **The fix:**
 
-1. Download `MSI-FORGE-GK600-Driver-1.0.0.8.zip` from msi.com → Support → FORGE GK600 TKL WIRELESS. Don't bother with MSI Center, it doesn't see the screen — the tool is `DeviceDriver.exe` inside the zip.
+1. Download the Driver 1.0.0.8 from the Frieren Edition page above. Don't bother with MSI Center, it doesn't see the screen — the tool is `DeviceDriver.exe` inside the package.
 2. Install it, then copy the install folder to your Desktop (avoids Program Files permission hassle).
 3. Open `config.xml`, back it up, find the line with `desc="USB"`, and change `product_name` from:
    `MSI FORGE GK600 GAMING KEYBOARD`
@@ -22,4 +28,6 @@ If you own the MSI Forge GK600 TKL Wireless, you've probably noticed the little 
 
 **If it still isn't detected:** the product string can vary by unit/firmware. Read your own in Device Manager → your keyboard → Properties → Details → "Bus reported device description", and copy that string verbatim into `product_name`.
 
-Verified on firmware V1.20 with driver 1.0.0.8. Happy to answer questions in the comments — and if someone with a different revision checks their product string, drop it below so we can build a list.
+Verified on firmware V1.20 with driver 1.0.0.8. Full write-up, hardware details and a beginner walkthrough here: https://github.com/Iroamstaff/gk600-tft-gif-usb
+
+Happy to answer questions in the comments — and if someone with a different revision checks their product string, drop it below so we can build a list.

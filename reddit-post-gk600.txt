@@ -31,3 +31,11 @@ It installs as "Erazer MK85Pro Driver" — that's normal. (The FW Update Tool on
 Verified on firmware V1.20 with driver 1.0.0.8. Full write-up, hardware details and a beginner walkthrough here: https://github.com/Iroamstaff/gk600-tft-gif-usb
 
 Happy to answer questions in the comments — and if someone with a different revision checks their product string, drop it below so we can build a list.
+
+
+---
+
+SUGGESTED IMAGE CAPTIONS (gallery order):
+1. images/01-gif-on-screen.jpg  — "My own GIF running on the GK600's screen over USB"
+2. images/02-config-fix.png     — "The one-line config.xml fix (product_name)"
+3. images/03-driver-send-to-keyboard.png — "MSI's own driver finally detecting the keyboard — 'Send to keyboard'"

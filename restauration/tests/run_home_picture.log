@@ -1,0 +1,8 @@
+PASS picture without --write is a dry run
+PASS picture --write: 384 pages acknowledged
+PASS picture bytes at 0x17A1CE, 160 x 65
+PASS [0, 0x17A1CE) and [0x17F30E, end) equal the dump
+PASS restore brings the dragon back, whole chip = dump - d3a7359a69692e2d
+
+ALL PASSED
+exit=0

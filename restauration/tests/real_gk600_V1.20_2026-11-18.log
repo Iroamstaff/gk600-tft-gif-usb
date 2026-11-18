@@ -1,0 +1,117 @@
+2026-11-18 21:27:59 gk600_restore 0.9.4-experimental - list
+2026-11-18 21:27:59 0DB0:EA47 MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-18 21:27:59    if 0  usage page 0001  version 0120  MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:27:59    if 1  usage page 0001  version 0120  MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:27:59    if 1  usage page 0001  version 0120  MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:27:59    if 1  usage page 0001  version 0120  MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:27:59    if 1  usage page 000C  version 0120  MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:27:59    if 1  usage page FFFF  version 0120  MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:27:59    if 2  usage page FF68  version 0120  MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:27:59    if 3  usage page FF13  version 0120  MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:28:04 gk600_restore 0.9.4-experimental - check
+2026-11-18 21:28:04 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-18 21:28:04 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:28:04 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-18 21:28:04 Command  : interface 3, usage page FF13
+2026-11-18 21:28:04 Data     : interface 2, usage page FF68
+2026-11-18 21:28:04 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-18 21:28:04   -> 04 18 00 00 00 00 00 00 00 00 00 00
+2026-11-18 21:28:04   <- 04 18 00 01 00 00 00 00 00 00 00 00
+2026-11-18 21:28:04 Handshake OK: the keyboard answers and is idle. Nothing was written.
+2026-11-18 21:30:32 gk600_restore 0.9.4-experimental - probe
+2026-11-18 21:30:32 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-18 21:30:32 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:30:32 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-18 21:30:32 Command  : interface 3, usage page FF13
+2026-11-18 21:30:32 Data     : interface 2, usage page FF68
+2026-11-18 21:30:32 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-18 21:30:32 Payload  : 17 pages, SHA-256 772fd6ac3ca16ec6e14755b4aff148bd665958324c37d7a32ab3e49412c30eba
+2026-11-18 21:30:32 
+DRY RUN: nothing was sent. Add --write to do it.
+2026-11-18 21:30:32 gk600_restore 0.9.4-experimental - unprobe
+2026-11-18 21:30:32 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-18 21:30:32 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:30:32 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-18 21:30:32 Command  : interface 3, usage page FF13
+2026-11-18 21:30:32 Data     : interface 2, usage page FF68
+2026-11-18 21:30:32 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-18 21:30:32 Payload  : 17 pages, SHA-256 0a17deb9164c1da74df474778801b9e204cc2e9fdafe4ff348f2c68c9f0d0b5b
+2026-11-18 21:30:32 
+DRY RUN: nothing was sent. Add --write to do it.
+2026-11-18 21:56:18 gk600_restore 0.9.4-experimental - probe
+2026-11-18 21:56:18 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-18 21:56:18 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:56:18 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-18 21:56:18 Command  : interface 3, usage page FF13
+2026-11-18 21:56:18 Data     : interface 2, usage page FF68
+2026-11-18 21:56:18 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-18 21:56:18 Payload  : 17 pages, SHA-256 772fd6ac3ca16ec6e14755b4aff148bd665958324c37d7a32ab3e49412c30eba
+2026-11-18 21:56:18 [1/4] 04 18 handshake
+2026-11-18 21:56:18   -> 04 18 00 00 00 00 00 00 00 00 00 00
+2026-11-18 21:56:18   <- 04 18 00 01 00 00 00 00 00 00 00 00
+2026-11-18 21:56:18 [2/4] 04 38 raw write from 0x000000, 17 pages
+2026-11-18 21:56:18   -> 04 38 00 00 00 00 00 00 11 00 00 00
+2026-11-18 21:56:18   <- 04 38 00 01 00 00 00 00 11 00 00 00
+2026-11-18 21:56:18 [3/4] sending 17 pages (each must be acknowledged with 01 5A 02)
+2026-11-18 21:56:20 [4/4] 04 02 close
+2026-11-18 21:56:21   -> 04 02 00 00 00 00 00 00 00 00 00 00
+2026-11-18 21:56:21   <- 04 02 00 01 00 00 00 00 00 00 00 00
+2026-11-18 21:56:21 
+Done. The keyboard redraws its status screen at the end of the transfer.
+2026-11-18 21:56:21 Expected on the home screen (dragon + laptop): the battery icon and the whole
+2026-11-18 21:56:21 bottom bar (WIN/MAC, connection, lock indicators) turn into magenta/yellow stripes.
+2026-11-18 21:56:21 Press Caps Lock or Num Lock to force a redraw. The dragon may hide the background.
+2026-11-18 21:56:21 Undo with:  python gk600_restore.py unprobe --write
+2026-11-18 21:57:11 gk600_restore 0.9.4-experimental - unprobe
+2026-11-18 21:57:12 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-18 21:57:12 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 21:57:12 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-18 21:57:12 Command  : interface 3, usage page FF13
+2026-11-18 21:57:12 Data     : interface 2, usage page FF68
+2026-11-18 21:57:12 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-18 21:57:12 Payload  : 17 pages, SHA-256 0a17deb9164c1da74df474778801b9e204cc2e9fdafe4ff348f2c68c9f0d0b5b
+2026-11-18 21:57:12 [1/4] 04 18 handshake
+2026-11-18 21:57:12   -> 04 18 00 00 00 00 00 00 00 00 00 00
+2026-11-18 21:57:12   <- 04 18 00 01 00 00 00 00 00 00 00 00
+2026-11-18 21:57:12 [2/4] 04 38 raw write from 0x000000, 17 pages
+2026-11-18 21:57:12   -> 04 38 00 00 00 00 00 00 11 00 00 00
+2026-11-18 21:57:12   <- 04 38 00 01 00 00 00 00 11 00 00 00
+2026-11-18 21:57:12 [3/4] sending 17 pages (each must be acknowledged with 01 5A 02)
+2026-11-18 21:57:14 [4/4] 04 02 close
+2026-11-18 21:57:14   -> 04 02 00 00 00 00 00 00 00 00 00 00
+2026-11-18 21:57:14   <- 04 02 00 01 00 00 00 00 00 00 00 00
+2026-11-18 21:57:14 
+Done. The keyboard redraws its status screen at the end of the transfer.
+2026-11-18 22:31:57 gk600_home_picture 0.1-experimental (gk600_restore 0.9.4-experimental)
+2026-11-18 22:31:57 Picture  : zelda_oot_160x65.rgb565, 160 x 65 at 0x17A1CE, SHA-256 c9f63561a77d104f44e81befc44cff636bff8e16dc07b1a5825139429f4247c7
+2026-11-18 22:31:58 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-18 22:31:58 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 22:31:58 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-18 22:31:58 Command  : interface 3, usage page FF13
+2026-11-18 22:31:58 Data     : interface 2, usage page FF68
+2026-11-18 22:31:58 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-18 22:31:58 Payload  : 384 pages, SHA-256 f293eda9bc83064cb7e25e2ce27c3e3a8421d7c71d4bdad7a94f4c2868d5d951
+2026-11-18 22:31:58 
+DRY RUN: nothing was sent. Add --write to do it.
+2026-11-18 22:32:09 gk600_home_picture 0.1-experimental (gk600_restore 0.9.4-experimental)
+2026-11-18 22:32:09 Picture  : zelda_oot_160x65.rgb565, 160 x 65 at 0x17A1CE, SHA-256 c9f63561a77d104f44e81befc44cff636bff8e16dc07b1a5825139429f4247c7
+2026-11-18 22:32:09 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-18 22:32:09 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-18 22:32:09 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-18 22:32:09 Command  : interface 3, usage page FF13
+2026-11-18 22:32:09 Data     : interface 2, usage page FF68
+2026-11-18 22:32:09 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-18 22:32:09 Payload  : 384 pages, SHA-256 f293eda9bc83064cb7e25e2ce27c3e3a8421d7c71d4bdad7a94f4c2868d5d951
+2026-11-18 22:32:09 [1/4] 04 18 handshake
+2026-11-18 22:32:09   -> 04 18 00 00 00 00 00 00 00 00 00 00
+2026-11-18 22:32:09   <- 04 18 00 01 00 00 00 00 00 00 00 00
+2026-11-18 22:32:09 [2/4] 04 38 raw write from 0x000000, 384 pages
+2026-11-18 22:32:09   -> 04 38 00 00 00 00 00 00 80 01 00 00
+2026-11-18 22:32:09   <- 04 38 00 01 00 00 00 00 80 01 00 00
+2026-11-18 22:32:09 [3/4] sending 384 pages (each must be acknowledged with 01 5A 02)
+2026-11-18 22:33:03 [4/4] 04 02 close
+2026-11-18 22:33:03   -> 04 02 00 00 00 00 00 00 00 00 00 00
+2026-11-18 22:33:03   <- 04 02 00 01 00 00 00 00 00 00 00 00
+2026-11-18 22:33:03 
+Done. The keyboard redraws its home screen: your picture should be there.
+2026-11-18 22:33:03 Back to the dragon:  python gk600_restore.py restore --write

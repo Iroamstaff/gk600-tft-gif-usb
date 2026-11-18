@@ -1,0 +1,11 @@
+PASS check: finds the FF13/FF68 pair and the handshake passes
+PASS restore without --write is a dry run (no page sent, flash unchanged)
+PASS probe --write: 17 pages, striped icons + test card in [0, 0x11000), rest untouched
+PASS unprobe --write: back to the reference bytes
+PASS restore --write from the 16 MiB dump repairs the whole flash - d3a7359a69692e2d
+PASS restore refuses a keyboard left busy, sends no page
+PASS restore --with-boot: 960 pages, menus and boot animation back to the dump
+PASS restore --with-boot refuses the menus-only extract (full dump needed), sends nothing
+
+ALL PASSED
+exit=0

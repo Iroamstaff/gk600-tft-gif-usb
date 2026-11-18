@@ -2,6 +2,10 @@
 
 > **Ce que ce tuto débloque :** le MSI Forge GK600 TKL est vendu comme « sans logiciel », avec seulement des animations pré-chargées qu'on choisit depuis le clavier. En réalité, un logiciel MSI permet de **téléverser vos propres GIF** sur le petit écran et de **régler le RGB touche par touche**. Problème : par défaut, ce logiciel ne reconnaît pas le clavier quand il est branché en USB. Ce guide corrige ça en modifiant **un seul mot** dans un fichier — aucun flashage, aucun risque pour le clavier.
 
+> 🛠️ **Nouveau (novembre 2026) : menus de l'écran ou logo MSI devenus noirs après un long GIF ?**
+> Réparation en un double-clic, et possibilité de remplacer le dragon de l'écran d'accueil par votre
+> image : dossier [`restauration/`](restauration/).
+
 **Temps nécessaire :** ~15 minutes. **Niveau :** débutant, on détaille tout.
 **Il vous faut :** un PC Windows (10 ou 11), le câble USB-C fourni, et le clavier.
 
@@ -93,6 +97,7 @@ Le nom exact peut varier d'un exemplaire ou d'une version de firmware à l'autre
 1. Préparez votre GIF au bon format pour l'écran :
    - **Dimensions : 160 × 96 pixels** (c'est la taille exacte de l'écran).
    - **255 images (frames) maximum.** Pour une lecture fluide, privilégiez un GIF court (quelques dizaines de frames suffisent).
+   - ⚠️ **Ne relevez jamais `gif_maxframes`** dans `rgb-keyboard.xml` : au-delà d'environ 420 images, le GIF déborde de la mémoire de l'écran et efface les menus (réparation : dossier [`restauration/`](restauration/)).
    - Un GIF trop lourd ou trop long saccadera : restez simple.
 2. Dans le logiciel, allez dans la section **écran / GIF**.
 3. **Parcourir** → sélectionnez votre fichier GIF → lancez le **téléversement** vers le clavier.
@@ -119,6 +124,7 @@ Toujours dans le même logiciel, la section **éclairage / RGB** permet de chois
 | MSI Center ne voit rien | Normal. Utilisez **`DeviceDriver.exe`**, pas MSI Center. |
 | Le nom ne marche pas | Lisez le nom réel de votre clavier (fin de l'étape 3) et recopiez-le. |
 | Le driver n'est plus sur la page du GK600 | Normal depuis fin 2026 : prenez-le sur la page **Frieren Edition** (étape 1), même paquet. |
+| Menus de l'écran ou logo MSI noirs après un long GIF | Double-cliquez sur `restauration/GK600-Repair.bat` (voir [`restauration/README.md`](restauration/README.md)). |
 
 ---
 

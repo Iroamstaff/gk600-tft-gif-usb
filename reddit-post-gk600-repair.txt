@@ -1,0 +1,45 @@
+TITLE:
+[Guide] MSI Forge GK600 TKL: screen menus or MSI boot logo went black after a long GIF? One double-click USB repair (+ swap the home-screen dragon for your own picture)
+
+BODY:
+
+Quick follow-up to my GIF-over-USB guide. If you raised `gif_maxframes` in `rgb-keyboard.xml` to upload longer GIFs, you may have ended up with black screen menus (or menus full of old GIF frames), sometimes a black MSI boot logo too. A factory reset doesn't bring them back. I dug into it, and there's now a fix that a beginner can run. No opening the keyboard, no firmware flashing, your current GIF isn't touched.
+
+**What actually happens**
+
+The keyboard stores your GIF in the screen's flash chip at a fixed address, and the firmware never checks where the chip ends. A GIF of roughly 420 frames or more runs past the end and wraps around to the start of the chip, which is exactly where all the menu pictures live. Even longer, and it reaches the MSI boot animation. A factory reset only resets settings, not pictures, so nothing comes back.
+
+Bonus bug: MSI's software stores the frame count in a single byte, so a 300-frame GIF is announced as 44 frames and loops early. That's the "my GIF restarts too soon" thing.
+
+**The fix**
+
+A small tool that talks to the keyboard over USB with the same commands as MSI's software, and writes the original screen pictures back, taken from a public backup of a working GK600 (thanks Flonfli for the dump).
+
+1. Go to https://github.com/Iroamstaff/gk600-tft-gif-usb → green **Code** button → **Download ZIP** → right-click → **Extract All**.
+2. Close MSI's software (check the tray next to the clock too). Plug the keyboard in with the cable, switch on wired.
+3. Open the `restauration` folder and double-click **`GK600-Repair.bat`**. If SmartScreen pops up: More info → Run anyway.
+4. Follow the prompts. It downloads a portable Python (nothing gets installed, every file is hash-checked), checks the keyboard, asks you to power-cycle it, then rewrites the menus and the boot animation. Takes 2 to 3 minutes.
+5. Switch the keyboard off for 10 s and back on: MSI logo and menus are back.
+
+**Bonus: replace the home-screen dragon**
+
+The dragon-on-a-laptop picture on the home screen (the one with the battery and WIN/MAC icons) can be swapped too: drag any PNG or JPG onto **`GK600-Home-Picture.bat`**. You get a preview first, then it takes about a minute. The visible area is 160×65 px and the battery is drawn over the top-right corner. Want the dragon back? Run `GK600-Repair.bat`. Video and photos show mine.
+
+**To keep it from happening**
+
+Leave `gif_maxframes` at 255. That's it.
+
+**Status**
+
+Still experimental, so use it at your own risk. It's been tested in an emulator running the real firmware code, then on my own GK600 TKL (firmware V1.20): keyboard check, a small reversible test, and a 384-page write for the home picture. If your firmware isn't V1.20, the tool runs a 3-second reversible test first and stops if anything looks off. Everything is open source, with the details in the repo (`restauration/` folder, FR + EN guides).
+
+If you try it, please post your firmware version (the tool shows it) and how it went. That helps a lot.
+
+
+---
+
+MEDIA (gallery order):
+1. VID_20261118_223257.mp4 — "Swapping the home-screen dragon for my own picture over USB"
+2. 1795038182936.jpg — "Custom home-screen picture on the GK600 TKL"
+3. restauration/images/home_picture_example.png — "Before / after (home screen)"
+(Videos and pictures are in G:\Mon Drive\Claude ai partage)

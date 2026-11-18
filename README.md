@@ -4,6 +4,10 @@ The **MSI Forge GK600 TKL Wireless** has a small TFT screen. MSI markets it as "
 
 **No flashing. No firmware changes. Fully reversible.**
 
+> 🛠️ **New (Nov 2026): screen menus or MSI boot logo gone black after a long GIF?** One double-click
+> USB repair, plus a way to swap the home-screen dragon for your own picture →
+> **[`restauration/`](restauration/)** (FR / EN, beginner friendly).
+
 ---
 
 ## TL;DR — the fix
@@ -47,6 +51,7 @@ Verify your download on Windows: `certutil -hashfile <file>.zip SHA256`. The dri
 4. Set the keyboard's 3-way switch to **wired/USB**, connect the USB-C cable.
 5. Run **`DeviceDriver.exe`** → the keyboard is detected.
 6. **GIF:** screen/GIF section → browse → upload. Format: **160 × 96 px**, **≤ 255 frames**, keep it short for smooth playback.
+   ⚠️ **Never raise `gif_maxframes` in `rgb-keyboard.xml`:** a GIF of about 420 frames or more overflows the screen's flash and wipes the menus (fix: [`restauration/`](restauration/)).
 7. **RGB:** lighting section → per-key colors.
 
 Full beginner walkthrough with screenshots-friendly detail: see [`tuto-gk600-gif-usb.md`](./tuto-gk600-gif-usb.md).

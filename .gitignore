@@ -8,3 +8,13 @@ Thumbs.db
 *.zip
 *.exe
 config.xml
+
+# restauration/ : downloaded at run time, never committed
+restauration/runtime/
+*.bin
+*.rgb565
+*.part
+restauration/gk600_restore.log
+restauration/preview_home_screen.png
+__pycache__/
+*.pyc

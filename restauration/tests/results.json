@@ -1,0 +1,189 @@
+{
+ "firmware_sha256": "8872d242f8be67ddc078d20e82b074fc036f6526fe3d846657451b8663114d96",
+ "dump_sha256": "d3a7359a69692e2d25994b8c886cdd87444342b509eaf505cb197664ab671b50",
+ "tool_version": "0.9.4-experimental",
+ "elapsed_s": 1027.8,
+ "all_passed": true,
+ "checks": [
+  {
+   "check": "S0 04 18 / 04 02 identical to the MSI driver (04 xx then 62 zero bytes)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S0 04 38 carries the page count little-endian at bytes 8-9 (same slot as 04 72)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S1 416 pages acknowledged, transaction closed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S1 SPI erases exactly cover [0, 0x1A0000)",
+   "ok": true,
+   "detail": "erases=416 span=('0x0', '0x1a0000')"
+  },
+  {
+   "check": "S1 16 page-programs per page, none refused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S1 whole 16 MiB flash equals the reference dump afterwards",
+   "ok": true,
+   "detail": "d3a7359a69692e2d25994b8c886cdd87444342b509eaf505cb197664ab671b50"
+  },
+  {
+   "check": "S1 IRQ19/LED engine restarted once at the end (0x7E24)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S1 status screen redrawn (0xF868) and display mode back to 1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S1 user animation reload (0xFE20) NOT triggered by 04 38",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S1 internal MCU flash never touched",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S1 every ACK is 01 5A 02",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S2 status screen (real code, 3 switch positions x 2 lock states): background at 0x000000, edition picture, and 11 icons, all inside the striped range [0x7800, 0x10806)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S2 probe writes 17 pages, erases only [0, 0x11000)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S2 probe leaves everything from 0x11000 untouched",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S2 after the probe every icon the status screen draws is striped, the background holds the test card",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S2 reference background area is all zeros (black) before the probe",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S2 unprobe restores the exact reference bytes",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S3 payload refused: not a multiple of 4096",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S3 payload refused: empty",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S3 payload refused: beyond 0x3C0000",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S4 handshake refuses a keyboard left in a transfer waiting for pages (state 5)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S4 handshake refuses a keyboard left in a transfer waiting for 04 02 (state 3)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S5 missing ACK stops the tool at once (no page sent after it)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S5 firmware gives up after ~2 s: state 0 but LED engine NOT restarted, display mode 0x0E",
+   "ok": true,
+   "detail": "this is why the docs say: power-cycle after any aborted transfer"
+  },
+  {
+   "check": "S5 after a power cycle the same command repairs everything",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S6 a stale fragment counter (K=10) is invisible to the host but shifts the data",
+   "ok": true,
+   "detail": "241129 bytes differ in [0, 0x1A0000)"
+  },
+  {
+   "check": "S6 power cycle + same command -> exact reference",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S7 byte 2 of 04 38 is ignored by this firmware (0 and 1 give the same flash)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S8 8 MiB chip + 200-frame GIF (1501 pages, legal for the MSI driver): menus overwritten, boot animation intact",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S8 restore brings [0, 0x1A0000) back on the 8 MiB chip",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S9 16 MiB chip + 470-frame GIF (3526 pages, needs gif_maxframes raised): menus overwritten, boot intact",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S9 restore brings [0, 0x1A0000) back on the 16 MiB chip",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S10 --with-boot: 960 pages, erases exactly [0, 0x3C0000), whole chip back to the dump",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S11 16 MiB chip + 500-frame GIF (3751 pages): menus AND boot animation overwritten",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S11 plain restore fixes the menus but leaves the boot animation broken",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "S11 --with-boot restores [0, 0x3C0000) exactly and leaves the GIF area as it was",
+   "ok": true,
+   "detail": ""
+  }
+ ]
+}

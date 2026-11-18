@@ -1,0 +1,5 @@
+# Windows launchers: keep CRLF line endings (and the UTF-8 BOM of the .ps1) exactly as committed
+*.bat -text
+*.ps1 -text
+# logs captured on Windows keep their CRLF, so their SHA-256 match the reports
+*.log -text

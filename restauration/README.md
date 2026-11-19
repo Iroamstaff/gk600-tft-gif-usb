@@ -1,8 +1,9 @@
 # GK600 — réparer l'écran / repair the screen
 
-**Expérimental / experimental.** Testé sur un MSI Forge GK600 TKL Wireless en firmware V1.20 et
-validé en émulation sur le vrai code du firmware. Tested on an MSI Forge GK600 TKL Wireless running
-firmware V1.20 and validated in emulation against the real firmware code.
+**Expérimental / experimental.** Réparation complète confirmée sur un GK600 TKL Wireless abîmé
+(firmware V1.04) et essais sur un autre en V1.20, après validation en émulation sur le vrai code
+du firmware. Full repair confirmed on a damaged GK600 TKL Wireless (firmware V1.04) and tests on
+another one running V1.20, after validation in emulation against the real firmware code.
 
 ---
 
@@ -76,9 +77,11 @@ mêmes commandes que le logiciel MSI et réécrit les images d'origine, prises d
 publique d'un GK600 qui marche. Rien à ouvrir, aucun flashage de firmware, la zone du GIF n'est
 jamais touchée.
 
-Validated on 18 November 2026 on a real GK600 (V1.20): keyboard check, 17-page probe and undo, a
-384-page write (home picture). If your firmware is not V1.20, `GK600-Repair.bat` first runs a
-3-second reversible test and stops if it does not behave the same.
+Validated on real keyboards: on 18 November 2026 on a GK600 running V1.20 (keyboard check, 17-page
+probe and undo, 384-page home picture), and on 19 November 2026 on a damaged GK600 running V1.04
+(full repair: menus and MSI boot animation back, GIF untouched). If your firmware is neither V1.04
+nor V1.20, `GK600-Repair.bat` first runs a 3-second reversible test and stops if it does not
+behave the same.
 
 ## Detailed guides / guides détaillés
 

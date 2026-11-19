@@ -5,7 +5,8 @@ The **MSI Forge GK600 TKL Wireless** has a small TFT screen. MSI markets it as "
 **No flashing. No firmware changes. Fully reversible.**
 
 > 🛠️ **New (Nov 2026): screen menus or MSI boot logo gone black after a long GIF?** One double-click
-> USB repair, plus a way to swap the home-screen dragon for your own picture →
+> USB repair, already confirmed on a damaged keyboard, plus a way to swap the home-screen dragon for
+> your own picture →
 > **[`restauration/`](restauration/)** (FR / EN, beginner friendly).
 
 ---

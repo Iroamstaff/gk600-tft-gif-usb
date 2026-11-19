@@ -63,6 +63,9 @@ $HIDAPI = @{ Name = 'hidapi-0.15.0-cp313-cp313-win_amd64.whl'
 $PILLOW = @{ Name = 'pillow-13.0.0-cp313-cp313-win_amd64.whl'
              Sha  = '9dda0788a9932776a75d8bcc020076edc308ce2508b51f6739a45e3158b3fc42'
              Url  = 'https://files.pythonhosted.org/packages/d7/ed/1b16fb66a37e1b9e41370b93b2c614c7da761a5b2a41dc333f7af4639962/pillow-13.0.0-cp313-cp313-win_amd64.whl' }
+# firmware versions on which the repair has been confirmed on a real keyboard
+$Validated = @('V1.04', 'V1.20')
+
 $DUMP   = @{ Name = 'Forge gk600 tkl wireless.bin'
              Sha  = 'd3a7359a69692e2d25994b8c886cdd87444342b509eaf505cb197664ab671b50'
              Url  = 'https://raw.githubusercontent.com/Flonfli/Forge-gk600-tkl-wireless.bin/main/Forge%20gk600%20tkl%20wireless.bin' }
@@ -185,7 +188,7 @@ function Banner([string]$fr, [string]$en) {
     Write-Host ''
     Write-Host '==========================================================' -ForegroundColor DarkCyan
     Write-Host ('  ' + (T $fr $en)) -ForegroundColor White
-    Write-Host ('  ' + (T 'Expérimental, testé sur un GK600 TKL en firmware V1.20.' 'Experimental, tested on a GK600 TKL running firmware V1.20.')) -ForegroundColor DarkGray
+    Write-Host ('  ' + (T 'Expérimental, confirmé sur des GK600 TKL en firmware V1.04 et V1.20.' 'Experimental, confirmed on GK600 TKL keyboards running firmware V1.04 and V1.20.')) -ForegroundColor DarkGray
     if ($DryRun) { Write-Host '  DRY RUN: nothing will be written' -ForegroundColor Magenta }
     Write-Host '==========================================================' -ForegroundColor DarkCyan
 }
@@ -209,7 +212,7 @@ if ($Mode -eq 'repair') {
     $fw = Check-Keyboard 3
     Say ('  clavier trouvé, firmware ' + $fw) ('  keyboard found, firmware ' + $fw) 'Green'
 
-    if ($fw -ne 'V1.20') {
+    if ($Validated -notcontains $fw) {
         Step 'Test rapide (firmware pas encore testé)' 'Quick test (firmware not tested yet)'
         Say ("Ta version (" + $fw + ") n'a pas encore été testée. On fait d'abord un essai de 3 secondes, sans danger : il raye les icônes de l'écran d'accueil.") `
             ('Your version (' + $fw + ') has not been tested yet. First a 3-second harmless test: it stripes the home-screen icons.') 'Yellow'
@@ -269,9 +272,9 @@ Say "Branche le clavier avec son câble USB, interrupteur sur le mode filaire (U
 Wait-Enter 'Appuie sur Entrée' 'Press Enter'
 $fw = Check-Keyboard 3
 Say ('  clavier trouvé, firmware ' + $fw) ('  keyboard found, firmware ' + $fw) 'Green'
-if ($fw -ne 'V1.20') {
-    Fail ("L'image d'accueil n'est validée qu'en firmware V1.20 (le tien : " + $fw + "). Signale ta version sur GitHub (onglet Issues).") `
-         ('The home picture is only validated on firmware V1.20 (yours: ' + $fw + '). Report your version on GitHub (Issues tab).')
+if ($Validated -notcontains $fw) {
+    Fail ("L'image d'accueil n'est validée qu'en firmware V1.04 et V1.20 (le tien : " + $fw + "). Lance d'abord GK600-Repair.bat, qui teste ta version, et signale le résultat sur GitHub (onglet Issues).") `
+         ('The home picture is only validated on firmware V1.04 and V1.20 (yours: ' + $fw + '). Run GK600-Repair.bat first, which tests your version, and report the result on GitHub (Issues tab).')
 }
 
 Step '3/4  Redémarrage du clavier' '3/4  Restart the keyboard'

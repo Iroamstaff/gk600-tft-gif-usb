@@ -1,10 +1,10 @@
 # Réparer les menus de l'écran du GK600 (expérimental)
 
 > **Statut : expérimental.** Vérifié en exécutant le vrai code du firmware Frieren V1.17 (même
-> plateforme, même protocole) dans un émulateur, puis sur un vrai GK600 (`0DB0:EA47`, firmware
-> V1.20) le 18 novembre 2026 : sonde et retour, écriture de 384 pages. La restauration complète
-> n'a pas encore été lancée sur un clavier abîmé. Vous restez seul responsable de ce que vous
-> faites avec votre clavier.
+> plateforme, même protocole) dans un émulateur, puis sur de vrais GK600 (`0DB0:EA47`) : sonde,
+> retour et écriture de 384 pages en firmware V1.20 le 18 novembre 2026, puis réparation complète
+> d'un clavier abîmé en firmware V1.04 le 19 novembre (menus et animation de démarrage revenus,
+> GIF intact). Vous restez seul responsable de ce que vous faites avec votre clavier.
 >
 > **Débutant ?** Inutile de lire la suite : double-cliquez sur `GK600-Repair.bat` et suivez les
 > instructions (voir [README.md](README.md)). Ce guide explique ce que fait l'outil et son usage
@@ -102,8 +102,9 @@ affichée (par exemple `V1.20`) : elle sera utile si vous signalez un résultat.
 ## Étape 1 — la sonde (17 pages, réversible)
 
 Validée le 18 novembre 2026 sur un GK600 en `V1.20` : les icônes se rayent, `unprobe` remet
-l'écran d'origine et l'animation de démarrage n'est pas touchée. **Si `check` affiche `V1.20`,
-cette étape est facultative.** Pour toute autre version, faites-la.
+l'écran d'origine et l'animation de démarrage n'est pas touchée. **Si `check` affiche `V1.04` ou
+`V1.20`, cette étape est facultative** (réparation complète réussie en V1.04 le 19 novembre). Pour
+toute autre version, faites-la.
 
 ```
 python gk600_restore.py probe --write
@@ -182,7 +183,8 @@ python gk600_home_picture.py mon_image.png --write
   fermé, clavier éteint puis rallumé avant l'écriture.
 - Retour au dragon : `python gk600_restore.py restore --write`.
 - Validé le 18 novembre 2026 sur un GK600 en `V1.20` : 384 pages accusées en 54 secondes, image
-  entière et à sa place.
+  entière et à sa place. En `V1.04`, la réparation a remis le dragon au même endroit : l'outil
+  accepte aussi cette version, sans essai direct de l'image à ce jour.
 
 ## En cas d'erreur
 
@@ -226,20 +228,18 @@ Vérifié sur un vrai GK600 (`0DB0:EA47`, firmware `V1.20`, Windows 11), le 18 n
 
 Journal : `tests/real_gk600_V1.20_2026-11-18.log`.
 
+Réparation complète réussie le 19 novembre 2026 sur un GK600 abîmé en firmware `V1.04` (menus et
+animation de démarrage devenus noirs après de longs GIF) : avec `GK600-Repair.bat`, les menus
+d'origine et l'animation MSI sont revenus, et le GIF en place n'a pas été touché.
+
 Pas encore prouvé :
 
-- la restauration complète (416 ou 960 pages) sur un clavier abîmé : même commande et même
-  mécanisme page par page que la sonde, pas encore lancée hors émulation. Une écriture de
-  384 pages par le même chemin (image d'accueil) a réussi sur un vrai GK600 ;
-- le comportement de `04 38` sur les versions de firmware autres que `V1.20` : c'est l'objet de
-  l'étape 1. Ce qui le rend probable : les descripteurs USB, le filtre de commandes et les
-  commandes `04 18` / `04 72` / `04 02` sont identiques sur toute la plateforme, le même chemin
-  `04 38` existe dans un autre firmware de la famille (AULA F98 Pro V1.20), et la V1.20 du GK600
-  se comporte comme le Frieren V1.17 ;
-- la taille de la puce sur les claviers abîmés (8 ou 16 Mo) ;
-- l'endroit exact où le firmware du GK600 lit son dragon : celui du Frieren affiche sa propre
-  image ailleurs. Sans conséquence pour la restauration, qui recopie toute la zone depuis le dump
-  d'un GK600.
+- le comportement de `04 38` sur les versions de firmware autres que `V1.04` et `V1.20` : c'est
+  l'objet de l'étape 1. Ce qui le rend probable : les descripteurs USB, le filtre de commandes et
+  les commandes `04 18` / `04 72` / `04 02` sont identiques sur toute la plateforme, le même chemin
+  `04 38` existe dans un autre firmware de la famille (AULA F98 Pro V1.20), et les V1.04 et V1.20
+  du GK600 se comportent comme le Frieren V1.17 ;
+- la taille de la puce sur les claviers abîmés (8 ou 16 Mo).
 
 Les tests rejouables sont dans `tests/` (émulateur, scénarios, résultats).
 

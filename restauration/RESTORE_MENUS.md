@@ -1,9 +1,10 @@
 # Repairing the GK600 screen menus (experimental)
 
 > **Status: experimental.** Verified by running the real code of the Frieren V1.17 firmware (same
-> platform, same protocol) in an emulator, then on a real GK600 (`0DB0:EA47`, firmware V1.20) on
-> 18 November 2026: probe and undo, a 384-page write. The full restore has not been run on a
-> damaged keyboard yet. What you do with your keyboard remains your responsibility.
+> platform, same protocol) in an emulator, then on real GK600 keyboards (`0DB0:EA47`): probe, undo
+> and a 384-page write on firmware V1.20 on 18 November 2026, then a full repair of a damaged
+> keyboard running V1.04 on 19 November (menus and boot animation back, GIF untouched). What you
+> do with your keyboard remains your responsibility.
 >
 > **Beginner?** No need to read further: double-click `GK600-Repair.bat` and follow the prompts
 > (see [README.md](README.md)). This guide explains what the tool does and how to run it by hand.
@@ -100,8 +101,9 @@ Expected: the keyboard name, its firmware version, then `Handshake OK`. Note the
 ## Step 1 — the probe (17 pages, reversible)
 
 Validated on 18 November 2026 on a GK600 running `V1.20`: the icons get striped, `unprobe` brings
-the original screen back and the boot animation is not touched. **If `check` shows `V1.20`, this
-step is optional.** For any other version, do it.
+the original screen back and the boot animation is not touched. **If `check` shows `V1.04` or
+`V1.20`, this step is optional** (full repair confirmed on V1.04 on 19 November). For any other
+version, do it.
 
 ```
 python gk600_restore.py probe --write
@@ -176,7 +178,8 @@ python gk600_home_picture.py my_picture.png --write
   off and on before the write.
 - Back to the dragon: `python gk600_restore.py restore --write`.
 - Validated on 18 November 2026 on a GK600 running `V1.20`: 384 pages acknowledged in 54 seconds,
-  picture complete and in place.
+  picture complete and in place. On `V1.04` the repair brought the dragon back in the same place,
+  so the tool accepts that version too, although the picture itself has not been tried on it yet.
 
 ## If something goes wrong
 
@@ -218,18 +221,18 @@ Checked on a real GK600 (`0DB0:EA47`, firmware `V1.20`, Windows 11) on 18 Novemb
 
 Log: `tests/real_gk600_V1.20_2026-11-18.log`.
 
+Full repair confirmed on 19 November 2026 on a damaged GK600 running firmware `V1.04` (menus and
+boot animation gone black after long GIFs): with `GK600-Repair.bat`, the original menus and the MSI
+animation came back, and the GIF already on the keyboard was not touched.
+
 Not yet proven:
 
-- the full restore (416 or 960 pages) on a damaged keyboard: same command and same page-by-page
-  mechanism as the probe, not yet run outside emulation. A 384-page write through the same path
-  (home-screen picture) worked on a real GK600;
-- how `04 38` behaves on firmware versions other than `V1.20`: that is what step 1 checks. Why it
-  is likely: the USB descriptors, the command filter and the `04 18` / `04 72` / `04 02` commands
-  are identical across the platform, the same `04 38` path exists in another firmware of the family
-  (AULA F98 Pro V1.20), and the GK600's V1.20 behaves like Frieren V1.17;
-- the chip size on the damaged keyboards (8 or 16 MB);
-- exactly where the GK600 firmware reads its dragon: the Frieren one shows its own picture
-  elsewhere. No consequence for the restore, which copies the whole area from a GK600 dump.
+- how `04 38` behaves on firmware versions other than `V1.04` and `V1.20`: that is what step 1
+  checks. Why it is likely: the USB descriptors, the command filter and the `04 18` / `04 72` /
+  `04 02` commands are identical across the platform, the same `04 38` path exists in another
+  firmware of the family (AULA F98 Pro V1.20), and the GK600's V1.04 and V1.20 behave like Frieren
+  V1.17;
+- the chip size on the damaged keyboards (8 or 16 MB).
 
 The replayable tests are in `tests/` (emulator, scenarios, results).
 

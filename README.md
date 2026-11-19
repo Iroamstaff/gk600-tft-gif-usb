@@ -30,10 +30,11 @@ Leave `hid_interface` on `MI_00` — the driver switches to the right channel on
 
 ## Where to get the driver
 
-As of late 2026, MSI removed the download section from the "plain" GK600 TKL pages (SKY / Violet). **The same driver package is still available** on the **FORGE TKL WIRELESS FRIEREN EDITION** support page, and it covers the standard GK600 too (both SKUs are declared in its `config.xml`).
+MSI keeps pulling the download from its product pages (first the "plain" GK600 TKL pages, SKY / Violet), but **the package is still on MSI's own download server**:
 
-- **Page:** https://www.msi.com/Gaming-Gear/FORGE-TKL-WIRELESS-FRIEREN-EDITION/support
-- **Drivers & Downloads → Driver → (Win11 64) → Others Drivers**
+- **Direct link (official MSI server):** https://download.msi.com/dvr_exe/gear/MSI-FORGE-GK600-Driver-1.0.0.8.zip
+
+It's the same package that was listed on the **FORGE TKL WIRELESS FRIEREN EDITION** support page, and it covers the standard GK600 too (both SKUs are declared in its `config.xml`).
 
 | File | Version | Date | Size | SHA-256 |
 |---|---|---|---|---|
@@ -46,12 +47,12 @@ Verify your download on Windows: `certutil -hashfile <file>.zip SHA256`. The dri
 
 ## Steps
 
-1. **Download** the Driver 1.0.0.8 from the Frieren Edition page above. (Do **not** use MSI Center — it doesn't see the screen. The tool you want is `DeviceDriver.exe` inside the package.)
+1. **Download** the Driver 1.0.0.8 with the direct link above and check its SHA-256. (Do **not** use MSI Center — it doesn't see the screen. The tool you want is `DeviceDriver.exe` inside the package.)
 2. **Install**, then copy the install folder somewhere writable (e.g. Desktop) to avoid Program Files permission issues.
 3. **Edit** `config.xml` as shown in the TL;DR. Back it up first.
 4. Set the keyboard's 3-way switch to **wired/USB**, connect the USB-C cable.
 5. Run **`DeviceDriver.exe`** → the keyboard is detected.
-6. **GIF:** screen/GIF section → browse → upload. Format: **160 × 96 px**, **≤ 255 frames**, keep it short for smooth playback.
+6. **GIF:** screen/GIF section → browse → upload. Format: **160 × 96 px**, **≤ 255 frames**, keep it short for smooth playback. The home screen (the dragon) isn't erased: **Fn + ← / →** switches between it and your GIF.
    ⚠️ **Never raise `gif_maxframes` in `rgb-keyboard.xml`:** a GIF of about 420 frames or more overflows the screen's flash and wipes the menus (fix: [`restauration/`](restauration/)).
 7. **RGB:** lighting section → per-key colors.
 

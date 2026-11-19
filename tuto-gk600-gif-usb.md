@@ -13,13 +13,11 @@
 
 ## 1. Télécharger le logiciel
 
-> ℹ️ **Où le trouver depuis fin 2026 :** MSI a retiré la section téléchargement des pages du GK600 TKL « classiques » (SKY / Violet). Le **même paquet de pilotes** reste disponible sur la page de la **FORGE TKL WIRELESS FRIEREN EDITION**, et il couvre aussi le GK600 standard (les deux modèles sont déclarés dans sa configuration).
+> ℹ️ **Où le trouver :** MSI retire peu à peu le téléchargement de ses pages produit (d'abord les pages du GK600 TKL « classiques », SKY / Violet). Le fichier reste disponible sur le **serveur de téléchargement officiel de MSI** : passez par le lien direct ci-dessous. C'est le même paquet que celui de la page **FORGE TKL WIRELESS FRIEREN EDITION**, et il couvre aussi le GK600 standard (les deux modèles sont déclarés dans sa configuration).
 
-1. Allez sur la page support de la **FORGE TKL WIRELESS FRIEREN EDITION** :
-   **https://www.msi.com/Gaming-Gear/FORGE-TKL-WIRELESS-FRIEREN-EDITION/support**
-2. Ouvrez **Drivers & Downloads** → onglet **Driver**.
-3. Sélectionnez votre système (**Win11 64**), puis catégorie **Others Drivers**.
-4. Téléchargez le fichier **« Driver » version 1.0.0.8** (≈ 6,1 Mo, daté du 2026-06-08).
+1. Téléchargez le **Driver 1.0.0.8** (≈ 6,1 Mo, daté du 2026-06-08) directement sur le serveur de MSI :
+   **https://download.msi.com/dvr_exe/gear/MSI-FORGE-GK600-Driver-1.0.0.8.zip**
+2. Vérifiez son empreinte SHA-256 (encadré ci-dessous) avant de l'ouvrir.
 
 > ⚠️ **N'utilisez pas MSI Center** pour cette manip. MSI Center ne reconnaît pas l'écran du clavier. C'est le petit logiciel du paquet ci-dessus (son exécutable s'appelle `DeviceDriver.exe`) qui gère le GIF et le RGB.
 >
@@ -27,7 +25,7 @@
 > `73252a3d361f6b09d5c8c7153279c37725b9ccb83f129f92e1d8d2faeef0ec59`.
 > Sous Windows : `certutil -hashfile "le-fichier.zip" SHA256` doit renvoyer exactement cette valeur.
 >
-> 💡 Le « FW Update Tool » v1.17 présent sur la même page est un **flasheur de firmware** : **inutile pour afficher un GIF**, et à réserver aux utilisateurs avertis. Pour ce tuto, seul le **Driver** est nécessaire.
+> 💡 Le « FW Update Tool » v1.17 que MSI proposait à côté est un **flasheur de firmware** : **inutile pour afficher un GIF**, et à réserver aux utilisateurs avertis. Pour ce tuto, seul le **Driver** est nécessaire.
 
 ---
 
@@ -101,7 +99,7 @@ Le nom exact peut varier d'un exemplaire ou d'une version de firmware à l'autre
    - Un GIF trop lourd ou trop long saccadera : restez simple.
 2. Dans le logiciel, allez dans la section **écran / GIF**.
 3. **Parcourir** → sélectionnez votre fichier GIF → lancez le **téléversement** vers le clavier.
-4. Patientez pendant l'envoi (la barre progresse ; l'image fait quelques Mo). L'écran affiche ensuite votre GIF.
+4. Patientez pendant l'envoi (la barre progresse ; l'image fait quelques Mo). L'écran affiche ensuite votre GIF. L'écran d'accueil (le dragon) n'est pas effacé : **Fn + flèche gauche / droite** pour passer de l'un à l'autre.
 
 > 💡 Pour recadrer/redimensionner un GIF en 160×96 sans logiciel compliqué : un site comme ezgif.com (Resize) fait le travail gratuitement.
 
@@ -123,7 +121,7 @@ Toujours dans le même logiciel, la section **éclairage / RGB** permet de chois
 | L'écran reste éteint | Il s'allume en mode **filaire USB** ; vérifiez le câble et l'interrupteur. |
 | MSI Center ne voit rien | Normal. Utilisez **`DeviceDriver.exe`**, pas MSI Center. |
 | Le nom ne marche pas | Lisez le nom réel de votre clavier (fin de l'étape 3) et recopiez-le. |
-| Le driver n'est plus sur la page du GK600 | Normal depuis fin 2026 : prenez-le sur la page **Frieren Edition** (étape 1), même paquet. |
+| Le driver n'est plus sur les pages MSI | Normal depuis fin 2026 : prenez-le avec le **lien direct** de l'étape 1 (serveur officiel MSI), puis vérifiez le SHA-256. |
 | Menus de l'écran ou logo MSI noirs après un long GIF | Double-cliquez sur `restauration/GK600-Repair.bat` (voir [`restauration/README.md`](restauration/README.md)). |
 
 ---

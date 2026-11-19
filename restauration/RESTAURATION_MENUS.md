@@ -155,9 +155,10 @@ L'outil réécrit alors `[0x000000, 0x3C0000)` : menus et animation de démarrag
 minutes. Il faut le dump complet de 16 Mo. Votre GIF n'est toujours pas touché.
 
 Juste après la sonde ou la restauration, le clavier affiche son écran d'accueil plutôt que votre GIF :
-c'est le comportement normal du firmware après ce type d'écriture, et le réglage enregistré
-reprend la main au redémarrage. Si votre GIF n'apparaît plus, renvoyez-le avec le logiciel MSI
-(145 images au plus).
+c'est le comportement normal du firmware après ce type d'écriture. Éteignez puis rallumez le
+clavier : il redémarre sur son écran habituel (Fn + flèche gauche / droite passe aussi du GIF à
+l'écran d'accueil). Si votre GIF n'apparaît plus, renvoyez-le avec le logiciel MSI (145 images au
+plus).
 
 ## Option : changer l'image de l'écran d'accueil
 

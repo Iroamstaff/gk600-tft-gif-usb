@@ -152,7 +152,8 @@ The tool then rewrites `[0x000000, 0x3C0000)`: menus and boot animation, 960 pag
 The full 16 MB dump is needed. Your GIF is still not touched.
 
 Right after the probe or the restore the keyboard shows its home screen instead of your GIF: the
-firmware does this after this kind of write, and your saved setting comes back at the next power-on.
+firmware does this after this kind of write. Switch the keyboard off and on and it starts on its
+usual screen again (Fn + ← / → also switches between the GIF and the home screen).
 If your GIF does not come back, upload it again with MSI's software (145 frames at most).
 
 ## Option: change the home-screen picture

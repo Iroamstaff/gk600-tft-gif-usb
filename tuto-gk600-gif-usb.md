@@ -111,6 +111,12 @@ Toujours dans le même logiciel, la section **éclairage / RGB** permet de chois
 
 ---
 
+## 7. (Bonus) Logiciel en français
+
+Une traduction française complète du logiciel est fournie dans le dossier [`traduction-fr/`](traduction-fr/) : fermez le logiciel, double-cliquez sur `INSTALLER_FR.bat`, acceptez la demande d'administrateur, puis relancez. Les copies du logiciel posées sur le Bureau (astuce de l'étape 3) sont traitées aussi. Détails et retour en arrière : [`traduction-fr/README.md`](traduction-fr/README.md).
+
+---
+
 ## En cas de pépin
 
 | Symptôme | Solution |
@@ -122,6 +128,7 @@ Toujours dans le même logiciel, la section **éclairage / RGB** permet de chois
 | MSI Center ne voit rien | Normal. Utilisez **`DeviceDriver.exe`**, pas MSI Center. |
 | Le nom ne marche pas | Lisez le nom réel de votre clavier (fin de l'étape 3) et recopiez-le. |
 | Le driver n'est plus sur les pages MSI | Normal depuis fin 2026 : prenez-le avec le **lien direct** de l'étape 1 (serveur officiel MSI), puis vérifiez le SHA-256. |
+| Le GIF a disparu, l'écran d'accueil est revenu | Le logiciel remet le clavier à l'heure (bouton « Régler l'heure », ou tout seul quand il renvoie ses réglages), et ça ramène l'écran sur l'accueil. **Fn + flèche gauche / droite** pour revenir au GIF. |
 | Menus de l'écran ou logo MSI noirs après un long GIF | Double-cliquez sur `restauration/GK600-Repair.bat` (voir [`restauration/README.md`](restauration/README.md)). |
 
 ---

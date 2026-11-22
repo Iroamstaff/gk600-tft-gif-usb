@@ -52,9 +52,10 @@ Verify your download on Windows: `certutil -hashfile <file>.zip SHA256`. The dri
 3. **Edit** `config.xml` as shown in the TL;DR. Back it up first.
 4. Set the keyboard's 3-way switch to **wired/USB**, connect the USB-C cable.
 5. Run **`DeviceDriver.exe`** → the keyboard is detected.
-6. **GIF:** screen/GIF section → browse → upload. Format: **160 × 96 px**, **≤ 255 frames**, keep it short for smooth playback. The home screen (the dragon) isn't erased: **Fn + ← / →** switches between it and your GIF.
+6. **GIF:** screen/GIF section → browse → upload. Format: **160 × 96 px**, **≤ 255 frames**, keep it short for smooth playback. The home screen (the dragon) isn't erased: **Fn + ← / →** switches between it and your GIF. The software's clock sync (the "Time Syns" button, also sent automatically when it pushes settings) switches back to the home screen too; the GK600 doesn't display the time.
    ⚠️ **Never raise `gif_maxframes` in `rgb-keyboard.xml`:** a GIF of about 420 frames or more overflows the screen's flash and wipes the menus (fix: [`restauration/`](restauration/)).
 7. **RGB:** lighting section → per-key colors.
+8. **Optional, software in French:** full French translation with a one-click installer → [`traduction-fr/`](traduction-fr/).
 
 Full beginner walkthrough with screenshots-friendly detail: see [`tuto-gk600-gif-usb.md`](./tuto-gk600-gif-usb.md).
 

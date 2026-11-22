@@ -3,3 +3,5 @@
 *.ps1 -text
 # logs captured on Windows keep their CRLF, so their SHA-256 match the reports
 *.log -text
+# MSI language files are UTF-16 LE with BOM and CRLF: store them byte for byte
+*.lan -text

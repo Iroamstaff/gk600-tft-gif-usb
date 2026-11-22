@@ -1,10 +1,13 @@
 # Réparer les menus de l'écran du GK600 (expérimental)
 
+🇬🇧 [English version](RESTORE_MENUS.md) · ← [Outils de l'écran](README.md) · [Page principale](../README.fr.md)
+
 > **Statut : expérimental.** Vérifié en exécutant le vrai code du firmware Frieren V1.17 (même
 > plateforme, même protocole) dans un émulateur, puis sur de vrais GK600 (`0DB0:EA47`) : sonde,
 > retour et écriture de 384 pages en firmware V1.20 le 18 novembre 2026, puis réparation complète
 > d'un clavier abîmé en firmware V1.04 le 19 novembre (menus et animation de démarrage revenus,
-> GIF intact). Vous restez seul responsable de ce que vous faites avec votre clavier.
+> GIF intact), et animation de démarrage personnalisée en V1.20 le 22 novembre. Vous restez seul
+> responsable de ce que vous faites avec votre clavier.
 >
 > **Débutant ?** Inutile de lire la suite : double-cliquez sur `GK600-Repair.bat` et suivez les
 > instructions (voir [README.md](README.md)). Ce guide explique ce que fait l'outil et son usage
@@ -187,6 +190,41 @@ python gk600_home_picture.py mon_image.png --write
   entière et à sa place. En `V1.04`, la réparation a remis le dragon au même endroit : l'outil
   accepte aussi cette version, sans essai direct de l'image à ce jour.
 
+## Option : changer l'animation de démarrage
+
+L'animation jouée à l'allumage (le logo MSI) est rangée juste après les menus : un en-tête de
+256 octets en `0x1A0000` (octet 0 = nombre d'images, puis la durée des images par pas de 2 ms),
+suivi des images de 160 × 96 en `0x1A0100`, `0x7800` octets chacune. `gk600_boot_animation.py` la
+remplace par votre animation. Le plus simple : glissez le GIF sur `GK600-Boot-Animation.bat`, qui
+installe ce qu'il faut et montre un aperçu avant d'écrire. À la main :
+
+```
+python gk600_boot_animation.py anim.gif --preview apercu.gif        # aperçu, rien n'est envoyé
+python gk600_boot_animation.py anim.gif                             # à blanc, rien n'est envoyé
+python gk600_boot_animation.py anim.gif --write
+python gk600_boot_animation.py anim.gif --home mon_image.png --write   # et garder votre image d'accueil
+```
+
+- L'animation : un GIF, un PNG ou WebP animé, ou une image fixe (`pip install pillow`). Chaque
+  image est ajustée en 160 × 96 sur fond noir ; `--fill` la recadre pour remplir l'écran. Les
+  durées du fichier sont reprises ; `--delay` impose la même durée à toutes les images.
+- 72 images au maximum : une 73e déborderait sur la zone du GIF. Au-delà, l'outil saute des images
+  en gardant la durée totale.
+- Le firmware tient l'image 0 pendant 50 ms et la dernière pendant 1 seconde, puis affiche l'écran
+  d'accueil. Par défaut, l'outil ajoute une demi-seconde à la première image (`--lead-in 500`) ;
+  `--lead-in 0` garde le rythme exact du GIF. `--preview` produit un GIF qui montre ce que l'écran
+  jouera.
+- `04 38` écrit toujours à partir de `0x000000` : l'outil réécrit les menus depuis le dump, puis
+  l'en-tête et les images, jusqu'à 957 pages (1 à 3 minutes). Votre GIF n'est pas touché. L'image
+  d'accueil revient au dragon, sauf avec `--home`. Mêmes précautions qu'à l'étape 2 : logiciel MSI
+  fermé, clavier éteint puis rallumé avant l'écriture. Pendant l'envoi, l'écran du clavier affiche
+  « LOADING xx % ».
+- Retour à l'animation MSI : `python gk600_restore.py restore --with-boot --write` (remet aussi le
+  dragon).
+- Validé le 22 novembre 2026 sur un GK600 en `V1.20` : deux animations (36 images, 687 pages ;
+  53 images, 814 pages), toutes les pages accusées, lecture à l'allumage filmée, image d'accueil
+  gardée, menus et GIF intacts. Journal : `tests/real_gk600_V1.20_2026-11-22_boot_animation.log`.
+
 ## En cas d'erreur
 
 L'outil s'arrête à la **première** anomalie et n'envoie plus rien.
@@ -216,7 +254,9 @@ Prouvé, en exécutant le vrai code du firmware Frieren V1.17 en émulation avec
 - un GIF de 500 images détruit aussi l'animation de démarrage d'une puce de 16 Mo, et
   `--with-boot` la répare ;
 - un transfert interrompu, ou un clavier pas redémarré, sont détectés ou rattrapables comme décrit
-  plus haut.
+  plus haut ;
+- une animation de démarrage écrite par `gk600_boot_animation.py` est jouée par le vrai code de
+  démarrage avec les images et les durées prévues (`tests/test_boot_animation.py`).
 
 Vérifié sur un vrai GK600 (`0DB0:EA47`, firmware `V1.20`, Windows 11), le 18 novembre 2026 :
 

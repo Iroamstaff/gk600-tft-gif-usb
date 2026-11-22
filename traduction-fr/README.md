@@ -1,8 +1,24 @@
 # Logiciel MSI en français
 
+← [Page principale](../README.fr.md) · [Main page](../README.md)
+
 *French translation of the MSI GK600 software (`DeviceDriver.exe`). Instructions below are in French.*
 
 Traduction française complète du logiciel du clavier (`DeviceDriver.exe`, installé sous le nom « Erazer MK85Pro Driver »). Une fois installée, elle apparaît comme une langue normale dans **Paramètres > Langue**.
+
+<table>
+  <tr>
+    <td align="center"><img src="../images/software-home-fr.jpg" width="400" alt="Page d'accueil du logiciel en français"><br><sub>Accueil</sub></td>
+    <td align="center"><img src="../images/03-driver-send-to-keyboard.png" width="400" alt="Page Écran TFT du logiciel en français"><br><sub>Écran TFT : vos GIF</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="../images/software-rgb-fr.png" width="400" alt="Page Éclairage personnalisé du logiciel en français"><br><sub>Éclairage personnalisé : RGB touche par touche</sub></td>
+    <td align="center"><img src="../images/software-keys-fr.png" width="400" alt="Page Mes profils du logiciel en français"><br><sub>Mes profils : réaffectation des touches</sub></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2"><img src="../images/software-macros-fr.png" width="400" alt="Gestionnaire de macros du logiciel en français"><br><sub>Gestionnaire de macros</sub></td>
+  </tr>
+</table>
 
 ## Installation
 

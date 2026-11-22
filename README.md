@@ -1,86 +1,145 @@
-# MSI Forge GK600 TKL — Upload custom GIFs over USB (official software fix)
+# MSI Forge GK600 TKL Wireless: your own GIFs, home picture and boot animation over USB
 
-The **MSI Forge GK600 TKL Wireless** has a small TFT screen. MSI markets it as "no software needed" — you only get the pre-loaded animations you can cycle through from the keyboard. In fact, MSI's own driver lets you **upload your own GIFs** to the screen and set **per-key RGB** — but out of the box it **won't detect the keyboard over USB**. This repo documents the one-line fix.
+🇫🇷 **[Lire en français](README.fr.md)**
 
-**No flashing. No firmware changes. Fully reversible.**
+The **MSI Forge GK600 TKL Wireless** has a small 160 × 96 screen. MSI sells it as "no software
+needed", so out of the box you only get the built-in animations. With MSI's own driver (after a
+one-line fix) and the free tools in this repository, you can:
 
-> 🛠️ **New (Nov 2026): screen menus or MSI boot logo gone black after a long GIF?** One double-click
-> USB repair, already confirmed on a damaged keyboard, plus a way to swap the home-screen dragon for
-> your own picture →
-> **[`restauration/`](restauration/)** (FR / EN, beginner friendly).
+- show **your own GIFs** on the screen and set **per-key RGB**,
+- replace the **home-screen picture** (the dragon),
+- replace the **MSI boot animation**,
+- **repair** screen menus wiped by a GIF that was too long,
+- use MSI's software **in French**.
 
----
+Everything goes through the USB cable: **no opening the keyboard, no firmware flashing, and
+everything can be undone.**
 
-## TL;DR — the fix
+<table>
+  <tr>
+    <td align="center"><img src="images/screen-gif.jpg" width="400" alt="The GK600 screen playing a custom GIF"><br><b>Your GIF</b></td>
+    <td align="center"><img src="images/screen-home-picture.jpg" width="400" alt="The GK600 home screen with a custom picture"><br><b>Your home picture</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/screen-boot-animation.jpg" width="400" alt="The GK600 screen playing a custom boot animation"><br><b>Your boot animation</b></td>
+    <td align="center"><img src="images/screen-menus.jpg" width="400" alt="The GK600 menus after a repair"><br><b>Original menus, repaired</b></td>
+  </tr>
+</table>
 
-MSI's driver matches the keyboard by its USB **product name**. The `config.xml` shipped with the driver looks for the **wrong name** in USB mode, so the keyboard is never recognized (2.4G works because the name it looks for there happens to be a correct prefix of the real one).
+## See it in action
 
-In the driver's `config.xml`, find the `desc="USB"` line and fix `product_name`:
+<p align="center"><img src="images/boot-animation-demo.gif" width="360" alt="The keyboard is switched on, the screen lights up, a custom boot animation plays, then the home screen shows a custom picture"></p>
 
-```diff
-- <mode value="0" desc="USB" vid="0DB0" pid="EA47" product_name="MSI FORGE GK600 GAMING KEYBOARD" hid_interface="VID_0DB0&PID_EA47&MI_00"/>
-+ <mode value="0" desc="USB" vid="0DB0" pid="EA47" product_name="MSI FORGE GK600 TKL WIRELESS Keyboard" hid_interface="VID_0DB0&PID_EA47&MI_00"/>
-```
-
-Leave `hid_interface` on `MI_00` — the driver switches to the right channel on its own. Save, plug the keyboard in **wired mode**, launch the driver. Done.
-
-> The product string can vary by unit/firmware revision. If it still isn't detected, read your own keyboard's string and copy it verbatim (see full guide).
-
----
-
-## Where to get the driver
-
-MSI keeps pulling the download from its product pages (first the "plain" GK600 TKL pages, SKY / Violet), but **the package is still on MSI's own download server**:
-
-- **Direct link (official MSI server):** https://download.msi.com/dvr_exe/gear/MSI-FORGE-GK600-Driver-1.0.0.8.zip
-
-It's the same package that was listed on the **FORGE TKL WIRELESS FRIEREN EDITION** support page, and it covers the standard GK600 too (both SKUs are declared in its `config.xml`).
-
-| File | Version | Date | Size | SHA-256 |
-|---|---|---|---|---|
-| **Driver** (needed) | 1.0.0.8 | 2026-06-08 | 6.10 MB | `73252a3d361f6b09d5c8c7153279c37725b9ccb83f129f92e1d8d2faeef0ec59` |
-| FW Update Tool (ISP, *not* needed for GIFs) | 1.17 | 2026-06-25 | 1.02 MB | `c75112f78c893e755f66c033e7022b71719ade4c4b3e655f34e1886fd0c37639` |
-
-Verify your download on Windows: `certutil -hashfile <file>.zip SHA256`. The driver installs as **"Erazer MK85Pro Driver"** — that's expected (shared OEM platform). The FW Update Tool is a firmware flasher; only touch it if you know what you're doing.
+Power-on with a custom boot animation: the screen lights up, the animation plays (about
+6.5 seconds), then the home screen shows a custom picture. Filmed on 22 November 2026 on a GK600
+running firmware V1.20. [MP4 version (11 s)](images/boot-animation-demo.mp4)
 
 ---
 
-## Steps
+## What do you want to do?
 
-1. **Download** the Driver 1.0.0.8 with the direct link above and check its SHA-256. (Do **not** use MSI Center — it doesn't see the screen. The tool you want is `DeviceDriver.exe` inside the package.)
-2. **Install**, then copy the install folder somewhere writable (e.g. Desktop) to avoid Program Files permission issues.
-3. **Edit** `config.xml` as shown in the TL;DR. Back it up first.
-4. Set the keyboard's 3-way switch to **wired/USB**, connect the USB-C cable.
-5. Run **`DeviceDriver.exe`** → the keyboard is detected.
-6. **GIF:** screen/GIF section → browse → upload. Format: **160 × 96 px**, **≤ 255 frames**, keep it short for smooth playback. The home screen (the dragon) isn't erased: **Fn + ← / →** switches between it and your GIF. The software's clock sync (the "Time Syns" button, also sent automatically when it pushes settings) switches back to the home screen too; the GK600 doesn't display the time.
-   ⚠️ **Never raise `gif_maxframes` in `rgb-keyboard.xml`:** a GIF of about 420 frames or more overflows the screen's flash and wipes the menus (fix: [`restauration/`](restauration/)).
-7. **RGB:** lighting section → per-key colors.
-8. **Optional, software in French:** full French translation with a one-click installer → [`traduction-fr/`](traduction-fr/).
+| I want to… | How | Time | Guide |
+|---|---|---|---|
+| show my own GIFs, set per-key RGB | fix one line in the `config.xml` of MSI's driver | 15 min | [Tutorial](tutorial-gk600-gif-usb.md) · [Tuto (FR)](tuto-gk600-gif-usb.md) |
+| use MSI's software in French | double-click `traduction-fr/INSTALLER_FR.bat` | 1 min | [traduction-fr](traduction-fr/README.md) |
+| repair black or garbled menus, or a black MSI logo | double-click `restauration/GK600-Repair.bat` | 3 min | [Repair](restauration/README.md#en-repair) |
+| replace the home-screen picture | drop a PNG or JPG on `restauration/GK600-Home-Picture.bat` | 1 min | [Home picture](restauration/README.md#en-home) |
+| replace the boot animation | drop a GIF on `restauration/GK600-Boot-Animation.bat` | 1–3 min | [Boot animation](restauration/README.md#en-boot) |
+| go back to the original screen | double-click `restauration/GK600-Repair.bat` | 3 min | [Repair](restauration/README.md#en-repair) |
 
-Full beginner walkthrough with screenshots-friendly detail: see [`tuto-gk600-gif-usb.md`](./tuto-gk600-gif-usb.md).
+**Getting the files:** green **Code** button at the top of this page → **Download ZIP**, then
+right-click the ZIP → **Extract All**. The first time you run a `.bat` from `restauration/`, it
+also downloads a portable Python (nothing gets installed on your PC).
 
----
+## Before you start
 
-## Hardware reference (for the reverse-engineering crowd)
+- **Tested on** the GK600 TKL Wireless (USB `0DB0:EA47`) with firmware **V1.04** and **V1.20**.
+  You need a Windows 10 or 11 PC. The screen tools show your firmware version. On another
+  version, `GK600-Repair.bat` runs a 3-second reversible test first, and the home-picture and
+  boot-animation tools stop and ask you to run it.
+- These are **experimental** community tools, not affiliated with MSI: use them at your own risk.
+  They show a preview or a dry run before writing anything, and `GK600-Repair.bat` puts the
+  original screen back.
+- **Close MSI's software** (tray icon included) before using the screen tools. Plug the keyboard
+  in with its cable, switch on **wired**.
+- **Never raise `gif_maxframes`** in MSI's `rgb-keyboard.xml`. A GIF of about 420 frames or more
+  overflows the screen's memory and wipes the menus. Keep GIFs at 255 frames or fewer (145 or
+  fewer to be extra safe).
 
-| Item | Value |
+## How it works
+
+Everything the screen shows is stored in a 16 MB flash chip, in three areas:
+
+| Area | Addresses | What's there |
+|---|---|---|
+| Menus | `0x000000` – `0x1A0000` | menus, icons, home screen (the dragon) |
+| Boot animation | `0x1A0000` – `0x3C0000` | a header and up to 72 frames of 160 × 96 |
+| Your GIF | from `0x3C0000` | a header and up to 255 frames |
+
+MSI's software only writes the GIF area. The tools in `restauration/` use the same USB commands to
+rewrite the other two areas, from the public backup of a healthy GK600
+([Flonfli](https://github.com/Flonfli/Forge-gk600-tkl-wireless.bin)) plus your picture or
+animation. The keyboard acknowledges every page and shows "LOADING xx %" while it receives them.
+Your GIF is never touched.
+
+Hardware, USB protocol, boot animation format and tests: [TECHNICAL.md](TECHNICAL.md).
+
+## FAQ
+
+**Can the screen show the time, like the GK600 DUKE?**
+No. The TKL firmware receives the time from MSI's software (the "Time Syns" button) but never
+draws it: the only visible effect is a jump back to the home screen.
+
+**My GIF is gone and the home screen is back.**
+Press **Fn + ←** or **Fn + →**. MSI's software sends the time when it pushes its settings, and that
+switches back to the home screen.
+
+**MSI Center doesn't see the screen.**
+That's expected: use `DeviceDriver.exe` from MSI's driver package (see the
+[tutorial](tutorial-gk600-gif-usb.md)).
+
+**The driver is gone from MSI's website.**
+It's still on MSI's download server:
+[direct link](https://download.msi.com/dvr_exe/gear/MSI-FORGE-GK600-Driver-1.0.0.8.zip). Check its
+SHA-256 with the tutorial.
+
+**Windows shows "Windows protected your PC" when I open a `.bat`.**
+Click **More info → Run anyway**. The `.bat` and `.ps1` files are plain text: open them with
+Notepad to see what they do.
+
+**Can I go back to MSI's original screen?**
+Yes: `restauration/GK600-Repair.bat` puts back the menus, the dragon and the MSI boot animation.
+Your GIF stays where it is.
+
+## What's in this repository
+
+| Path | What it is |
 |---|---|
-| MCU | HFD80CP100 = Sonix **SN32F299** (Cortex-M0, 128 KB flash) |
-| Wireless | WCH **CH582F** (BT) |
-| External flash | **PY25Q128HA** (16 MB SPI — stores screen assets) |
-| Display | **GC9107** TFT, 160×96, RGB565 |
-| USB VID/PID | `0DB0:EA47` (bootloader `0C45:7140`) |
-| OEM platform | Shaodong Tongchi (DriveAll) — shared with Womier SK80 PRO, Xinmeng M87 Pro, Aula F98 Pro, etc. |
-| Config channel | HID class requests on **MI_03 / usage page FF13** (64-byte Feature reports); image data on EP03 (4096-byte blocks) |
+| [tutorial-gk600-gif-usb.md](tutorial-gk600-gif-usb.md) · [tuto-gk600-gif-usb.md](tuto-gk600-gif-usb.md) | Custom GIFs over USB: step-by-step guide (English · French) |
+| [restauration/](restauration/) | Screen tools: repair, home picture, boot animation (French and English) |
+| [traduction-fr/](traduction-fr/) | French translation of MSI's software, with a one-click installer |
+| [TECHNICAL.md](TECHNICAL.md) | Hardware, flash map, USB protocol, boot animation format, tests |
+| [images/](images/) | Photos, screenshots and the demo video |
+| [posts/](posts/) | The Reddit posts that announced each part |
 
-The firmware is fully functional over USB — the only problem was the driver's config, not the device.
+## History
+
+| Date | What's new |
+|---|---|
+| 2 October 2026 | Guide: MSI's driver detects the keyboard over USB after a one-line fix (custom GIFs, per-key RGB) |
+| 18 November 2026 | One-click screen repair and home-picture tool, tested on V1.20 |
+| 19 November 2026 | Full repair confirmed on a damaged keyboard running V1.04 |
+| 22 November 2026 | French translation of MSI's software; custom boot animation, tested and filmed on V1.20 |
+
+## Credits
+
+- [Flonfli](https://github.com/Flonfli/Forge-gk600-tkl-wireless.bin) for the public backup of a
+  healthy GK600: every rewrite starts from it.
+- [parsiya](https://github.com/parsiya/f108-pro/blob/main/ai-docs/lcd-upload-investigation.md) for
+  the AULA F108 Pro write-up, which matches what happens on the GK600.
+- Everyone who tested the tools and reported their firmware version.
 
 ---
 
-## Why MSI shipped it broken
-
-The USB `product_name` in `config.xml` (`MSI FORGE GK600 GAMING KEYBOARD`) matches no real device; the keyboard reports `MSI FORGE GK600 TKL WIRELESS Keyboard`. In 2.4G mode the configured name is a correct prefix of the real string, so matching succeeds — which is why only wireless ever worked.
-
----
-
-*Community guide, not affiliated with MSI. Verified on a GK600 TKL WIRELESS (firmware V1.20) with driver 1.0.0.8. Restore your backup `config.xml` to revert.*
+*Community project by Iroamstaff, not affiliated with or endorsed by MSI. "MSI" and "Forge" are
+trademarks of their respective owners. Licence: [CC BY 4.0](LICENSE).*

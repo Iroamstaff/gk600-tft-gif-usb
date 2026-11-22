@@ -1,10 +1,13 @@
 # Repairing the GK600 screen menus (experimental)
 
+🇫🇷 [Version française](RESTAURATION_MENUS.md) · ← [Screen tools](README.md) · [Main page](../README.md)
+
 > **Status: experimental.** Verified by running the real code of the Frieren V1.17 firmware (same
 > platform, same protocol) in an emulator, then on real GK600 keyboards (`0DB0:EA47`): probe, undo
 > and a 384-page write on firmware V1.20 on 18 November 2026, then a full repair of a damaged
-> keyboard running V1.04 on 19 November (menus and boot animation back, GIF untouched). What you
-> do with your keyboard remains your responsibility.
+> keyboard running V1.04 on 19 November (menus and boot animation back, GIF untouched), and a
+> custom boot animation on V1.20 on 22 November. What you do with your keyboard remains your
+> responsibility.
 >
 > **Beginner?** No need to read further: double-click `GK600-Repair.bat` and follow the prompts
 > (see [README.md](README.md)). This guide explains what the tool does and how to run it by hand.
@@ -182,6 +185,41 @@ python gk600_home_picture.py my_picture.png --write
   picture complete and in place. On `V1.04` the repair brought the dragon back in the same place,
   so the tool accepts that version too, although the picture itself has not been tried on it yet.
 
+## Option: change the boot animation
+
+The animation played at power-on (the MSI logo) is stored right after the menus: a 256-byte header
+at `0x1A0000` (byte 0 = frame count, then the frame times in 2 ms steps), followed by the
+160 × 96 frames at `0x1A0100`, `0x7800` bytes each. `gk600_boot_animation.py` replaces it with
+your animation. Easiest: drag the GIF onto `GK600-Boot-Animation.bat`, which sets everything up and
+shows a preview before writing. By hand:
+
+```
+python gk600_boot_animation.py anim.gif --preview preview.gif      # preview, nothing sent
+python gk600_boot_animation.py anim.gif                            # dry run, nothing sent
+python gk600_boot_animation.py anim.gif --write
+python gk600_boot_animation.py anim.gif --home my_picture.png --write   # and keep your home picture
+```
+
+- The animation: a GIF, an animated PNG or WebP, or a still picture (`pip install pillow`). Each
+  frame is fitted into 160 × 96 on black; `--fill` crops it to fill the screen instead. The file's
+  frame times are kept; `--delay` sets the same time for every frame.
+- 72 frames at most: a 73rd would spill into the GIF area. Beyond that, the tool skips frames and
+  keeps the total time.
+- The firmware holds frame 0 for 50 ms and the last frame for 1 second, then shows the home
+  screen. By default the tool adds half a second to the first frame (`--lead-in 500`);
+  `--lead-in 0` keeps the GIF's exact timing. `--preview` saves a GIF showing what the screen will
+  play.
+- `04 38` always writes from `0x000000`: the tool rewrites the menus from the dump, then the
+  header and the frames, up to 957 pages (1 to 3 minutes). Your GIF is not touched. The home
+  picture goes back to the dragon unless you pass `--home`. Same precautions as step 2: MSI
+  software closed, keyboard switched off and on before the write. While writing, the keyboard
+  screen shows "LOADING xx %".
+- Back to the MSI animation: `python gk600_restore.py restore --with-boot --write` (also brings
+  the dragon back).
+- Validated on 22 November 2026 on a GK600 running `V1.20`: two animations (36 frames, 687 pages;
+  53 frames, 814 pages), every page acknowledged, playback at power-on filmed, home picture kept,
+  menus and GIF intact. Log: `tests/real_gk600_V1.20_2026-11-22_boot_animation.log`.
+
 ## If something goes wrong
 
 The tool stops at the **first** anomaly and sends nothing more.
@@ -209,7 +247,9 @@ Proven by running the real Frieren V1.17 firmware code in emulation with the too
   tool repairs them;
 - a 500-frame GIF also destroys the boot animation of a 16 MB chip, and `--with-boot` repairs it;
 - an interrupted transfer, or a keyboard that was not restarted, is either detected or recoverable
-  as described above.
+  as described above;
+- a boot animation written by `gk600_boot_animation.py` is played by the real boot code with the
+  expected frames and times (`tests/test_boot_animation.py`).
 
 Checked on a real GK600 (`0DB0:EA47`, firmware `V1.20`, Windows 11) on 18 November 2026:
 

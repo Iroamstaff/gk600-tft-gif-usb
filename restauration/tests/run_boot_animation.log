@@ -1,0 +1,34 @@
+test_boot_animation.py, run 2026-11-22 (cloud, Python 3.13, unicorn), animations: zelda.gif (35 frames, 40 ms), dbz.gif (110 frames, 30 ms)
+
+PASS playback zelda.gif                    36 frames,  2860 ms
+PASS   fits before 0x3C0000 (687 pages)
+PASS playback dbz.gif                      72 frames,  4802 ms
+PASS   fits before 0x3C0000 (957 pages)
+PASS playback one picture                   1 frames,  3000 ms
+PASS   fits before 0x3C0000 (424 pages)
+PASS playback two frames                    4 frames,  1600 ms
+PASS   fits before 0x3C0000 (447 pages)
+PASS playback no lead-in, 100/200/300 ms    5 frames,  1600 ms
+PASS   fits before 0x3C0000 (454 pages)
+PASS playback 1.2 s frames (split)          9 frames,  3900 ms
+PASS   fits before 0x3C0000 (484 pages)
+PASS playback 200 frames x 30 ms           72 frames,  7410 ms
+PASS   fits before 0x3C0000 (957 pages)
+PASS start screen = GIF: the GIF follows the boot animation
+PASS 72 frames end at 0x3BC100, below 0x3C0000
+PASS dry run sends nothing
+PASS preview sends nothing and writes the preview
+PASS --write: 687 pages acknowledged
+PASS flash = payload on [0, 0x2AF000), dump everywhere else
+PASS menus and icons unchanged, user GIF untouched
+PASS the written chip plays the new animation
+PASS --home: home picture written at 0x17A1CE, rest identical
+PASS restore --with-boot: whole chip back to the dump (960 pages)
+
+ALL PASSED
+
+real	2m51.999s
+user	2m50.406s
+sys	0m0.271s
+
+[exited with code 0]

@@ -25,6 +25,7 @@ fingerprint.
 python -I test_on_emulated_firmware.py frieren_v117.bin "Forge gk600 tkl wireless.bin" .. . [--slow]
 python -I test_cli_with_fake_hidapi.py frieren_v117.bin "Forge gk600 tkl wireless.bin" .. .
 python -I test_home_picture.py frieren_v117.bin "Forge gk600 tkl wireless.bin" .. . <image 160x65 .rgb565>
+python -I test_boot_animation.py frieren_v117.bin "Forge gk600 tkl wireless.bin" .. . <anim.gif> [<anim2.gif> ...]
 ```
 
 `--slow` ajoute le scénario puce 16 Mio + GIF de 470 images (environ 4 minutes de plus).
@@ -36,6 +37,8 @@ minutes). Results: `results.json`.
 | `gk600_fw_emu.py` | banc : firmware réel + flash SPI émulée / bench: real firmware + emulated SPI flash |
 | `test_on_emulated_firmware.py` | scénarios S0–S11 / scenarios S0–S11 |
 | `test_home_picture.py` | `gk600_home_picture.py` sur le firmware émulé, puis retour au dump / on the emulated firmware, then back to the dump |
+| `test_boot_animation.py` | `gk600_boot_animation.py` : animation jouée par le vrai code de démarrage (images et durées), écriture sur le firmware émulé, retour au dump / animation played by the real boot code (frames and times), write on the emulated firmware, back to the dump |
 | `test_cli_with_fake_hidapi.py` | ligne de commande complète, faux module `hid` aux conventions Windows / full CLI with a fake Windows-style `hid` module |
 | `extract_frieren_fw.py` | extraction vérifiée du firmware / verified firmware extraction |
 | `real_gk600_V1.20_2026-11-18.log` | vrai GK600 (`EA47`, V1.20) : `list`, `check`, essais à blanc, `probe` et `unprobe` réels, puis image d'accueil (384 pages) / real GK600: list, check, dry runs, real probe and unprobe, then home picture (384 pages) |
+| `real_gk600_V1.20_2026-11-22_boot_animation.log` | vrai GK600 (V1.20) : animation de démarrage personnalisée, essais à blanc puis deux écritures (687 et 814 pages) / real GK600: custom boot animation, dry runs then two writes (687 and 814 pages) |

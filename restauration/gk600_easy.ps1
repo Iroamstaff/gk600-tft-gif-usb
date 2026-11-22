@@ -1,14 +1,16 @@
 ﻿<#
-  gk600_easy.ps1 - EXPERIMENTAL - beginner launcher for gk600_restore.py and gk600_home_picture.py
-  Started by GK600-Repair.bat (repair the screen menus and the boot animation) or by
-  GK600-Home-Picture.bat (replace the home-screen dragon with your own picture).
+  gk600_easy.ps1 - EXPERIMENTAL - beginner launcher for gk600_restore.py, gk600_home_picture.py
+  and gk600_boot_animation.py
+  Started by GK600-Repair.bat (repair the screen menus and the boot animation), by
+  GK600-Home-Picture.bat (replace the home-screen dragon with your own picture) or by
+  GK600-Boot-Animation.bat (replace the MSI boot animation with your own GIF).
 
   First run: downloads a portable Python 3.13 (python.org), the hidapi module (PyPI), Pillow for
   pictures (PyPI) and the public GK600 dump (github.com/Flonfli). Every file is checked against
   its SHA-256. Nothing is installed on Windows: everything stays in the .\runtime folder.
 #>
 param(
-    [ValidateSet('repair', 'picture')] [string]$Mode = 'repair',
+    [ValidateSet('repair', 'picture', 'boot')] [string]$Mode = 'repair',
     [string]$Picture = '',
     [ValidateSet('auto', 'fr', 'en')] [string]$Lang = 'auto',
     [switch]$DryRun
@@ -244,6 +246,62 @@ if ($Mode -eq 'repair') {
         'Done! Switch the keyboard off for 10 seconds, then on: the MSI animation should play. Then go through the menus.' 'Green'
     Say "Ton GIF revient au redémarrage. Pour éviter que ça recommence : laisse gif_maxframes à 255 dans rgb-keyboard.xml, et 145 images maximum par GIF." `
         'Your GIF comes back after the restart. To keep it from happening again: leave gif_maxframes at 255 in rgb-keyboard.xml, and 145 frames max per GIF.'
+    exit 0
+}
+
+# ------------------------------------------------------------------ boot animation
+if ($Mode -eq 'boot') {
+    Banner "GK600 - changer l'animation de démarrage (le logo MSI)" 'GK600 - change the boot animation (the MSI logo)'
+    if (-not $Picture) {
+        Say "Glisse ton GIF (ou une image PNG / JPG) dans cette fenêtre, puis appuie sur Entrée :" 'Drag your GIF (or a PNG / JPG picture) into this window, then press Enter:'
+        $Picture = ([string](Read-Host '>')).Trim().Trim('"')
+    }
+    if (-not $Picture -or -not (Test-Path -LiteralPath $Picture -PathType Leaf)) {
+        Fail ('Fichier introuvable : ' + $Picture) ('File not found: ' + $Picture)
+    }
+    Say "Écran de 160 x 96 pixels, 72 images au maximum : au-delà, des images sont sautées et la durée totale est gardée. La dernière image reste 1 seconde, puis l'écran d'accueil s'affiche." `
+        'Screen of 160 x 96 pixels, 72 frames at most: beyond that, frames are skipped and the total time is kept. The last frame stays 1 second, then the home screen shows.'
+    Prepare $true
+
+    Step '1/4  Aperçu' '1/4  Preview'
+    Say "L'écriture remet aussi les menus et l'écran d'accueil d'origine. Si tu as mis ta propre image d'accueil, glisse son fichier dans cette fenêtre pour la garder, puis appuie sur Entrée (Entrée seule : le dragon revient) :" `
+        'The write also puts back the original menus and home screen. If you set your own home picture, drag its file into this window to keep it, then press Enter (Enter alone: the dragon comes back):'
+    $HomePic = ([string](Read-Host '>')).Trim().Trim('"')
+    $HomeArgs = @()
+    if ($HomePic) {
+        if (-not (Test-Path -LiteralPath $HomePic -PathType Leaf)) { Fail ('Image introuvable : ' + $HomePic) ('Picture not found: ' + $HomePic) }
+        $HomeArgs = @('--home', $HomePic)
+    }
+    $Preview = Join-Path $Here 'preview_boot_animation.gif'
+    if ((Run-Py (@('gk600_boot_animation.py', $Picture, '--preview', $Preview) + $HomeArgs)) -ne 0) { Fail 'Impossible de lire ce fichier (détails ci-dessus).' 'Cannot read this file (details above).' }
+    try { Start-Process -FilePath $Preview } catch { Say ('Aperçu : ' + $Preview) ('Preview: ' + $Preview) }
+    if (-not (Ask-YesNo "L'aperçu vient de s'ouvrir. Il commence par une demi-seconde de noir, comme le clavier à l'allumage. On garde cette animation ?" 'The preview just opened. It starts with half a second of black, like the keyboard at power-on. Keep this animation?')) { exit 0 }
+
+    Step '2/4  Clavier' '2/4  Keyboard'
+    Ensure-MsiClosed
+    Say "Branche le clavier avec son câble USB, interrupteur sur le mode filaire (USB)." 'Plug the keyboard in with its USB cable, switch set to wired (USB).'
+    Wait-Enter 'Appuie sur Entrée' 'Press Enter'
+    $fw = Check-Keyboard 3
+    Say ('  clavier trouvé, firmware ' + $fw) ('  keyboard found, firmware ' + $fw) 'Green'
+    if ($Validated -notcontains $fw) {
+        Fail ("L'animation de démarrage n'est prévue que pour les firmwares V1.04 et V1.20 (le tien : " + $fw + "). Lance d'abord GK600-Repair.bat, qui teste ta version, et signale le résultat sur GitHub (onglet Issues).") `
+             ('The boot animation is only meant for firmware V1.04 and V1.20 (yours: ' + $fw + '). Run GK600-Repair.bat first, which tests your version, and report the result on GitHub (Issues tab).')
+    }
+
+    Step '3/4  Redémarrage du clavier' '3/4  Restart the keyboard'
+    Power-Cycle
+
+    Step '4/4  Écriture' '4/4  Write'
+    Say "Ça réécrit le début de la mémoire de l'écran avec ton animation : jusqu'à 957 pages, 1 à 3 minutes." `
+        'It rewrites the start of the screen memory with your animation: up to 957 pages, 1 to 3 minutes.'
+    Say 'Ne débranche rien pendant ce temps.' 'Do not unplug anything meanwhile.' 'Yellow'
+    if (-not (Ask-YesNo 'On y va ?' 'Go?')) { exit 0 }
+    if ((Run-Write (@('gk600_boot_animation.py', $Picture, '--yes') + $HomeArgs)) -ne 0) {
+        Fail "L'écriture s'est arrêtée (détails ci-dessus). Éteins le clavier 10 secondes, rallume-le, puis relance : elle reprend depuis le début." `
+             'The write stopped (details above). Switch the keyboard off for 10 seconds, switch it on, then run it again: it starts over from the beginning.'
+    }
+    Say "Terminé ! Éteins le clavier puis rallume-le : ton animation se joue au démarrage. Pour remettre l'animation MSI (et le dragon) : GK600-Repair.bat." `
+        'Done! Switch the keyboard off and on: your animation plays at power-on. To put the MSI animation (and the dragon) back: GK600-Repair.bat.' 'Green'
     exit 0
 }
 

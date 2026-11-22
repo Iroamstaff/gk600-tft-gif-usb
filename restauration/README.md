@@ -29,6 +29,13 @@ aussi. Une réinitialisation d'usine n'y change rien.
 Zone affichée : 160 × 65 pixels ; la batterie s'affiche par-dessus le coin en haut à droite. Pour
 remettre le dragon : `GK600-Repair.bat`.
 
+**Changer l'animation de démarrage (le logo MSI) :** glissez un GIF, ou une image PNG ou JPG, sur
+**`GK600-Boot-Animation.bat`**. Un aperçu s'ouvre avant toute écriture (1 à 3 minutes ensuite).
+Écran de 160 × 96 pixels, 72 images au maximum ; la dernière reste 1 seconde, puis l'écran
+d'accueil s'affiche. L'écran ne s'allume qu'une demi-seconde après la mise sous tension : la
+première image est tenue pendant ce temps. Si vous avez mis votre propre image d'accueil, la
+fenêtre vous propose de la garder. Pour remettre l'animation MSI : `GK600-Repair.bat`.
+
 **Pour que ça n'arrive plus :** laissez `gif_maxframes` à **255** dans `rgb-keyboard.xml`.
 
 ---
@@ -55,6 +62,13 @@ does not help.
 that). Shown area: 160 × 65 pixels; the battery is drawn over the top-right corner. To get the
 dragon back: `GK600-Repair.bat`.
 
+**Change the boot animation (the MSI logo):** drag a GIF, or a PNG or JPG picture, onto
+**`GK600-Boot-Animation.bat`**. A preview opens before anything is written (1 to 3 minutes after
+that). Screen of 160 × 96 pixels, 72 frames at most; the last one stays 1 second, then the home
+screen shows. The screen only lights up half a second after power-on: the first frame is held
+during that time. If you set your own home picture, the window offers to keep it. To get the MSI
+animation back: `GK600-Repair.bat`.
+
 **To keep it from happening again:** leave `gif_maxframes` at **255** in `rgb-keyboard.xml`.
 
 ![before / after](images/home_picture_example.png)
@@ -79,7 +93,9 @@ jamais touchée.
 
 Validated on real keyboards: on 18 November 2026 on a GK600 running V1.20 (keyboard check, 17-page
 probe and undo, 384-page home picture), and on 19 November 2026 on a damaged GK600 running V1.04
-(full repair: menus and MSI boot animation back, GIF untouched). If your firmware is neither V1.04
+(full repair: menus and MSI boot animation back, GIF untouched), and on 22 November 2026 on the
+V1.20 keyboard again (custom boot animation: 36 frames, 687 pages, plays at power-on, home picture
+kept). If your firmware is neither V1.04
 nor V1.20, `GK600-Repair.bat` first runs a 3-second reversible test and stops if it does not
 behave the same.
 
@@ -99,6 +115,9 @@ python gk600_restore.py restore --write               # menus, 416 pages
 python gk600_restore.py restore --with-boot --write   # menus + boot animation, 960 pages
 python gk600_home_picture.py picture.png --preview preview.png   # needs: pip install pillow
 python gk600_home_picture.py picture.png --write      # home picture, 384 pages
+python gk600_boot_animation.py anim.gif --preview preview.gif   # needs: pip install pillow
+python gk600_boot_animation.py anim.gif --write       # boot animation, up to 957 pages
+python gk600_boot_animation.py anim.gif --home picture.png --write   # and keep your home picture
 ```
 
 ## Files / fichiers
@@ -107,9 +126,11 @@ python gk600_home_picture.py picture.png --write      # home picture, 384 pages
 |---|---|
 | `GK600-Repair.bat` | double-click: repair menus and boot animation / réparation |
 | `GK600-Home-Picture.bat` | drop a picture on it: home-screen picture / image d'accueil |
-| `gk600_easy.ps1` | what the two `.bat` files run: downloads (SHA-256 checked), prompts |
+| `GK600-Boot-Animation.bat` | drop a GIF on it: boot animation / animation de démarrage |
+| `gk600_easy.ps1` | what the three `.bat` files run: downloads (SHA-256 checked), prompts |
 | `gk600_restore.py` | the restore tool (check, probe, unprobe, restore) |
 | `gk600_home_picture.py` | the home-screen picture tool |
+| `gk600_boot_animation.py` | the boot animation tool |
 | `images/reference_screens_0_1A0000.png` | the 41 original menu screens, to compare after a repair |
 | `images/probe_preview.png` | home screen before and after the probe |
 | `tests/` | emulator, replayable scenarios, results, log of the real-keyboard session |

@@ -1,0 +1,74 @@
+2026-11-22 22:21:16 gk600_boot_animation 0.1-experimental (gk600_restore 0.9.4-experimental)
+2026-11-22 22:21:16 Animation: zelda_alttp_gk600_160x96.gif, 35 frame(s) -> 36 frames in the boot area, 2.9 s on screen
+2026-11-22 22:21:16 Home     : zelda_oot_160x65.rgb565
+2026-11-22 22:21:17 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-22 22:21:17 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-22 22:21:17 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-22 22:21:17 Command  : interface 3, usage page FF13
+2026-11-22 22:21:17 Data     : interface 2, usage page FF68
+2026-11-22 22:21:17 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-22 22:21:17 Payload  : 687 pages, SHA-256 7ddaf317a58859ce583d831dcb459655ab4ef8e9613c9902030d041791a91f75
+2026-11-22 22:21:17 
+DRY RUN: nothing was sent. Add --write to do it.
+2026-11-22 22:21:28 gk600_boot_animation 0.1-experimental (gk600_restore 0.9.4-experimental)
+2026-11-22 22:21:28 Animation: zelda_alttp_gk600_160x96.gif, 35 frame(s) -> 36 frames in the boot area, 2.9 s on screen
+2026-11-22 22:21:28 Home     : zelda_oot_160x65.rgb565
+2026-11-22 22:21:28 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-22 22:21:28 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-22 22:21:28 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-22 22:21:28 Command  : interface 3, usage page FF13
+2026-11-22 22:21:28 Data     : interface 2, usage page FF68
+2026-11-22 22:21:28 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-22 22:21:28 Payload  : 687 pages, SHA-256 7ddaf317a58859ce583d831dcb459655ab4ef8e9613c9902030d041791a91f75
+2026-11-22 22:21:28 [1/4] 04 18 handshake
+2026-11-22 22:21:28   -> 04 18 00 00 00 00 00 00 00 00 00 00
+2026-11-22 22:21:28   <- 04 18 00 01 00 00 00 00 00 00 00 00
+2026-11-22 22:21:28 [2/4] 04 38 raw write from 0x000000, 687 pages
+2026-11-22 22:21:28   -> 04 38 00 00 00 00 00 00 af 02 00 00
+2026-11-22 22:21:28   <- 04 38 00 01 00 00 00 00 af 02 00 00
+2026-11-22 22:21:28 [3/4] sending 687 pages (each must be acknowledged with 01 5A 02)
+2026-11-22 22:23:04 [4/4] 04 02 close
+2026-11-22 22:23:04   -> 04 02 00 00 00 00 00 00 00 00 00 00
+2026-11-22 22:23:04   <- 04 02 00 01 00 00 00 00 00 00 00 00
+2026-11-22 22:23:04 
+Done. Switch the keyboard off and on: your animation plays at power-on.
+2026-11-22 22:23:04 Back to the MSI animation:  python gk600_restore.py restore --with-boot --write
+2026-11-22 22:42:30 gk600_boot_animation 0.1-experimental (gk600_restore 0.9.4-experimental)
+2026-11-22 22:42:31 Animation: zelda_sword_deep_woods.gif, 51 frame(s) -> 53 frames in the boot area, 6.5 s on screen
+2026-11-22 22:42:31 Home     : zelda_oot_160x65.rgb565
+2026-11-22 22:42:32 Preview  : C:\GK600\animation_demarrage\apercu_zelda_sword.gif (nothing was sent)
+2026-11-22 22:42:32 gk600_boot_animation 0.1-experimental (gk600_restore 0.9.4-experimental)
+2026-11-22 22:42:34 Animation: zelda_sword_deep_woods.gif, 51 frame(s) -> 53 frames in the boot area, 6.5 s on screen
+2026-11-22 22:42:34 Home     : zelda_oot_160x65.rgb565
+2026-11-22 22:42:34 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-22 22:42:34 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-22 22:42:34 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-22 22:42:34 Command  : interface 3, usage page FF13
+2026-11-22 22:42:34 Data     : interface 2, usage page FF68
+2026-11-22 22:42:34 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-22 22:42:34 Payload  : 814 pages, SHA-256 d0c1a5cfe3335b6f37309998b49aa87812f0f65d094881671e6f3ee33626e026
+2026-11-22 22:42:34 
+DRY RUN: nothing was sent. Add --write to do it.
+2026-11-22 22:42:44 gk600_boot_animation 0.1-experimental (gk600_restore 0.9.4-experimental)
+2026-11-22 22:42:46 Animation: zelda_sword_deep_woods.gif, 51 frame(s) -> 53 frames in the boot area, 6.5 s on screen
+2026-11-22 22:42:46 Home     : zelda_oot_160x65.rgb565
+2026-11-22 22:42:46 Keyboard : MSI FORGE GK600 TKL WIRELESS (USB)
+2026-11-22 22:42:46 Product  : MSI FORGE GK600 TKL WIRELESS Keyboard
+2026-11-22 22:42:46 Firmware : V1.20 (bcdDevice 0x0120)
+2026-11-22 22:42:46 Command  : interface 3, usage page FF13
+2026-11-22 22:42:46 Data     : interface 2, usage page FF68
+2026-11-22 22:42:46 HIDP_CAPS: FF13 feature=65  FF68 in=65 out=4097
+2026-11-22 22:42:46 Payload  : 814 pages, SHA-256 d0c1a5cfe3335b6f37309998b49aa87812f0f65d094881671e6f3ee33626e026
+2026-11-22 22:42:46 [1/4] 04 18 handshake
+2026-11-22 22:42:46   -> 04 18 00 00 00 00 00 00 00 00 00 00
+2026-11-22 22:42:46   <- 04 18 00 01 00 00 00 00 00 00 00 00
+2026-11-22 22:42:46 [2/4] 04 38 raw write from 0x000000, 814 pages
+2026-11-22 22:42:46   -> 04 38 00 00 00 00 00 00 2e 03 00 00
+2026-11-22 22:42:46   <- 04 38 00 01 00 00 00 00 2e 03 00 00
+2026-11-22 22:42:46 [3/4] sending 814 pages (each must be acknowledged with 01 5A 02)
+2026-11-22 22:44:41 [4/4] 04 02 close
+2026-11-22 22:44:41   -> 04 02 00 00 00 00 00 00 00 00 00 00
+2026-11-22 22:44:41   <- 04 02 00 01 00 00 00 00 00 00 00 00
+2026-11-22 22:44:41 
+Done. Switch the keyboard off and on: your animation plays at power-on.
+2026-11-22 22:44:41 Back to the MSI animation:  python gk600_restore.py restore --with-boot --write

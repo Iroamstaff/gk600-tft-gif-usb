@@ -16,5 +16,6 @@ restauration/runtime/
 *.part
 restauration/gk600_restore.log
 restauration/preview_home_screen.png
+restauration/preview_boot_animation.gif
 __pycache__/
 *.pyc

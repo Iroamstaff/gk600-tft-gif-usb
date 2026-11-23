@@ -66,7 +66,9 @@ macros, settings, profiles).
 
 Bon à savoir :
 
-- Chaque fichier donne un **aperçu** de l'écran avant toute écriture.
+- Chaque fichier donne un **aperçu** de l'écran avant toute écriture. Pour un premier essai :
+  [`exemples/gk600-demo.gif`](../exemples/) (GIF ou animation de démarrage) et
+  `exemples/gk600-demo-home.png` (image d'accueil).
 - Pour l'image d'accueil, l'animation de démarrage et la réparation, le panneau demande de
   **redémarrer le clavier** (débrancher le câble, éteindre 10 secondes, rallumer, rebrancher). Il
   le voit tout seul et commence l'écriture quand le clavier revient. Pendant l'écriture, l'écran du
@@ -131,7 +133,9 @@ Bon à savoir :
 
 Good to know:
 
-- Every file gives a **preview** of the screen before anything is written.
+- Every file gives a **preview** of the screen before anything is written. For a first try:
+  [`exemples/gk600-demo.gif`](../exemples/) (GIF or boot animation) and
+  `exemples/gk600-demo-home.png` (home picture).
 - For the home picture, the boot animation and the repair, the panel asks you to **restart the
   keyboard** (unplug the cable, switch off for 10 seconds, switch on, plug back). It notices on its
   own and starts writing when the keyboard is back. While writing, the keyboard screen shows

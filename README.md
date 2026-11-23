@@ -7,7 +7,7 @@ needed", so out of the box you only get the built-in animations. With MSI's own 
 one-line fix) and the free tools in this repository, you can:
 
 - show **your own GIFs** on the screen and set **per-key RGB**,
-- replace the **home-screen picture** (the dragon),
+- replace the **home-screen picture** (Lucky, MSI's dragon),
 - replace the **MSI boot animation**,
 - **repair** screen menus wiped by a GIF that was too long,
 - use MSI's software **in French**.
@@ -111,6 +111,14 @@ Notepad to see what they do.
 Yes: `restauration/GK600-Repair.bat` puts back the menus, the dragon and the MSI boot animation.
 Your GIF stays where it is.
 
+**How do I get MSI's original GIF back?**
+It's `0.gif` (160 × 96, 125 frames, 40 ms each), in the driver's folder under
+`gif\MSI FORGE GK600\`. Upload it like any other GIF: its frames are identical to the GIF slot of
+a factory keyboard (checked against Flonfli's backup). Without installing the driver, you can pull
+it out of the installer with [innoextract](https://constexpr.org/innoextract/) (tip from
+[ahmettahaklc](https://github.com/ahmettahaklc)):
+`innoextract --include "app\gif" "MSI FORGE GK600 Driver-1.0.0.8.exe"`
+
 ## What's in this repository
 
 | Path | What it is |
@@ -121,6 +129,13 @@ Your GIF stays where it is.
 | [TECHNICAL.md](TECHNICAL.md) | Hardware, flash map, USB protocol, boot animation format, tests |
 | [images/](images/) | Photos, screenshots and the demo video |
 | [posts/](posts/) | The Reddit posts that announced each part |
+
+## Related projects
+
+- [MSI-Forge-GK600-Software](https://github.com/ahmettahaklc/MSI-Forge-GK600-Software) by
+  ahmettahaklc: a small open-source control panel (Windows, Python only, no MSI driver needed) for
+  RGB lighting and image or GIF upload over USB. It writes the GIF slot only and caps GIFs at
+  255 frames, like MSI's software.
 
 ## History
 
@@ -137,6 +152,8 @@ Your GIF stays where it is.
   healthy GK600: every rewrite starts from it.
 - [parsiya](https://github.com/parsiya/f108-pro/blob/main/ai-docs/lcd-upload-investigation.md) for
   the AULA F108 Pro write-up, which matches what happens on the GK600.
+- [ahmettahaklc](https://github.com/ahmettahaklc) for the innoextract tip and an independent check
+  that a normal GIF upload only touches the GIF slot.
 - Everyone who tested the tools and reported their firmware version.
 
 ---

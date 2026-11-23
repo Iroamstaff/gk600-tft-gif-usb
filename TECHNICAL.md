@@ -61,6 +61,10 @@ While it receives pages from `04 38`, the keyboard draws its own progress screen
 | `0x1A0100` | boot animation frames |
 | `0x3C0000` | user GIF header; frames from `0x3C0100` |
 
+On a factory keyboard, the GIF slot holds MSI's default GIF: 125 frames, header byte 0 = `0x7D`
+and no frame times in the header. Its frames are identical to `0.gif` from the driver
+(`gif\MSI FORGE GK600\0.gif`, 160 × 96, 125 frames at 40 ms).
+
 The reference image is the public dump of a healthy GK600 by Flonfli
 (`Forge gk600 tkl wireless.bin`, SHA-256
 `d3a7359a69692e2d25994b8c886cdd87444342b509eaf505cb197664ab671b50`). Because `04 38` always starts

@@ -7,7 +7,7 @@ d'origine, vous n'avez que les animations intégrées. Avec le logiciel de MSI (
 correction d'une ligne) et les outils gratuits de ce dépôt, vous pouvez :
 
 - afficher **vos propres GIF** sur l'écran et régler le **RGB touche par touche**,
-- remplacer l'**image de l'écran d'accueil** (le dragon),
+- remplacer l'**image de l'écran d'accueil** (Lucky, le dragon de MSI),
 - remplacer l'**animation de démarrage MSI**,
 - **réparer** les menus de l'écran effacés par un GIF trop long,
 - utiliser le logiciel MSI **en français**.
@@ -114,6 +114,15 @@ sont du texte : ouvrez-les avec le Bloc-notes pour voir ce qu'ils font.
 Oui : `restauration/GK600-Repair.bat` remet les menus, le dragon et l'animation de démarrage MSI.
 Votre GIF reste en place.
 
+**Comment remettre le GIF d'origine de MSI ?**
+C'est `0.gif` (160 × 96, 125 images, 40 ms chacune), dans le dossier du logiciel, sous
+`gif\MSI FORGE GK600\`. Envoyez-le comme n'importe quel GIF : ses images sont identiques à
+l'emplacement GIF d'un clavier sorti d'usine (vérifié avec la sauvegarde de Flonfli). Sans installer
+le logiciel, vous pouvez l'extraire de l'installateur avec
+[innoextract](https://constexpr.org/innoextract/) (astuce de
+[ahmettahaklc](https://github.com/ahmettahaklc)) :
+`innoextract --include "app\gif" "MSI FORGE GK600 Driver-1.0.0.8.exe"`
+
 ## Contenu du dépôt
 
 | Chemin | Contenu |
@@ -124,6 +133,13 @@ Votre GIF reste en place.
 | [TECHNICAL.md](TECHNICAL.md) | Matériel, carte de la mémoire, protocole USB, format de l'animation, tests (en anglais) |
 | [images/](images/) | Photos, captures d'écran et vidéo de démonstration |
 | [posts/](posts/) | Les messages Reddit qui ont annoncé chaque partie |
+
+## Autres projets
+
+- [MSI-Forge-GK600-Software](https://github.com/ahmettahaklc/MSI-Forge-GK600-Software), par
+  ahmettahaklc : un petit panneau de contrôle open source (Windows, Python seul, sans le logiciel
+  MSI) pour l'éclairage RGB et l'envoi d'images ou de GIF en USB. Il n'écrit que l'emplacement du
+  GIF et limite les GIF à 255 images, comme le logiciel MSI.
 
 ## Historique
 
@@ -140,6 +156,8 @@ Votre GIF reste en place.
   d'un GK600 en bon état : toutes les réécritures partent de là.
 - [parsiya](https://github.com/parsiya/f108-pro/blob/main/ai-docs/lcd-upload-investigation.md)
   pour son compte rendu sur l'AULA F108 Pro, qui correspond à ce qui arrive au GK600.
+- [ahmettahaklc](https://github.com/ahmettahaklc) pour l'astuce innoextract et la vérification
+  indépendante qu'un envoi de GIF normal ne touche que l'emplacement du GIF.
 - Tous ceux qui ont testé les outils et donné leur version de firmware.
 
 ---

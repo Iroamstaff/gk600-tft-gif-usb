@@ -17,11 +17,15 @@ macros, settings, profiles).
   effects, per-key colours, keys, macros, settings, profiles): **tested on a real GK600 running
   V1.20** on 23 November 2026. Every part read back, every write checked by the keyboard, a macro
   played from a key, the backup applied back.
-- **Écran** (GIF, image d'accueil, animation de démarrage, réparation) : testé avec le vrai code
-  du firmware en émulation et dans un navigateur ; l'envoi par le panneau reste à essayer sur un
-  vrai clavier. **Screen** (GIF, home picture, boot animation, repair): tested against the real
-  firmware code in emulation and in a browser; sending from the panel still has to be tried on a
-  real keyboard.
+- **GIF de l'écran** : envoyé par le panneau sur la même V1.20 (110 images, 826 pages, chacune
+  confirmée par le clavier), il s'affiche. **Screen GIF**: sent from the panel to the same V1.20
+  (110 frames, 826 pages, each one acknowledged by the keyboard), and it plays.
+- **Image d'accueil, animation de démarrage, réparation** : testées avec le vrai code du firmware
+  en émulation et dans un navigateur ; elles reprennent le code des outils en ligne de commande,
+  qui ont servi sur de vrais claviers, mais l'envoi par le panneau reste à essayer. **Home picture,
+  boot animation, repair**: tested against the real firmware code in emulation and in a browser;
+  they reuse the code of the command-line tools, used on real keyboards, but sending them from the
+  panel still has to be tried.
 
 <p align="center"><img src="../images/panel-perkey.jpg" width="820" alt="Le panneau : onglet Couleurs par touche / the panel: per-key colours tab"></p>
 

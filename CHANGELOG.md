@@ -7,11 +7,12 @@
 - **The panel covers the keyboard too:** per-key colours, keys and Fn layer, macros, settings
   (Windows, Alt + Tab and Alt + F4 locks, Fn mode, sleep delay, key response) and profiles, with an
   automatic backup of the keyboard. Every write is checked by the keyboard itself. Tested on a real
-  GK600 running V1.20, together with the GIF upload.
+  GK600 running V1.20, together with the GIF, the home picture and the boot animation.
   *Le panneau gère aussi le clavier : couleurs par touche, touches et couche Fn, macros, réglages
   (blocage de Windows, d'Alt + Tab et d'Alt + F4, mode de Fn, mise en veille, temps de réponse) et
   profils, avec une sauvegarde automatique du clavier. Chaque envoi est vérifié par le clavier
-  lui-même. Testé sur un vrai GK600 en V1.20, tout comme l'envoi de GIF.*
+  lui-même. Testé sur un vrai GK600 en V1.20, tout comme le GIF, l'image d'accueil et
+  l'animation de démarrage.*
 - **The panel:** GIF, RGB effects, home picture, boot animation and repair in one window, without
   MSI's software.
   *Le panneau : GIF, effets RGB, image d'accueil, animation de démarrage et réparation dans une

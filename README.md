@@ -32,7 +32,8 @@ that can't be undone**.
 
 > [!NOTE]
 > **New, 23 November 2026:** per-key colours, keys, macros, settings and profiles, all tested on a
-> real keyboard running firmware V1.20, together with the GIF upload. See the [changelog](CHANGELOG.md).
+> real keyboard running firmware V1.20, together with the GIF, the home picture and the boot
+> animation. See the [changelog](CHANGELOG.md).
 
 <a id="quick-start"></a>
 
@@ -150,7 +151,7 @@ Your settings are stored in the keyboard, so they work on any PC, even without t
 
 | Keyboard | Firmware | Status |
 |---|---|---|
-| MSI Forge GK600 TKL Wireless (USB `0DB0:EA47`) | **V1.20** | ✅ Panel tested on a real keyboard: keyboard tabs and GIF. Home picture, boot animation and repair tested with their own tools. |
+| MSI Forge GK600 TKL Wireless (USB `0DB0:EA47`) | **V1.20** | ✅ Panel tested on a real keyboard: keyboard tabs, GIF, home picture and boot animation. Repair tested with its own tool. |
 | MSI Forge GK600 TKL Wireless | **V1.04** | ✅ Repair confirmed on a damaged keyboard. Keyboard tabs not tried yet. |
 | MSI Forge GK600 TKL Wireless | other | ⚠️ Not tested. Sending a GIF and keyboard settings is allowed; screen rewrites stay locked until the repair tool's reversible 3-second test passes. |
 
@@ -176,9 +177,9 @@ The panel does everything, but each part also exists on its own:
 
 <p align="center"><img src="images/boot-animation-demo.gif" width="320" alt="The keyboard is switched on, the screen lights up, a custom boot animation plays, then the home screen shows a custom picture"></p>
 
-Power-on with the [sample files](exemples/) as boot animation and home picture: the animation plays
-for about 4.5 seconds, then the home screen shows the picture. Filmed on 23 November 2026, firmware
-V1.20. [MP4 version](images/boot-animation-demo.mp4)
+Power-on with the [sample GIF](exemples/) sent from the panel as boot animation and home picture:
+the animation plays for about 4.5 seconds, then the home screen shows the picture. Filmed on
+23 November 2026, firmware V1.20. [MP4 version](images/boot-animation-demo.mp4)
 
 <a id="faq"></a>
 

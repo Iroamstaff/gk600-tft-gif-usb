@@ -33,7 +33,8 @@ firmware, et rien qu'on ne puisse annuler**.
 
 > [!NOTE]
 > **Nouveau, 23 novembre 2026 :** couleurs par touche, touches, macros, réglages et profils, testés
-> sur un vrai clavier en firmware V1.20, tout comme l'envoi de GIF. Voir l'[historique](CHANGELOG.md).
+> sur un vrai clavier en firmware V1.20, tout comme le GIF, l'image d'accueil et l'animation de
+> démarrage. Voir l'[historique](CHANGELOG.md).
 
 <a id="demarrage"></a>
 
@@ -153,7 +154,7 @@ panneau.
 
 | Clavier | Firmware | État |
 |---|---|---|
-| MSI Forge GK600 TKL Wireless (USB `0DB0:EA47`) | **V1.20** | ✅ Panneau testé sur un vrai clavier : onglets du clavier et GIF. Image d'accueil, animation de démarrage et réparation testées avec leurs propres outils. |
+| MSI Forge GK600 TKL Wireless (USB `0DB0:EA47`) | **V1.20** | ✅ Panneau testé sur un vrai clavier : onglets du clavier, GIF, image d'accueil et animation de démarrage. Réparation testée avec son propre outil. |
 | MSI Forge GK600 TKL Wireless | **V1.04** | ✅ Réparation confirmée sur un clavier abîmé. Onglets du clavier pas encore essayés. |
 | MSI Forge GK600 TKL Wireless | autre | ⚠️ Pas testé. L'envoi d'un GIF et des réglages du clavier est permis ; la réécriture de l'écran reste bloquée tant que le test réversible de 3 secondes de l'outil de réparation n'est pas passé. |
 
@@ -179,9 +180,9 @@ Le panneau fait tout, mais chaque partie existe aussi séparément :
 
 <p align="center"><img src="images/boot-animation-demo.gif" width="320" alt="On allume le clavier, l'écran s'allume, l'animation de démarrage personnelle se joue, puis l'écran d'accueil affiche une image personnelle"></p>
 
-Allumage avec les [fichiers d'exemple](exemples/) en animation de démarrage et en image d'accueil :
-l'animation dure environ 4,5 secondes, puis l'écran d'accueil affiche l'image. Filmé le 23 novembre
-2026, firmware V1.20. [Version MP4](images/boot-animation-demo.mp4)
+Allumage avec le [GIF d'exemple](exemples/) envoyé par le panneau en animation de démarrage et en
+image d'accueil : l'animation dure environ 4,5 secondes, puis l'écran d'accueil affiche l'image.
+Filmé le 23 novembre 2026, firmware V1.20. [Version MP4](images/boot-animation-demo.mp4)
 
 <a id="faq"></a>
 

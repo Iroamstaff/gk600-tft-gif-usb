@@ -20,12 +20,16 @@ macros, settings, profiles).
 - **GIF de l'écran** : envoyé par le panneau sur la même V1.20 (110 images, 826 pages, chacune
   confirmée par le clavier), il s'affiche. **Screen GIF**: sent from the panel to the same V1.20
   (110 frames, 826 pages, each one acknowledged by the keyboard), and it plays.
-- **Image d'accueil, animation de démarrage, réparation** : testées avec le vrai code du firmware
-  en émulation et dans un navigateur ; elles reprennent le code des outils en ligne de commande,
-  qui ont servi sur de vrais claviers, mais l'envoi par le panneau reste à essayer. **Home picture,
-  boot animation, repair**: tested against the real firmware code in emulation and in a browser;
-  they reuse the code of the command-line tools, used on real keyboards, but sending them from the
-  panel still has to be tried.
+- **Image d'accueil, animation de démarrage** : envoyées par le panneau sur la même V1.20 le
+  23 novembre (384 et 784 pages, chacune confirmée par le clavier) ; elles s'affichent et les menus
+  restent intacts (photos et vidéo de la page principale). **Home picture, boot animation**: sent
+  from the panel to the same V1.20 on 23 November (384 and 784 pages, each one acknowledged by the
+  keyboard); they show and the menus stay intact (photos and video on the main page).
+- **Réparation** : testée avec le vrai code du firmware en émulation et dans un navigateur ; elle
+  reprend le code de l'outil en ligne de commande, qui a servi sur de vrais claviers, mais l'envoi
+  par le panneau reste à essayer. **Repair**: tested against the real firmware code in emulation
+  and in a browser; it reuses the code of the command-line tool, used on real keyboards, but
+  running it from the panel still has to be tried.
 
 <p align="center"><img src="../images/panel-perkey.jpg" width="820" alt="Le panneau : onglet Couleurs par touche / the panel: per-key colours tab"></p>
 

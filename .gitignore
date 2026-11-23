@@ -19,3 +19,7 @@ restauration/preview_home_screen.png
 restauration/preview_boot_animation.gif
 __pycache__/
 *.pyc
+
+# panneau/ : created at run time
+panneau/state/
+panneau/gk600_panel.log

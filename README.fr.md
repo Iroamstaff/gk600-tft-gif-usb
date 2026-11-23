@@ -15,6 +15,9 @@ correction d'une ligne) et les outils gratuits de ce dépôt, vous pouvez :
 Tout passe par le câble USB : **rien à ouvrir, aucun flashage de firmware, et tout est
 réversible.**
 
+🆕 **Nouveau, en test :** un [panneau](panneau/README.md) qui fait tout ça dans une seule fenêtre,
+avec les effets RGB, sans le logiciel MSI.
+
 <table>
   <tr>
     <td align="center"><img src="images/screen-gif.jpg" width="400" alt="L'écran du GK600 affiche un GIF personnel"><br><b>Votre GIF</b></td>
@@ -40,6 +43,7 @@ Allumage avec une animation de démarrage personnelle : l'écran s'allume, l'ani
 
 | Je veux… | Comment | Durée | Guide |
 |---|---|---|---|
+| tout faire depuis une seule fenêtre (GIF, effets RGB, image d'accueil, animation de démarrage, réparation) | double-cliquer sur `panneau/GK600-Panel.bat` (nouveau, en test) | — | [Panneau](panneau/README.md) |
 | afficher mes GIF, régler le RGB touche par touche | corriger une ligne du `config.xml` du logiciel MSI | 15 min | [Tuto](tuto-gk600-gif-usb.md) · [Tutorial (EN)](tutorial-gk600-gif-usb.md) |
 | avoir le logiciel MSI en français | double-cliquer sur `traduction-fr/INSTALLER_FR.bat` | 1 min | [traduction-fr](traduction-fr/README.md) |
 | réparer des menus noirs ou brouillés, ou un logo MSI noir | double-cliquer sur `restauration/GK600-Repair.bat` | 3 min | [Réparer](restauration/README.md#fr-repair) |
@@ -129,6 +133,7 @@ le logiciel, vous pouvez l'extraire de l'installateur avec
 |---|---|
 | [tuto-gk600-gif-usb.md](tuto-gk600-gif-usb.md) · [tutorial-gk600-gif-usb.md](tutorial-gk600-gif-usb.md) | GIF personnels en USB : guide pas à pas (français · anglais) |
 | [restauration/](restauration/) | Outils de l'écran : réparation, image d'accueil, animation de démarrage (français et anglais) |
+| [panneau/](panneau/README.md) | Le panneau : GIF, effets RGB, image d'accueil, animation de démarrage et réparation dans une seule fenêtre (français et anglais) |
 | [traduction-fr/](traduction-fr/) | Traduction française du logiciel MSI, avec installateur en un clic |
 | [TECHNICAL.md](TECHNICAL.md) | Matériel, carte de la mémoire, protocole USB, format de l'animation, tests (en anglais) |
 | [images/](images/) | Photos, captures d'écran et vidéo de démonstration |
@@ -139,7 +144,8 @@ le logiciel, vous pouvez l'extraire de l'installateur avec
 - [MSI-Forge-GK600-Software](https://github.com/ahmettahaklc/MSI-Forge-GK600-Software), par
   ahmettahaklc : un petit panneau de contrôle open source (Windows, Python seul, sans le logiciel
   MSI) pour l'éclairage RGB et l'envoi d'images ou de GIF en USB. Il n'écrit que l'emplacement du
-  GIF et limite les GIF à 255 images, comme le logiciel MSI.
+  GIF et limite les GIF à 255 images, comme le logiciel MSI. Notre [panneau](panneau/README.md)
+  s'appuie sur le protocole qu'il documente.
 
 ## Historique
 
@@ -149,6 +155,7 @@ le logiciel, vous pouvez l'extraire de l'installateur avec
 | 18 novembre 2026 | Réparation de l'écran en un double-clic et outil d'image d'accueil, testés en V1.20 |
 | 19 novembre 2026 | Réparation complète confirmée sur un clavier abîmé en V1.04 |
 | 22 novembre 2026 | Traduction française du logiciel MSI ; animation de démarrage personnelle, testée et filmée en V1.20 |
+| 23 novembre 2026 | Panneau : tout dans une seule fenêtre, effets RGB compris, sans le logiciel MSI (en test) |
 
 ## Remerciements
 

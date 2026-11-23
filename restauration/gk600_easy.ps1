@@ -3,14 +3,15 @@
   and gk600_boot_animation.py
   Started by GK600-Repair.bat (repair the screen menus and the boot animation), by
   GK600-Home-Picture.bat (replace the home-screen dragon with your own picture) or by
-  GK600-Boot-Animation.bat (replace the MSI boot animation with your own GIF).
+  GK600-Boot-Animation.bat (replace the MSI boot animation with your own GIF), or by
+  ..\panneau\GK600-Panel.bat (the panel: GIF, RGB effects and all of the above in one window).
 
   First run: downloads a portable Python 3.13 (python.org), the hidapi module (PyPI), Pillow for
   pictures (PyPI) and the public GK600 dump (github.com/Flonfli). Every file is checked against
   its SHA-256. Nothing is installed on Windows: everything stays in the .\runtime folder.
 #>
 param(
-    [ValidateSet('repair', 'picture', 'boot')] [string]$Mode = 'repair',
+    [ValidateSet('repair', 'picture', 'boot', 'panel')] [string]$Mode = 'repair',
     [string]$Picture = '',
     [ValidateSet('auto', 'fr', 'en')] [string]$Lang = 'auto',
     [switch]$DryRun
@@ -198,6 +199,20 @@ function Banner([string]$fr, [string]$en) {
 if (-not (Test-Path -LiteralPath (Join-Path $Here 'gk600_restore.py'))) {
     Fail "gk600_restore.py est introuvable. Extrais d'abord tout le ZIP (clic droit > Extraire tout), puis relance depuis le dossier restauration." `
          'gk600_restore.py not found. Extract the whole ZIP first (right-click > Extract All), then run this again from the restauration folder.'
+}
+
+# ------------------------------------------------------------------ panel
+if ($Mode -eq 'panel') {
+    Banner "GK600 - panneau de l'écran et de l'éclairage" 'GK600 - screen and lighting panel'
+    Prepare $true
+    $Panel = Join-Path (Split-Path -Parent $Here) 'panneau\gk600_panel.py'
+    if (-not (Test-Path -LiteralPath $Panel)) {
+        Fail "panneau\gk600_panel.py est introuvable. Extrais d'abord tout le ZIP (clic droit > Extraire tout), puis relance." `
+             'panneau\gk600_panel.py not found. Extract the whole ZIP first (right-click > Extract All), then try again.'
+    }
+    Say "Le panneau s'ouvre dans une fenêtre à part. Garde cette fenêtre-ci ouverte tant que tu l'utilises : la fermer arrête le panneau." `
+        'The panel opens in its own window. Keep this window open while you use it: closing it stops the panel.' 'Yellow'
+    exit (Run-Py @($Panel))
 }
 
 # ------------------------------------------------------------------ repair

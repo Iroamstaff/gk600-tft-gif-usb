@@ -1,0 +1,15 @@
+# python -I ui_test.py frieren_v117.bin "Forge gk600 tkl wireless.bin" anim.gif picture.png shots/
+# 2026-11-23T14:04Z, headless Google Chrome for Testing 153.0.8010.12 , Playwright 1.63.0
+PASS  status pill shows the keyboard and its firmware
+PASS  French by default for a French browser
+PASS  GIF preview shown, facts listed
+PASS  GIF sent: success message
+PASS  lighting applied
+PASS  lighting reached the firmware (colour 00 a0 ff)
+PASS  restart instructions shown before writing
+PASS  home picture written
+PASS  boot animation offers to keep the home picture
+PASS  English switch
+PASS  MSI software open: banner and buttons disabled
+PASS  no JavaScript error in the page
+12/12 passed

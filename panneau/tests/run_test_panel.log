@@ -1,0 +1,39 @@
+# python -I test_panel.py frieren_v117.bin "Forge gk600 tkl wireless.bin" anim.gif picture.png
+# anim.gif = zelda_alttp_gk600_160x96.gif (35 frames, 160x96), picture.png = 320x130 test picture
+# 2026-11-23T14:05Z, Python 3.13.18, Pillow 12.3.0, unicorn 2.1.4
+PASS  P1 lighting payload: effect, colour, brightness, speed, direction, AA 55
+PASS  P1 lighting 'off' sends no colour
+PASS  P1 20 effects in MSI's order
+PASS  P1 GIF header: frame count, then times in 2 ms steps
+PASS  P1 GIF data: frames right after the 256-byte header, padded to a page
+PASS  P1 300 frames are cut to 255, total time kept as far as 510 ms frames allow
+PASS  P1 malformed GIF data refused before anything is sent (0 frames, short data, time 0)
+PASS  P1 a 256-frame GIF cannot be built
+PASS  P2 page served to our own Host, token injected
+PASS  P2 other Host refused (DNS rebinding)
+PASS  P2 API without the token refused
+PASS  P2 request from another website refused (Origin)
+PASS  P2 status: keyboard, firmware V1.20 validated, full dump
+PASS  P3 lighting applied, acknowledged at each step, colour in the firmware's settings
+PASS  P3 settings stored by the keyboard in its MCU flash, screen flash untouched
+PASS  P3 bad lighting settings refused
+PASS  P4 GIF file accepted, preview served
+PASS  P4 GIF job done without asking for a restart
+PASS  P4 GIF slot holds exactly the stream, the rest of the chip is untouched
+PASS  P4 firmware reloaded the user animation (0xFE20)
+PASS  P5 home picture waits for the keyboard to be unplugged
+PASS  P5 nothing written while waiting
+PASS  P5 unplug seen, waiting for the keyboard to come back
+PASS  P5 home picture written after the restart
+PASS  P5 flash = dump with the picture at 0x17A1CE; GIF slot kept
+PASS  P5 panel remembers the home picture
+PASS  P6 boot animation written, home picture kept
+PASS  P6 GIF slot still intact
+PASS  P7 cancel while waiting for the restart: nothing written
+PASS  P7 MSI's software open: refused with the 'conflict' message
+PASS  P7 unvalidated firmware: home picture refused before any restart
+PASS  P8 repair: menus, dragon and MSI animation back (= dump up to 0x3C0000)
+PASS  P8 repair keeps the GIF slot
+PASS  P8 panel forgets the home picture after a repair
+
+34/34 passed in 212 s

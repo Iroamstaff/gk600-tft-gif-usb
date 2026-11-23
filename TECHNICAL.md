@@ -44,6 +44,7 @@ channel on its own. The firmware itself works fine over USB.
 | `04 72` | GIF upload, pages written from `0x3C0000` (what MSI's software uses) |
 | `04 38` | raw write, pages written from `0x000000`: `04 38 00 00 00 00 00 00 <page count, LE> 00…` (what the tools in `restauration/` use) |
 | `04 02` | closes the transfer |
+| `04 13` | lighting block: one effect for the whole keyboard (see below) |
 | `04 28` | time sync, followed by a frame marked `0x5A` (the TKL stores the time but never draws it, see below) |
 
 While it receives pages from `04 38`, the keyboard draws its own progress screen,
@@ -77,6 +78,25 @@ area, using the dump for what it doesn't change:
 | `gk600_restore.py restore --with-boot` | `[0x000000, 0x3C0000)` | 960 |
 | `gk600_home_picture.py` | `[0x000000, 0x180000)` | 384 |
 | `gk600_boot_animation.py` | `[0x000000, 0x1A0100 + N × 0x7800)`, rounded up to a page | up to 957 |
+
+## Lighting
+
+One effect for the whole keyboard, on the command interface (64-byte feature reports):
+
+| Step | Bytes | Answer |
+|---|---|---|
+| open | `04 18` | byte 3 = `01` |
+| select the lighting block | `04 13 00 00 00 00 00 00 01` | byte 3 = `01` |
+| settings | 64 bytes: `[0]` effect, `[1:4]` R G B, `[8]` multicolour, `[9]` brightness 1–5, `[10]` speed 1–5, `[11]` direction 0–3, `[14:16]` `AA 55` | echoed |
+| apply | `04 02` | byte 3 = `01` |
+
+Effects, in the order of MSI's software (strings 521 to 539 of its language files): 0 off,
+1 Static, 2 SingleOn, 3 SingleOff, 4 Glittering, 5 Falling, 6 Colourful, 7 Breath, 8 Spectrum,
+9 Outward, 10 Scrolling, 11 Rolling, 12 Rotating, 13 Explode, 14 Launch, 15 Ripples, 16 Flowing,
+17 Pulsating, 18 Tilt, 19 Shuttle. MSI's defaults (`rgb-keyboard.xml`): effect 11, brightness 5,
+speed 3. Run on the Frieren V1.17 firmware in an emulator, every step is acknowledged and the
+keyboard stores the settings in its MCU flash. Source: ahmettahaklc's open-source panel (MIT),
+which checked it on a GK600 and took it from the AULA F75 Max.
 
 ## Home screen
 

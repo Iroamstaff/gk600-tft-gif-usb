@@ -179,9 +179,9 @@ Le panneau fait tout, mais chaque partie existe aussi séparément :
 
 <p align="center"><img src="images/boot-animation-demo.gif" width="320" alt="On allume le clavier, l'écran s'allume, l'animation de démarrage personnelle se joue, puis l'écran d'accueil affiche une image personnelle"></p>
 
-Allumage avec une animation de démarrage personnelle (environ 6,5 secondes), puis l'écran
-d'accueil avec une image personnelle. Filmé le 22 novembre 2026, firmware V1.20.
-[Version MP4](images/boot-animation-demo.mp4)
+Allumage avec les [fichiers d'exemple](exemples/) en animation de démarrage et en image d'accueil :
+l'animation dure environ 4,5 secondes, puis l'écran d'accueil affiche l'image. Filmé le 23 novembre
+2026, firmware V1.20. [Version MP4](images/boot-animation-demo.mp4)
 
 <a id="faq"></a>
 

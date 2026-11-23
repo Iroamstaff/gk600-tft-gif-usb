@@ -16,8 +16,10 @@
   MSI's software.
   *Le panneau : GIF, effets RGB, image d'accueil, animation de démarrage et réparation dans une
   seule fenêtre, sans le logiciel MSI.*
-- New presentation of the repository, sample files to try the panel (`exemples/`).
-  *Nouvelle présentation du dépôt, fichiers d'exemple pour essayer le panneau (`exemples/`).*
+- New presentation of the repository, sample files to try the panel (`exemples/`), new photos and
+  power-on video of a real keyboard showing them.
+  *Nouvelle présentation du dépôt, fichiers d'exemple pour essayer le panneau (`exemples/`),
+  nouvelles photos et vidéo d'allumage d'un vrai clavier qui les affiche.*
 
 ## 22 November 2026 · 22 novembre 2026
 

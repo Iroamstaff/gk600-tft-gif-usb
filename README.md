@@ -176,8 +176,9 @@ The panel does everything, but each part also exists on its own:
 
 <p align="center"><img src="images/boot-animation-demo.gif" width="320" alt="The keyboard is switched on, the screen lights up, a custom boot animation plays, then the home screen shows a custom picture"></p>
 
-Power-on with a custom boot animation (about 6.5 seconds), then the home screen with a custom
-picture. Filmed on 22 November 2026, firmware V1.20. [MP4 version](images/boot-animation-demo.mp4)
+Power-on with the [sample files](exemples/) as boot animation and home picture: the animation plays
+for about 4.5 seconds, then the home screen shows the picture. Filmed on 23 November 2026, firmware
+V1.20. [MP4 version](images/boot-animation-demo.mp4)
 
 <a id="faq"></a>
 

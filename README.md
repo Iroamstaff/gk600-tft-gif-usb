@@ -15,9 +15,9 @@ one-line fix) and the free tools in this repository, you can:
 Everything goes through the USB cable: **no opening the keyboard, no firmware flashing, and
 everything can be undone.**
 
-🆕 **New, being tested:** a [panel](panneau/README.md) that does all of this in one window, plus
-the keyboard itself (RGB effects, per-key colours, keys, macros, settings, profiles), without
-MSI's software.
+🆕 **New:** a [panel](panneau/README.md) that does all of this in one window, plus the keyboard
+itself (RGB effects, per-key colours, keys, macros, settings, profiles), without MSI's software.
+The keyboard part is tested on a real V1.20; the screen part is still being tested.
 
 <table>
   <tr>
@@ -152,7 +152,7 @@ it out of the installer with [innoextract](https://constexpr.org/innoextract/) (
 | 18 November 2026 | One-click screen repair and home-picture tool, tested on V1.20 |
 | 19 November 2026 | Full repair confirmed on a damaged keyboard running V1.04 |
 | 22 November 2026 | French translation of MSI's software; custom boot animation, tested and filmed on V1.20 |
-| 23 November 2026 | Panel: everything in one window without MSI's software, RGB effects, per-key colours, keys, macros, settings and profiles included (being tested) |
+| 23 November 2026 | Panel: everything in one window without MSI's software, RGB effects, per-key colours, keys, macros, settings and profiles included (keyboard part tested on a real V1.20) |
 
 ## Credits
 

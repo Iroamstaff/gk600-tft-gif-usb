@@ -109,8 +109,10 @@ software does not do (see below).
 ## Keys, macros, colours and settings
 
 How MSI's driver (`DeviceDriver.exe`, driver 1.0.0.8) writes everything the keyboard keeps, read
-from its code and run on the Frieren V1.17 firmware in an emulator. Not yet checked on a real
-GK600.
+from its code and run on the Frieren V1.17 firmware in an emulator, then checked on a real GK600
+running V1.20 (23 November 2026): every block read back twice identically, every write answered
+with the matching sum, the `< >` key at 111 for both its LED and its key, a macro played from a
+key, a full backup applied back.
 
 **Write** (64-byte feature reports on the command interface):
 
@@ -124,7 +126,9 @@ GK600.
 
 **Read**: `04 18`, then `04 <read block> 00 … <packets>` (acknowledged), then exactly one
 GET_FEATURE per packet, then `04 02`. The firmware has one more packet ready; reading it leaves the
-same stale flag. The panel reads each block twice and compares.
+same stale flag. The panel reads each block twice and compares. After a read, the sum in the
+`04 02` answer covers that extra packet too (64 × `FF`, erased flash): on a V1.20, `0xD0FC` for a
+colour table whose bytes add up to `0x913C`.
 
 MSI's software ignores the sum returned by `04 02`. The panel checks it, and when it does not match
 (a firmware that computes it another way), it reads the block back and compares it instead.
@@ -140,7 +144,8 @@ MSI's software ignores the sum returned by `04 02`. The panel checks it, and whe
 
 **Key numbers** are MSI's `key_index` (`layouts/rgb-keyboard.xml`), the same as the LED number
 (`light_index`). That file only draws the US layout; the ISO keys come from the Frieren V1.17 key
-matrix: 110 for `* µ` (left of the ISO Enter) and 111 for `< >`. Home is 117 in MSI's file and 113
+matrix: 110 for `* µ` (left of the ISO Enter) and 111 for `< >` (confirmed on a V1.20, LED and
+key). Home is 117 in MSI's file and 113
 in the Frieren matrix. The panel writes Home under 117 and 113, and the `* µ` key under 110 and 67
 (MSI's US backslash, which its own French lighting profile uses for that key); a number with no
 key behind it is never used. Fn (96) is not remappable.

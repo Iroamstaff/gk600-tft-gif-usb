@@ -14,7 +14,7 @@ has no key on the keyboard is never used):
 - the * µ key of the ISO layout: 110 in the Frieren matrix, while MSI's own French lighting
   profile colours it through the US backslash entry (67). The panel calls it 67, like the US
   backslash that sits at the same end of the row, and writes 110 too.
-The < > key (111) has no second number.
+The < > key (111) has no second number; it was confirmed on a V1.20 (its LED and its key).
 
 Positions are in key units (1 = one key), for drawing only.
 """

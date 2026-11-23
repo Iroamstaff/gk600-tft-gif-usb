@@ -11,14 +11,17 @@ macros, settings, profiles).
 
 État / status:
 
-- **Écran et effets RGB** : testés avec le vrai code du firmware en émulation et dans un
-  navigateur ; premier essai sur un vrai clavier en cours. **Screen and RGB effects**: tested
-  against the real firmware code in emulation and in a browser; first try on a real keyboard in
-  progress.
-- **Couleurs par touche, touches, macros, réglages, profils** : tout nouveaux, testés seulement en
-  émulation (firmware Frieren V1.17) et dans un navigateur. **Per-key colours, keys, macros,
-  settings, profiles**: brand new, only tested in emulation (Frieren V1.17 firmware) and in a
-  browser.
+- **Clavier** (effets RGB, couleurs par touche, touches, macros, réglages, profils) : **testé sur
+  un vrai GK600 en V1.20** le 23 novembre 2026. Chaque partie a été relue, chaque envoi vérifié par
+  le clavier, une macro jouée depuis une touche, la sauvegarde réappliquée. **Keyboard** (RGB
+  effects, per-key colours, keys, macros, settings, profiles): **tested on a real GK600 running
+  V1.20** on 23 November 2026. Every part read back, every write checked by the keyboard, a macro
+  played from a key, the backup applied back.
+- **Écran** (GIF, image d'accueil, animation de démarrage, réparation) : testé avec le vrai code
+  du firmware en émulation et dans un navigateur ; l'envoi par le panneau reste à essayer sur un
+  vrai clavier. **Screen** (GIF, home picture, boot animation, repair): tested against the real
+  firmware code in emulation and in a browser; sending from the panel still has to be tried on a
+  real keyboard.
 
 <p align="center"><img src="../images/panel-perkey.jpg" width="820" alt="Le panneau : onglet Couleurs par touche / the panel: per-key colours tab"></p>
 
@@ -81,9 +84,9 @@ Bon à savoir :
   raccourcis Fn d'usine (multimédia, écran…).
 - **Macros** : 3008 octets au plus. Le firmware accepte un peu plus, mais le paquet suivant efface
   le début de la couche Fn (vu en émulation) : le panneau s'arrête avant.
-- Le dessin est en **AZERTY ISO** (QWERTY : disposition US). Les numéros des touches µ * et < >
-  viennent du firmware Frieren V1.17 et restent à confirmer sur un vrai clavier ; la touche µ *
-  est écrite sous ses deux numéros possibles.
+- Le dessin est en **AZERTY ISO** (QWERTY : disposition US). La touche < > (numéro 111, pris dans
+  le firmware Frieren V1.17) est confirmée sur une V1.20 ; la touche µ * et la touche Début sont
+  écrites sous leurs deux numéros possibles.
 - Le panneau ne tourne que **sur ce PC** (adresse 127.0.0.1) et seule sa page peut s'en servir
   (jeton aléatoire et vérification de l'origine) : aucun site web ne peut piloter le clavier.
 - Fermer la fenêtre du panneau l'arrête au bout de quelques secondes, sauf pendant une écriture.
@@ -146,9 +149,9 @@ Good to know:
   (media, screen…).
 - **Macros**: 3008 bytes at most. The firmware takes a little more, but the next packet erases the
   start of the Fn layer (seen in emulation): the panel stops before.
-- The picture is **AZERTY ISO** (QWERTY: US layout). The numbers of the µ * and < > keys come from
-  the Frieren V1.17 firmware and still need a real keyboard to confirm; the µ * key is written
-  under both of its possible numbers.
+- The picture is **AZERTY ISO** (QWERTY: US layout). The < > key (number 111, from the Frieren
+  V1.17 firmware) is confirmed on a V1.20; the µ * key and the Home key are written under both of
+  their possible numbers.
 - The panel only runs **on this PC** (address 127.0.0.1) and only its own page can use it (random
   token and origin check): no website can drive the keyboard.
 - Closing the panel window stops it after a few seconds, except during a write.

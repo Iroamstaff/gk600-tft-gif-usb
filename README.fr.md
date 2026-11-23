@@ -15,9 +15,10 @@ correction d'une ligne) et les outils gratuits de ce dépôt, vous pouvez :
 Tout passe par le câble USB : **rien à ouvrir, aucun flashage de firmware, et tout est
 réversible.**
 
-🆕 **Nouveau, en test :** un [panneau](panneau/README.md) qui fait tout ça dans une seule fenêtre,
-plus le clavier lui-même (effets RGB, couleurs par touche, touches, macros, réglages, profils),
-sans le logiciel MSI.
+🆕 **Nouveau :** un [panneau](panneau/README.md) qui fait tout ça dans une seule fenêtre, plus le
+clavier lui-même (effets RGB, couleurs par touche, touches, macros, réglages, profils), sans le
+logiciel MSI. La partie clavier est testée sur une vraie V1.20 ; la partie écran est encore en
+test.
 
 <table>
   <tr>
@@ -156,7 +157,7 @@ le logiciel, vous pouvez l'extraire de l'installateur avec
 | 18 novembre 2026 | Réparation de l'écran en un double-clic et outil d'image d'accueil, testés en V1.20 |
 | 19 novembre 2026 | Réparation complète confirmée sur un clavier abîmé en V1.04 |
 | 22 novembre 2026 | Traduction française du logiciel MSI ; animation de démarrage personnelle, testée et filmée en V1.20 |
-| 23 novembre 2026 | Panneau : tout dans une seule fenêtre sans le logiciel MSI, effets RGB, couleurs par touche, touches, macros, réglages et profils compris (en test) |
+| 23 novembre 2026 | Panneau : tout dans une seule fenêtre sans le logiciel MSI, effets RGB, couleurs par touche, touches, macros, réglages et profils compris (partie clavier testée sur une vraie V1.20) |
 
 ## Remerciements
 

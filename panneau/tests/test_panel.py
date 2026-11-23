@@ -13,8 +13,6 @@ import http.client
 import json
 import os
 import sys
-import tempfile
-import threading
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -24,12 +22,10 @@ for p in (HERE, PANEL, RESTO, os.path.join(RESTO, "tests")):
     sys.path.insert(0, p)
 
 import gk600_restore as g  # noqa: E402
-import gk600_fw_emu as E  # noqa: E402
 import gk600_gif as gif  # noqa: E402
 import gk600_lighting as light  # noqa: E402
 import gk600_home_picture as hp  # noqa: E402
 import gk600_boot_animation as ba  # noqa: E402
-import gk600_panel as P  # noqa: E402
 
 fw_path, dump_path, anim_path, pic_path = sys.argv[1:5]
 fw = open(fw_path, "rb").read()
@@ -46,7 +42,12 @@ def check(name, ok, detail=""):
 
 import emu_backend  # noqa: E402
 emu_backend.fw, emu_backend.ref = fw, ref
-new_panel = emu_backend.new_panel
+
+
+def new_panel(version=0x0120):
+    # The MCU flash is modelled (emu_flash.py): the panel checks every configuration write
+    # against the sum the keyboard reads back from that flash.
+    return emu_backend.new_panel(version, flash_model=True)
 
 
 class Client:

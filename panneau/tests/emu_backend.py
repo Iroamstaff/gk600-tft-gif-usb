@@ -37,8 +37,12 @@ class EmuBackend:
         return EmuTransport(self.emu)
 
 
-def new_panel(version=0x0120):
-    emu = E.FirmwareEmu(fw, E.SpiFlash(16 << 20, init=ref))
+def new_panel(version=0x0120, flash_model=False):
+    if flash_model:                     # the MCU flash modelled too (keys, colours, macros...)
+        import emu_flash
+        emu = emu_flash.FlashEmu(fw, E.SpiFlash(16 << 20, init=ref))
+    else:
+        emu = E.FirmwareEmu(fw, E.SpiFlash(16 << 20, init=ref))
     backend = EmuBackend(emu, version)
     state = tempfile.mkdtemp(prefix="gk600_state_")
     panel = P.Panel(backend, state_dir=state, reference=ref)

@@ -15,8 +15,9 @@ one-line fix) and the free tools in this repository, you can:
 Everything goes through the USB cable: **no opening the keyboard, no firmware flashing, and
 everything can be undone.**
 
-🆕 **New, being tested:** a [panel](panneau/README.md) that does all of this in one window, with
-the RGB effects, without MSI's software.
+🆕 **New, being tested:** a [panel](panneau/README.md) that does all of this in one window, plus
+the keyboard itself (RGB effects, per-key colours, keys, macros, settings, profiles), without
+MSI's software.
 
 <table>
   <tr>
@@ -43,7 +44,7 @@ running firmware V1.20. [MP4 version (11 s)](images/boot-animation-demo.mp4)
 
 | I want to… | How | Time | Guide |
 |---|---|---|---|
-| do everything from one window (GIF, RGB effects, home picture, boot animation, repair) | double-click `panneau/GK600-Panel.bat` (new, being tested) | — | [Panel](panneau/README.md) |
+| do everything from one window (screen, RGB effects and per-key colours, keys, macros, profiles) | double-click `panneau/GK600-Panel.bat` (new, being tested) | — | [Panel](panneau/README.md) |
 | show my own GIFs, set per-key RGB | fix one line in the `config.xml` of MSI's driver | 15 min | [Tutorial](tutorial-gk600-gif-usb.md) · [Tuto (FR)](tuto-gk600-gif-usb.md) |
 | use MSI's software in French | double-click `traduction-fr/INSTALLER_FR.bat` | 1 min | [traduction-fr](traduction-fr/README.md) |
 | repair black or garbled menus, or a black MSI logo | double-click `restauration/GK600-Repair.bat` | 3 min | [Repair](restauration/README.md#en-repair) |
@@ -129,9 +130,9 @@ it out of the installer with [innoextract](https://constexpr.org/innoextract/) (
 |---|---|
 | [tutorial-gk600-gif-usb.md](tutorial-gk600-gif-usb.md) · [tuto-gk600-gif-usb.md](tuto-gk600-gif-usb.md) | Custom GIFs over USB: step-by-step guide (English · French) |
 | [restauration/](restauration/) | Screen tools: repair, home picture, boot animation (French and English) |
-| [panneau/](panneau/README.md) | The panel: GIF, RGB effects, home picture, boot animation and repair in one window (French and English) |
+| [panneau/](panneau/README.md) | The panel: GIF, home picture, boot animation, repair, RGB effects, per-key colours, keys, macros, settings and profiles in one window (French and English) |
 | [traduction-fr/](traduction-fr/) | French translation of MSI's software, with a one-click installer |
-| [TECHNICAL.md](TECHNICAL.md) | Hardware, flash map, USB protocol, boot animation format, tests |
+| [TECHNICAL.md](TECHNICAL.md) | Hardware, flash map, USB protocol (screen, keys, macros, colours, settings), boot animation format, tests |
 | [images/](images/) | Photos, screenshots and the demo video |
 | [posts/](posts/) | The Reddit posts that announced each part |
 
@@ -151,7 +152,7 @@ it out of the installer with [innoextract](https://constexpr.org/innoextract/) (
 | 18 November 2026 | One-click screen repair and home-picture tool, tested on V1.20 |
 | 19 November 2026 | Full repair confirmed on a damaged keyboard running V1.04 |
 | 22 November 2026 | French translation of MSI's software; custom boot animation, tested and filmed on V1.20 |
-| 23 November 2026 | Panel: everything in one window, RGB effects included, without MSI's software (being tested) |
+| 23 November 2026 | Panel: everything in one window without MSI's software, RGB effects, per-key colours, keys, macros, settings and profiles included (being tested) |
 
 ## Credits
 

@@ -104,6 +104,71 @@
   .result.bad { background: #2f1416; border: 1px solid #63262a; color: #f7b3b3; }
   details { margin-top: 8px; font-size: 13px; color: var(--muted); }
   details pre { white-space: pre-wrap; font-size: 12px; }
+  /* sidebar groups */
+  .nav-group { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #6d7480; margin: 10px 12px 2px; }
+  .kbdlayout { display: flex; gap: 6px; }
+  .kbdlayout button { flex: 1; padding: 5px 0; border-radius: 7px; border: 1px solid var(--line); background: transparent; cursor: pointer; color: var(--muted); font-size: 12px; }
+  .kbdlayout button.on { background: var(--card); color: var(--text); border-color: #444b57; }
+  /* keyboard picture */
+  .kcard { padding: 16px 18px 14px; margin-bottom: 18px; }
+  .kbd { position: relative; width: 100%; --u: 40px; height: calc(var(--u) * 6.25); user-select: none; -webkit-user-select: none; touch-action: none; }
+  .kbd .k { position: absolute; border-radius: calc(var(--u) * .14); background: #262a32; border: 1px solid #3b414c; color: #d9dde5;
+    font-size: calc(var(--u) * .25); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    cursor: pointer; overflow: hidden; line-height: 1.1; padding: 1px 2px; box-shadow: inset 0 -3px 0 #0004; }
+  .kbd .k:hover { border-color: #7b8494; }
+  .kbd .k.sel { outline: 2px solid var(--accent); outline-offset: 1px; z-index: 2; }
+  .kbd .k.changed { border-color: var(--warn); }
+  .kbd .k.fixed { cursor: not-allowed; opacity: .55; }
+  .kbd .k .fx { font-size: calc(var(--u) * .2); color: #f6d38f; margin-top: 1px; max-width: 100%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+  .kbd .k.iso { clip-path: polygon(0 0, 100% 0, 100% 100%, 16.7% 100%, 16.7% 50%, 0 50%); justify-content: flex-start; padding-top: calc(var(--u) * .3); }
+  .kbd .screenbox { position: absolute; background: #050506; border: 1px solid #2e333c; border-radius: calc(var(--u) * .12);
+    color: #4b525e; font-size: calc(var(--u) * .2); display: flex; align-items: center; justify-content: center; }
+  .grid2 { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(280px, 1fr); gap: 18px; align-items: start; }
+  .pal { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 4px; }
+  .pal button { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #ffffff22; cursor: pointer; padding: 0; }
+  .pal button.on { border-color: #fff; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips button { padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: #14161b; cursor: pointer; font-size: 13px; }
+  .chips button:hover { border-color: var(--accent); }
+  .toolbar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+  .seg.narrow { min-width: 320px; }
+  .types { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; }
+  .types button { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: #14161b; cursor: pointer; font-size: 13px; }
+  .types button.on { border-color: var(--accent); background: #2a1415; }
+  .mods { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 8px 0; }
+  .mods label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px; }
+  .mods input { accent-color: var(--accent); }
+  .capture { border: 2px dashed #3a404b; border-radius: 10px; padding: 10px; text-align: center; color: var(--muted); cursor: pointer; margin: 8px 0; }
+  .capture.on { border-color: var(--accent); color: var(--text); background: #1f1416; }
+  .wide-select { width: 100%; }
+  .mlist { display: flex; flex-direction: column; gap: 4px; max-height: 300px; overflow: auto; }
+  .mlist button { text-align: left; padding: 8px 10px; border-radius: 8px; border: 1px solid transparent; background: #14161b; cursor: pointer; }
+  .mlist button.on { border-color: var(--accent); background: #2a1415; }
+  .mlist button .sub { color: var(--muted); font-size: 12px; }
+  .steps-list { max-height: 330px; overflow: auto; border: 1px solid var(--line); border-radius: 10px; margin: 10px 0; }
+  .steps-list .st { display: flex; align-items: center; gap: 8px; padding: 5px 10px; border-bottom: 1px solid #22262e; font-size: 14px; }
+  .steps-list .st:last-child { border-bottom: 0; }
+  .steps-list .st .what { flex: 1; }
+  .steps-list .st input { width: 80px; background: #14161b; border: 1px solid var(--line); border-radius: 6px; padding: 3px 6px; }
+  .steps-list .st button, .icon-btn { border: 1px solid var(--line); background: #14161b; border-radius: 6px; cursor: pointer; padding: 2px 8px; }
+  .steps-list .empty { padding: 14px; color: var(--muted); font-size: 13px; text-align: center; }
+  .addrow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0; }
+  .addrow select, .addrow input[type=number] { background: #14161b; border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+  .addrow input[type=number] { width: 90px; }
+  .btn.small { padding: 7px 12px; font-size: 13px; }
+  .btn.rec { background: #8d1d17; }
+  .btn.rec.on { background: var(--accent); animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: .6; } }
+  .plist { display: flex; flex-direction: column; gap: 8px; }
+  .prof { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #14161b; }
+  .prof .pname { font-weight: 600; flex: 1; min-width: 160px; }
+  .prof .pmeta { color: var(--muted); font-size: 12px; width: 100%; }
+  .badge { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 999px; border: 1px solid #444b57; color: var(--muted); margin-left: 6px; }
+  .badge.backup { border-color: #1e5a35; color: #b9f0cd; }
+  .msg-ok { color: #b9f0cd; } .msg-bad { color: #f7b3b3; }
+  .dirty { color: var(--warn); font-size: 13px; }
+  input[type=text] { background: #14161b; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+  @media (max-width: 1100px) { .grid2 { grid-template-columns: 1fr; } }
   @media (max-width: 860px) {
     .app { grid-template-columns: 1fr; }
     .side { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 10px 12px; gap: 10px; }
@@ -119,15 +184,24 @@
   <aside class="side">
     <div class="brand"><div class="logo">GK<b>600</b></div><div class="sub" data-t="brand_sub"></div></div>
     <nav id="nav">
+      <div class="nav-group" data-t="grp_screen"></div>
       <button data-tab="gif" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-t="nav_gif"></span></button>
-      <button data-tab="light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg><span data-t="nav_light"></span></button>
       <button data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span data-t="nav_home"></span></button>
       <button data-tab="boot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v9M7 6.5a8 8 0 1 0 10 0"/></svg><span data-t="nav_boot"></span></button>
       <button data-tab="repair"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.5 2.5-2.6-.6-.6-2.6z"/></svg><span data-t="nav_repair"></span></button>
+      <div class="nav-group" data-t="grp_keyboard"></div>
+      <button data-tab="light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg><span data-t="nav_light"></span></button>
+      <button data-tab="perkey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="currentColor"/></svg><span data-t="nav_perkey"></span></button>
+      <button data-tab="keys"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg><span data-t="nav_keys"></span></button>
+      <button data-tab="macros"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h10M4 12h7M4 18h10M17 9l4 3-4 3z"/></svg><span data-t="nav_macros"></span></button>
+      <button data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span data-t="nav_settings"></span></button>
+      <button data-tab="profiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12l4 4v12H4z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/></svg><span data-t="nav_profiles"></span></button>
+      <div class="nav-group"></div>
       <button data-tab="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span data-t="nav_about"></span></button>
     </nav>
     <div class="side-bottom">
       <div class="lang"><button data-lang="fr">FR</button><button data-lang="en">EN</button></div>
+      <div class="kbdlayout" title=""><button data-kl="fr">AZERTY</button><button data-kl="us">QWERTY</button></div>
       <div id="ver"></div>
     </div>
   </aside>
@@ -163,16 +237,17 @@
       <div class="grid">
         <div class="card">
           <div class="field"><div class="field-head"><span data-t="effect"></span></div><select id="effect" style="width:100%"></select></div>
-          <div class="row"><label data-t="color"></label><input type="color" id="color" value="#ff0000"></div>
-          <label class="check"><input type="checkbox" id="multi"><span data-t="multicolour"></span></label>
+          <div class="fx-only"><div class="row"><label data-t="color"></label><input type="color" id="color" value="#ff0000"></div>
+          <label class="check"><input type="checkbox" id="multi"><span data-t="multicolour"></span></label></div>
           <div class="field"><div class="field-head"><span data-t="brightness"></span><b id="brightness-v"></b></div><input type="range" id="brightness" min="1" max="5" step="1"></div>
-          <div class="field"><div class="field-head"><span data-t="speed"></span><b id="speed-v"></b></div><input type="range" id="speed" min="1" max="5" step="1"></div>
-          <div class="field"><div class="field-head"><span data-t="direction"></span></div><div class="seg" id="direction"></div></div>
+          <div class="fx-only"><div class="field"><div class="field-head"><span data-t="speed"></span><b id="speed-v"></b></div><input type="range" id="speed" min="1" max="5" step="1"></div>
+          <div class="field"><div class="field-head"><span data-t="direction"></span></div><div class="seg" id="direction"></div></div></div>
+          <p class="note hidden" id="custom-note" data-t="custom_note"></p>
           <div class="actions"><button class="btn" id="light-go" disabled data-t="apply"></button></div>
           <div class="why" id="light-why"></div>
           <div class="note" id="light-msg"></div>
         </div>
-        <div class="card"><h2 data-t="light_preview"></h2><div class="swatch" id="swatch"></div><p class="note" data-t="light_note"></p></div>
+        <div class="card fx-only"><h2 data-t="light_preview"></h2><div class="swatch" id="swatch"></div><p class="note" data-t="light_note"></p></div>
       </div>
     </section>
 
@@ -223,6 +298,108 @@
       </div>
     </section>
 
+    <!-- per-key colours -->
+    <section class="tab hidden" id="tab-perkey">
+      <p class="lead" data-t="perkey_lead"></p>
+      <div class="card kcard"><div class="kbd" id="perkey-kbd"></div></div>
+      <div class="grid2">
+        <div class="card">
+          <h2 data-t="brush"></h2>
+          <div class="row"><label data-t="brush_color"></label><input type="color" id="pk-color" value="#e2231a"></div>
+          <div class="pal" id="pk-pal"></div>
+          <div class="field"><div class="field-head"><span data-t="paint_groups"></span></div><div class="chips" id="pk-groups"></div></div>
+          <div class="field"><div class="field-head"><span data-t="brightness"></span><b id="pk-bright-v"></b></div><input type="range" id="pk-bright" min="1" max="5" step="1" value="5"></div>
+          <p class="note" data-t="perkey_tip"></p>
+        </div>
+        <div class="card">
+          <h2 data-t="keyboard_side"></h2>
+          <div class="dirty" id="pk-dirty"></div>
+          <div class="actions"><button class="btn" id="pk-send" data-t="send_colours"></button><button class="btn ghost" id="pk-read" data-t="read_kb"></button></div>
+          <div class="why" id="pk-why"></div>
+          <div class="note" id="pk-msg"></div>
+          <p class="note" data-t="perkey_note"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- keys -->
+    <section class="tab hidden" id="tab-keys">
+      <p class="lead" data-t="keys_lead"></p>
+      <div class="toolbar">
+        <div class="seg narrow" id="layer-seg"><button data-layer="main" data-t="layer_main"></button><button data-layer="fn" data-t="layer_fn"></button></div>
+        <span class="dirty" id="keys-dirty"></span>
+      </div>
+      <div class="card kcard"><div class="kbd" id="keys-kbd"></div></div>
+      <div class="grid2">
+        <div class="card" id="key-editor"></div>
+        <div class="card">
+          <h2 data-t="keyboard_side"></h2>
+          <div class="actions"><button class="btn" id="keys-send" data-t="send_layer"></button><button class="btn ghost" id="keys-read" data-t="read_kb"></button><button class="btn ghost" id="keys-reset" data-t="layer_reset"></button></div>
+          <div class="why" id="keys-why"></div>
+          <div class="note" id="keys-msg"></div>
+          <p class="note" data-t="keys_note"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- macros -->
+    <section class="tab hidden" id="tab-macros">
+      <p class="lead" data-t="macros_lead"></p>
+      <div class="grid">
+        <div class="card">
+          <h2 data-t="macro_list"></h2>
+          <div class="mlist" id="macro-list"></div>
+          <div class="actions"><button class="btn ghost small" id="macro-new" data-t="macro_new"></button><button class="btn ghost small" id="macro-del" data-t="macro_del"></button></div>
+          <div class="field"><div class="field-head"><span data-t="macro_space"></span><b id="macro-space-v"></b></div><div class="bar"><i id="macro-space"></i></div></div>
+          <div class="dirty" id="macros-dirty"></div>
+          <div class="actions"><button class="btn" id="macros-send" data-t="send_macros"></button><button class="btn ghost" id="macros-read" data-t="read_kb"></button></div>
+          <div class="why" id="macros-why"></div>
+          <div class="note" id="macros-msg"></div>
+          <p class="note" data-t="macros_note"></p>
+        </div>
+        <div class="card" id="macro-editor"></div>
+      </div>
+    </section>
+
+    <!-- settings -->
+    <section class="tab hidden" id="tab-settings">
+      <p class="lead" data-t="settings_lead"></p>
+      <div class="grid2">
+        <div class="card">
+          <h2 data-t="set_locks"></h2>
+          <label class="check"><input type="checkbox" id="set-no-win"><span data-t="set_no_win"></span></label>
+          <label class="check"><input type="checkbox" id="set-no-altf4"><span data-t="set_no_altf4"></span></label>
+          <label class="check"><input type="checkbox" id="set-no-alttab"><span data-t="set_no_alttab"></span></label>
+          <div class="field"><div class="field-head"><span data-t="set_fn"></span></div><div class="seg" id="set-fn"></div></div>
+          <div class="field"><div class="field-head"><span data-t="set_sleep"></span></div><div class="seg" id="set-sleep"></div></div>
+          <div class="field"><div class="field-head"><span data-t="set_debounce"></span><b id="set-debounce-v"></b></div><input type="range" id="set-debounce" min="1" max="5" step="1" value="2"><div class="note" id="set-debounce-note"></div></div>
+          <div class="dirty" id="settings-dirty"></div>
+          <div class="actions"><button class="btn" id="settings-send" data-t="send_settings"></button><button class="btn ghost" id="settings-read" data-t="read_kb"></button></div>
+          <div class="why" id="settings-why"></div>
+          <div class="note" id="settings-msg"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- profiles -->
+    <section class="tab hidden" id="tab-profiles">
+      <p class="lead" data-t="profiles_lead"></p>
+      <div class="grid2">
+        <div class="card">
+          <h2 data-t="prof_save_title"></h2>
+          <div class="addrow"><input type="text" id="prof-name" maxlength="60" style="flex:1"><button class="btn small" id="prof-save" data-t="prof_save"></button></div>
+          <p class="note" data-t="prof_save_note"></p>
+          <div class="actions"><button class="btn ghost small" id="prof-backup" data-t="prof_backup"></button><button class="btn ghost small" id="prof-import" data-t="prof_import"></button></div>
+          <div class="why" id="prof-why"></div>
+          <div class="note" id="prof-msg"></div>
+        </div>
+        <div class="card">
+          <h2 data-t="prof_list"></h2>
+          <div class="plist" id="prof-list"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- about -->
     <section class="tab hidden about" id="tab-about">
       <p data-t="about_1"></p>
@@ -253,7 +430,7 @@ const GK = { token: "__GK600_TOKEN__", version: "__GK600_VERSION__" };
 
 const T = {
   fr: {
-    brand_sub: "Panneau de l'écran et de l'éclairage",
+    brand_sub: "Panneau du clavier et de l'écran",
     nav_gif: "GIF de l'écran", nav_light: "Éclairage RGB", nav_home: "Image d'accueil", nav_boot: "Animation de démarrage",
     nav_repair: "Réparation", nav_about: "À propos",
     title_gif: "GIF de l'écran", title_light: "Éclairage RGB", title_home: "Image de l'écran d'accueil",
@@ -322,10 +499,87 @@ const T = {
     e_timeout: "Le clavier n'a pas été redémarré à temps : recommence.",
     e_busy: "Une écriture est déjà en cours.", e_file_again: "Choisis à nouveau le fichier.",
     e_bad_request: "Réglage refusé.", e_forbidden: "Accès refusé : ouvre le panneau avec GK600-Panel.bat.",
-    e_internal: "Erreur inattendue (détails ci-dessous).", e_failed: "Ça n'a pas marché (détails ci-dessous)."
+    e_internal: "Erreur inattendue (détails ci-dessous).", e_failed: "Ça n'a pas marché (détails ci-dessous).",
+    grp_screen: "Écran", grp_keyboard: "Clavier",
+    nav_perkey: "Couleurs par touche", nav_keys: "Touches", nav_macros: "Macros", nav_settings: "Réglages", nav_profiles: "Profils",
+    title_perkey: "Couleurs par touche", title_keys: "Touches", title_macros: "Macros", title_settings: "Réglages du clavier", title_profiles: "Profils",
+    effect_custom: "Couleurs par touche (voir l'onglet dédié)",
+    custom_note: "Le clavier affiche les couleurs choisies dans l'onglet Couleurs par touche.",
+    perkey_lead: "Une couleur par touche, gardée par le clavier. Clique ou glisse sur les touches pour les peindre, puis envoie au clavier.",
+    brush: "Pinceau", brush_color: "Couleur", paint_groups: "Peindre d'un coup",
+    g_all: "Tout le clavier", g_letters: "Lettres", g_digits: "Chiffres", g_fkeys: "F1 à F12", g_arrows: "Flèches", g_wasd: "ZQSD",
+    g_nav: "Inser à Pg suiv", g_mods: "Touches de contrôle", g_off: "Tout éteindre",
+    perkey_tip: "Clic droit sur une touche : reprendre sa couleur.",
+    keyboard_side: "Clavier",
+    send_colours: "Envoyer les couleurs", read_kb: "Relire le clavier",
+    perkey_note: "Le clavier passe en mode couleurs par touche. Pour revenir à un effet, choisis-le dans l'onglet Éclairage RGB : tes couleurs restent gardées.",
+    dirty: "Modifications pas encore envoyées au clavier.",
+    keys_lead: "Donne une autre fonction à une touche : une autre touche ou un raccourci, un clic, une touche multimédia ou une macro. La couche Fn agit quand Fn est enfoncée.",
+    layer_main: "Couche principale", layer_fn: "Couche Fn (Fn + touche)",
+    send_layer: "Envoyer cette couche", layer_reset: "Tout remettre par défaut",
+    keys_note: "Fn ne peut pas être changée. Une touche « normale » garde sa fonction d'origine, y compris ses raccourcis Fn d'usine (multimédia, écran…).",
+    ed_pick: "Clique sur une touche du dessin pour la modifier.",
+    ed_title: "{key} · {layer}",
+    ty_default: "Normale", ty_disabled: "Désactivée", ty_key: "Touche / raccourci", ty_mouse: "Souris", ty_media: "Multimédia", ty_macro: "Macro",
+    ed_capture: "Clique ici puis appuie sur la touche ou la combinaison voulue",
+    ed_capturing: "J'écoute… appuie sur la touche ou la combinaison (Échap : annuler)",
+    ed_key: "Touche", ed_none: "(aucune : modificateurs seuls)", ed_mods: "Avec", ed_shortcuts: "Raccourcis tout prêts", ed_choose: "— choisir —",
+    ed_mouse: "Action de la souris", ed_media: "Touche multimédia", ed_macro: "Macro", ed_mode: "Lecture", ed_count: "Nombre de fois (1 à 255)",
+    ed_no_macro: "Aucune macro : crée-la d'abord dans l'onglet Macros.",
+    ed_apply: "Valider pour cette touche", ed_reset: "Remettre cette touche par défaut",
+    ed_raw: "Réglage inconnu lu dans le clavier ({b}) : gardé tel quel.",
+    ed_default_info: "La touche fait son travail habituel.", ed_disabled_info: "La touche ne fait plus rien.",
+    ed_need_key: "Choisis une touche ou au moins un modificateur.",
+    fx_off: "désactivée",
+    macros_lead: "Une macro rejoue une suite de touches, de clics et de pauses. Crée-la ici, envoie-la au clavier, puis donne-la à une touche dans l'onglet Touches.",
+    macro_list: "Tes macros", macro_new: "Nouvelle macro", macro_del: "Vider cette macro", macro_space: "Place utilisée dans le clavier",
+    send_macros: "Envoyer les macros",
+    macros_note: "Une macro garde son numéro (M1, M2…) : la vider laisse sa place libre, et les touches qui l'utilisaient ne font alors plus rien.",
+    macro_empty_slot: "(vide)", macro_steps: "{n} étapes",
+    me_pick: "Choisis ou crée une macro.", me_name: "Nom",
+    me_none: "Aucune étape : enregistre ou ajoute des étapes.",
+    me_rec: "● Enregistrer au clavier", me_stop: "■ Arrêter", me_fixed: "Pause fixe de 20 ms entre les touches (sinon : ton rythme réel)",
+    me_rec_hint: "J'enregistre : tape ta séquence, puis clique sur Arrêter. Win, Alt+Tab et les autres raccourcis de Windows s'ajoutent à la main ci-dessous.",
+    me_add_key: "Touche", me_press: "Appuyer", me_release: "Relâcher", me_tap: "Appui + relâche",
+    me_add_mouse: "Bouton de souris", me_click: "Clic", me_add_delay: "Pause (ms)", me_add: "Ajouter", me_clear: "Tout effacer",
+    st_down: "Appuie {k}", st_up: "Relâche {k}", st_mdown: "Appuie clic {b}", st_mup: "Relâche clic {b}", st_delay: "Pause (ms)", st_raw: "Étape inconnue ({b})",
+    b_left: "gauche", b_right: "droit", b_middle: "milieu",
+    macro_used_by: "Utilisée par : {keys}", macro_del_used: "Des touches utilisent cette macro ({keys}) : elles ne feront plus rien. Vider quand même ?",
+    settings_lead: "Les réglages gardés par le clavier, comme dans le logiciel MSI.",
+    set_locks: "Touches et veille",
+    set_no_win: "Désactiver la touche Windows", set_no_altf4: "Désactiver Alt + F4", set_no_alttab: "Désactiver Alt + Tab",
+    set_fn: "Touche Fn", fn_hold: "Maintien", fn_toggle: "Bascule",
+    set_sleep: "Mise en veille", sleep_0: "Jamais", sleep_1: "1 min", sleep_2: "5 min", sleep_3: "30 min",
+    set_debounce: "Temps de réponse des touches : niveau",
+    deb_1: "Filaire : 2-3 ms environ, 2,4 GHz : 5-6 ms, Bluetooth : 12-13 ms.",
+    deb_2: "Filaire : 5-6 ms environ, 2,4 GHz : 7-9 ms, Bluetooth : 15-16 ms.",
+    deb_3: "Filaire : 8-9 ms environ, 2,4 GHz : 10-12 ms, Bluetooth : 18-19 ms.",
+    deb_4: "Filaire : 13-14 ms environ, 2,4 GHz : 15-17 ms, Bluetooth : 23-24 ms.",
+    deb_5: "Filaire : 17-18 ms environ, 2,4 GHz : 19-21 ms, Bluetooth : 27-28 ms.",
+    deb_tip: "Trop bas, certains switchs doublent des frappes : remonte d'un niveau si ça arrive.",
+    send_settings: "Envoyer les réglages",
+    profiles_lead: "Comme dans le logiciel MSI, les profils restent sur ce PC : le clavier ne garde qu'une configuration à la fois. Appliquer un profil l'envoie au clavier.",
+    prof_save_title: "Enregistrer un profil", prof_save: "Enregistrer", prof_name_ph: "Nom du profil (ex. Jeux)",
+    prof_save_note: "Enregistre ce que le panneau contient : touches, couche Fn, couleurs, éclairage, macros et réglages (les parties lues ou modifiées).",
+    prof_backup: "Sauvegarder le contenu du clavier", prof_import: "Importer un profil (.json)",
+    prof_list: "Profils enregistrés", prof_none: "Aucun profil pour l'instant.",
+    prof_apply: "Appliquer au clavier", prof_open: "Ouvrir dans le panneau", prof_export: "Exporter", prof_delete: "Supprimer",
+    prof_applied: "Profil appliqué et vérifié : {parts}.", prof_saved: "Profil enregistré.", prof_opened: "Profil ouvert dans les onglets : vérifie, puis envoie chaque partie (ou applique le profil).",
+    prof_deleted: "Profil supprimé.", prof_bad: "Ce fichier n'est pas un profil GK600.", prof_confirm_delete: "Supprimer le profil « {name} » ?",
+    prof_nothing: "Rien à enregistrer : lis ou modifie d'abord une partie du clavier.", prof_backup_name: "Sauvegarde du clavier",
+    part_keys: "touches", part_fnkeys: "couche Fn", part_colours: "couleurs", part_lighting: "éclairage", part_macros: "macros", part_settings: "réglages",
+    backup_badge: "sauvegarde automatique",
+    reading: "Lecture du clavier…", sending: "Envoi au clavier…", sent_ok: "Envoyé, et le clavier a relu exactement les mêmes données.", read_ok: "Relu depuis le clavier.",
+    read_unsupported: "Ce firmware ne sait pas relire cette partie : le panneau affiche ce qu'il a envoyé la dernière fois.",
+    not_ready: "Branche le clavier en filaire (et ferme le logiciel MSI) pour relire ou envoyer.",
+    confirm_layer_reset: "Remettre toutes les touches de cette couche par défaut ? Il faudra ensuite envoyer la couche.",
+    unsent_title: "Modifications non envoyées",
+    e_not_supported: "Ce firmware ne sait pas relire cette partie.",
+    e_check_failed: "Le clavier n'a pas relu les mêmes données : recommence. Si ça se répète, éteins-le 10 secondes.",
+    e_too_long: "Les macros sont trop longues pour la place du clavier.",
   },
   en: {
-    brand_sub: "Screen and lighting panel",
+    brand_sub: "Keyboard and screen panel",
     nav_gif: "Screen GIF", nav_light: "RGB lighting", nav_home: "Home picture", nav_boot: "Boot animation",
     nav_repair: "Repair", nav_about: "About",
     title_gif: "Screen GIF", title_light: "RGB lighting", title_home: "Home-screen picture",
@@ -394,7 +648,84 @@ const T = {
     e_timeout: "The keyboard was not restarted in time: try again.",
     e_busy: "A write is already running.", e_file_again: "Choose the file again.",
     e_bad_request: "Setting refused.", e_forbidden: "Access refused: open the panel with GK600-Panel.bat.",
-    e_internal: "Unexpected error (details below).", e_failed: "That did not work (details below)."
+    e_internal: "Unexpected error (details below).", e_failed: "That did not work (details below).",
+    grp_screen: "Screen", grp_keyboard: "Keyboard",
+    nav_perkey: "Per-key colours", nav_keys: "Keys", nav_macros: "Macros", nav_settings: "Settings", nav_profiles: "Profiles",
+    title_perkey: "Per-key colours", title_keys: "Keys", title_macros: "Macros", title_settings: "Keyboard settings", title_profiles: "Profiles",
+    effect_custom: "Per-key colours (see its own tab)",
+    custom_note: "The keyboard shows the colours chosen in the Per-key colours tab.",
+    perkey_lead: "One colour per key, kept by the keyboard. Click or drag over the keys to paint them, then send them to the keyboard.",
+    brush: "Brush", brush_color: "Colour", paint_groups: "Paint in one go",
+    g_all: "Whole keyboard", g_letters: "Letters", g_digits: "Digits", g_fkeys: "F1 to F12", g_arrows: "Arrows", g_wasd: "WASD",
+    g_nav: "Ins to PgDn", g_mods: "Control keys", g_off: "All off",
+    perkey_tip: "Right-click a key to pick its colour.",
+    keyboard_side: "Keyboard",
+    send_colours: "Send the colours", read_kb: "Read the keyboard",
+    perkey_note: "The keyboard switches to per-key colours. To go back to an effect, pick it in the RGB lighting tab: your colours stay stored.",
+    dirty: "Changes not sent to the keyboard yet.",
+    keys_lead: "Give a key another job: another key or a shortcut, a click, a media key or a macro. The Fn layer works while Fn is held.",
+    layer_main: "Main layer", layer_fn: "Fn layer (Fn + key)",
+    send_layer: "Send this layer", layer_reset: "Reset every key",
+    keys_note: "Fn cannot be changed. A “normal” key keeps its own job, factory Fn shortcuts included (media, screen…).",
+    ed_pick: "Click a key on the picture to change it.",
+    ed_title: "{key} · {layer}",
+    ty_default: "Normal", ty_disabled: "Disabled", ty_key: "Key / shortcut", ty_mouse: "Mouse", ty_media: "Media", ty_macro: "Macro",
+    ed_capture: "Click here, then press the key or the combination you want",
+    ed_capturing: "Listening… press the key or the combination (Esc: cancel)",
+    ed_key: "Key", ed_none: "(none: modifiers only)", ed_mods: "With", ed_shortcuts: "Ready-made shortcuts", ed_choose: "— choose —",
+    ed_mouse: "Mouse action", ed_media: "Media key", ed_macro: "Macro", ed_mode: "Playback", ed_count: "Times (1 to 255)",
+    ed_no_macro: "No macro yet: create one in the Macros tab first.",
+    ed_apply: "Set this key", ed_reset: "Reset this key",
+    ed_raw: "Unknown setting read from the keyboard ({b}): kept as it is.",
+    ed_default_info: "The key does its usual job.", ed_disabled_info: "The key does nothing.",
+    ed_need_key: "Pick a key or at least one modifier.",
+    fx_off: "off",
+    macros_lead: "A macro plays back a series of keys, clicks and pauses. Create it here, send it to the keyboard, then give it to a key in the Keys tab.",
+    macro_list: "Your macros", macro_new: "New macro", macro_del: "Empty this macro", macro_space: "Space used in the keyboard",
+    send_macros: "Send the macros",
+    macros_note: "A macro keeps its number (M1, M2…): emptying it leaves its place free, and the keys that used it then do nothing.",
+    macro_empty_slot: "(empty)", macro_steps: "{n} steps",
+    me_pick: "Pick or create a macro.", me_name: "Name",
+    me_none: "No step yet: record or add steps.",
+    me_rec: "● Record from the keyboard", me_stop: "■ Stop", me_fixed: "Fixed 20 ms pause between keys (otherwise: your own rhythm)",
+    me_rec_hint: "Recording: type your sequence, then click Stop. Win, Alt+Tab and other Windows shortcuts are added by hand below.",
+    me_add_key: "Key", me_press: "Press", me_release: "Release", me_tap: "Press + release",
+    me_add_mouse: "Mouse button", me_click: "Click", me_add_delay: "Pause (ms)", me_add: "Add", me_clear: "Clear all",
+    st_down: "Press {k}", st_up: "Release {k}", st_mdown: "Press {b} button", st_mup: "Release {b} button", st_delay: "Pause (ms)", st_raw: "Unknown step ({b})",
+    b_left: "left", b_right: "right", b_middle: "middle",
+    macro_used_by: "Used by: {keys}", macro_del_used: "Some keys use this macro ({keys}): they will do nothing. Empty it anyway?",
+    settings_lead: "The settings kept by the keyboard, as in MSI's software.",
+    set_locks: "Keys and sleep",
+    set_no_win: "Disable the Windows key", set_no_altf4: "Disable Alt + F4", set_no_alttab: "Disable Alt + Tab",
+    set_fn: "Fn key", fn_hold: "Momentary", fn_toggle: "Toggle",
+    set_sleep: "Sleep", sleep_0: "Never", sleep_1: "1 min", sleep_2: "5 min", sleep_3: "30 min",
+    set_debounce: "Key response time: level",
+    deb_1: "Wired: about 2-3 ms, 2.4 GHz: 5-6 ms, Bluetooth: 12-13 ms.",
+    deb_2: "Wired: about 5-6 ms, 2.4 GHz: 7-9 ms, Bluetooth: 15-16 ms.",
+    deb_3: "Wired: about 8-9 ms, 2.4 GHz: 10-12 ms, Bluetooth: 18-19 ms.",
+    deb_4: "Wired: about 13-14 ms, 2.4 GHz: 15-17 ms, Bluetooth: 23-24 ms.",
+    deb_5: "Wired: about 17-18 ms, 2.4 GHz: 19-21 ms, Bluetooth: 27-28 ms.",
+    deb_tip: "Too low, some switches type twice: go up one level if that happens.",
+    send_settings: "Send the settings",
+    profiles_lead: "As in MSI's software, profiles stay on this PC: the keyboard holds one setup at a time. Applying a profile sends it to the keyboard.",
+    prof_save_title: "Save a profile", prof_save: "Save", prof_name_ph: "Profile name (e.g. Games)",
+    prof_save_note: "Saves what the panel holds: keys, Fn layer, colours, lighting, macros and settings (the parts read or changed).",
+    prof_backup: "Back up the keyboard", prof_import: "Import a profile (.json)",
+    prof_list: "Saved profiles", prof_none: "No profile yet.",
+    prof_apply: "Apply to the keyboard", prof_open: "Open in the panel", prof_export: "Export", prof_delete: "Delete",
+    prof_applied: "Profile applied and checked: {parts}.", prof_saved: "Profile saved.", prof_opened: "Profile opened in the tabs: check it, then send each part (or apply the profile).",
+    prof_deleted: "Profile deleted.", prof_bad: "This file is not a GK600 profile.", prof_confirm_delete: "Delete the profile “{name}”?",
+    prof_nothing: "Nothing to save: read or change a part of the keyboard first.", prof_backup_name: "Keyboard backup",
+    part_keys: "keys", part_fnkeys: "Fn layer", part_colours: "colours", part_lighting: "lighting", part_macros: "macros", part_settings: "settings",
+    backup_badge: "automatic backup",
+    reading: "Reading the keyboard…", sending: "Sending to the keyboard…", sent_ok: "Sent, and the keyboard read back exactly the same data.", read_ok: "Read from the keyboard.",
+    read_unsupported: "This firmware cannot read this part back: the panel shows what it sent last time.",
+    not_ready: "Plug the keyboard in (wired) and close MSI's software to read or send.",
+    confirm_layer_reset: "Reset every key of this layer? You will then have to send the layer.",
+    unsent_title: "Changes not sent",
+    e_not_supported: "This firmware cannot read this part back.",
+    e_check_failed: "The keyboard did not read back the same data: try again. If it happens again, switch it off for 10 seconds.",
+    e_too_long: "The macros are too long for the keyboard's space.",
   }
 };
 
@@ -427,9 +758,14 @@ function applyLang() {
   document.documentElement.lang = lang;
   $$("[data-t]").forEach((el) => { el.textContent = t(el.dataset.t); });
   $$(".lang button").forEach((b) => b.classList.toggle("on", b.dataset.lang === lang));
+  $$(".kbdlayout button").forEach((b) => b.classList.toggle("on", b.dataset.kl === kbLayout));
   $("#title").textContent = t("title_" + tab);
   document.title = "GK600 — " + t("title_" + tab);
-  fillEffects(); renderDirection(); render(); renderFacts();
+  $("#prof-name").placeholder = t("prof_name_ph");
+  fillEffects(); renderDirection(); render(); renderFacts(); swatch();
+  if (catalog) renderKbTab();
+  if (tab === "profiles") renderProfiles();
+  resay();
 }
 
 function showTab(name) {
@@ -439,6 +775,10 @@ function showTab(name) {
   $("#title").textContent = t("title_" + name);
   document.title = "GK600 — " + t("title_" + name);
   if (name === "about") loadLog();
+  if (name !== "keys") stopCapture();
+  if (name !== "macros") stopRecording();
+  if (KB_TABS[name]) ensureKB(name);
+  if (name === "profiles") { loadCatalog().catch(() => {}); loadProfiles(); }
 }
 
 /* ------------------------------------------------------------------ status */
@@ -498,6 +838,7 @@ function render() {
   if (home.active !== homeWasActive) { $("#keep-home").checked = !!home.active; homeWasActive = home.active; }
   $("#keep-home").disabled = !home.active;
   $("#keep-home-text").textContent = home.active ? t("keep_home", { name: home.name || "" }) : t("keep_home_none");
+  renderKbButtons();
 }
 let homeWasActive = null;
 
@@ -558,6 +899,7 @@ function fillEffects() {
   const sel = $("#effect"), keep = sel.value;
   sel.innerHTML = "";
   ((status && status.effects) || []).forEach((e, i) => { const o = document.createElement("option"); o.value = i; o.textContent = lang === "fr" ? e.fr : e.en; sel.append(o); });
+  if (status && status.effects) { const o = document.createElement("option"); o.value = "custom"; o.textContent = t("effect_custom"); sel.append(o); }
   if (keep !== "") sel.value = keep;
 }
 function renderDirection() {
@@ -566,8 +908,11 @@ function renderDirection() {
     b.addEventListener("click", () => { direction = i; renderDirection(); }); box.append(b); }
 }
 function swatch() {
-  const s = $("#swatch"); s.classList.toggle("rainbow", $("#multi").checked);
-  if (!$("#multi").checked) s.style.background = `linear-gradient(90deg, ${$("#color").value}, ${$("#color").value})`; else s.style.background = "";
+  const custom = $("#effect").value === "custom";
+  $$(".fx-only").forEach((e) => e.classList.toggle("hidden", custom));
+  $("#custom-note").classList.toggle("hidden", !custom);
+  const s = $("#swatch"); s.classList.toggle("rainbow", $("#multi").checked || custom);
+  if (!$("#multi").checked && !custom) s.style.background = `linear-gradient(90deg, ${$("#color").value}, ${$("#color").value})`; else s.style.background = "";
   $("#brightness-v").textContent = $("#brightness").value; $("#speed-v").textContent = $("#speed").value;
   s.style.opacity = String(0.35 + 0.13 * Number($("#brightness").value));
 }
@@ -575,16 +920,21 @@ let lightingLoaded = false;
 function loadLighting() {
   if (lightingLoaded || !status) return;
   const l = status.lighting; lightingLoaded = true;
-  fillEffects(); $("#effect").value = l.effect; $("#color").value = l.color; $("#multi").checked = !!l.multicolour;
-  $("#brightness").value = l.brightness; $("#speed").value = l.speed; direction = l.direction || 0; renderDirection(); swatch();
+  fillEffects(); $("#effect").value = String(l.effect);
+  if (l.effect !== "custom") { $("#color").value = l.color || "#ff0000"; $("#multi").checked = !!l.multicolour; $("#speed").value = l.speed || 3; direction = l.direction || 0; }
+  $("#brightness").value = l.brightness || 5; renderDirection(); swatch();
 }
 async function applyLight() {
   const btn = $("#light-go"); btn.disabled = true;
   const msg = $("#light-msg"); msg.textContent = "";
   try {
-    await api("/api/light", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+    const custom = $("#effect").value === "custom";
+    const body = custom ? { effect: "custom", brightness: Number($("#brightness").value) } : {
       effect: Number($("#effect").value), color: $("#color").value, multicolour: $("#multi").checked,
-      brightness: Number($("#brightness").value), speed: Number($("#speed").value), direction }) });
+      brightness: Number($("#brightness").value), speed: Number($("#speed").value), direction };
+    await api("/api/light", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    if (status) status.lighting = body;
+    if (custom) KB.brightness = body.brightness;
     msg.textContent = t("light_ok");
   } catch (e) { msg.textContent = t("e_" + (e.key || "failed")) + (e.detail ? " (" + e.detail + ")" : ""); }
   clearTimeout(lightMsgTimer); lightMsgTimer = setTimeout(() => { msg.textContent = ""; }, 6000);
@@ -652,6 +1002,681 @@ function showJob(job) {
   $("#job-close").classList.toggle("hidden", !finished);
 }
 
+/* ------------------------------------------------------------------ keyboard: keys, colours, macros, settings, profiles */
+let catalog = null, cachedConfig = {};
+let kbLayout = "fr";
+try { kbLayout = localStorage.getItem("gk600-kbl") || (lang === "fr" ? "fr" : "us"); } catch (e) { kbLayout = lang === "fr" ? "fr" : "us"; }
+const KB = {
+  read: {},                                   // part -> read attempted this session
+  known: {},                                  // part -> the panel holds a meaningful copy
+  keys: { main: {}, fn: {} }, colours: {}, brightness: 5, macros: [], settings: null,
+  dirty: { keys: false, fnkeys: false, colours: false, macros: false, settings: false },
+  layer: "main", selKey: null, editor: null, selMacro: null, busy: false,
+};
+const KB_TABS = { perkey: ["colours", "lighting"], keys: ["keys", "fnkeys"], macros: ["macros"], settings: ["settings"] };
+const PALETTE = ["#e2231a", "#ff7a00", "#ffd400", "#2bd94c", "#00d5ff", "#1f5bff", "#8b3dff", "#ff3dbb", "#ffffff", "#000000"];
+const GROUPS = {
+  g_all: null,
+  g_letters: ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"],
+  g_digits: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+  g_fkeys: ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11", "f12"],
+  g_arrows: ["up", "down", "left", "right"],
+  g_wasd: ["w", "a", "s", "d"],
+  g_nav: ["insert", "home", "delete", "end", "pgup", "pgdn"],
+  g_mods: ["esc", "tab", "caps", "lshift", "rshift", "lctrl", "rctrl", "lwin", "lalt", "ralt", "fn", "enter", "backspace", "space"],
+  g_off: "off",
+};
+const CODE2HID = (() => {
+  const m = {};
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach((c, i) => { m["Key" + c] = 0x04 + i; });
+  "1234567890".split("").forEach((c, i) => { m["Digit" + c] = 0x1E + i; });
+  for (let i = 1; i <= 12; i++) m["F" + i] = 0x39 + i;
+  for (let i = 13; i <= 24; i++) m["F" + i] = 0x68 + (i - 13);
+  Object.assign(m, { Enter: 0x28, Escape: 0x29, Backspace: 0x2A, Tab: 0x2B, Space: 0x2C, Minus: 0x2D, Equal: 0x2E,
+    BracketLeft: 0x2F, BracketRight: 0x30, Backslash: 0x31, Semicolon: 0x33, Quote: 0x34, Backquote: 0x35, Comma: 0x36,
+    Period: 0x37, Slash: 0x38, CapsLock: 0x39, PrintScreen: 0x46, ScrollLock: 0x47, Pause: 0x48, Insert: 0x49, Home: 0x4A,
+    PageUp: 0x4B, Delete: 0x4C, End: 0x4D, PageDown: 0x4E, ArrowRight: 0x4F, ArrowLeft: 0x50, ArrowDown: 0x51, ArrowUp: 0x52,
+    NumLock: 0x53, NumpadDivide: 0x54, NumpadMultiply: 0x55, NumpadSubtract: 0x56, NumpadAdd: 0x57, NumpadEnter: 0x58,
+    Numpad1: 0x59, Numpad2: 0x5A, Numpad3: 0x5B, Numpad4: 0x5C, Numpad5: 0x5D, Numpad6: 0x5E, Numpad7: 0x5F, Numpad8: 0x60,
+    Numpad9: 0x61, Numpad0: 0x62, NumpadDecimal: 0x63, IntlBackslash: 0x64, ContextMenu: 0x65,
+    ControlLeft: 0xE0, ShiftLeft: 0xE1, AltLeft: 0xE2, MetaLeft: 0xE3, ControlRight: 0xE4, ShiftRight: 0xE5, AltRight: 0xE6, MetaRight: 0xE7 });
+  return m;
+})();
+const isMod = (u) => u >= 0xE0 && u <= 0xE7;
+
+const physLayout = () => (kbLayout === "fr" ? "iso" : "ansi");
+const legendOf = (k) => (kbLayout === "fr" ? k.fr : k.us);
+const nameOf = (x) => (lang === "fr" ? x.fr : x.us);
+function keysOf() { return catalog ? catalog.layouts[physLayout()] : []; }
+function keyById(id) { return keysOf().find((k) => k.id === id); }
+function usageName(code) {
+  const u = catalog && catalog.usages.find((x) => x.code === code);
+  return u ? (kbLayout === "fr" ? u.fr : u.us) : "0x" + Number(code).toString(16);
+}
+function modNames(m) { return catalog.mods.filter((x) => m & x.bit).map((x) => (kbLayout === "fr" ? x.fr : x.us)); }
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function opt(value, text, selected) { const o = el("option", null, text); o.value = String(value); if (selected) o.selected = true; return o; }
+function kbReady() { return !offline && status && status.keyboard && !(status.conflicts && status.conflicts.length) && !(status.job && ["done", "error", "cancelled"].indexOf(status.job.phase) < 0); }
+function kbWhy() { return kbReady() ? "" : (offline ? t("ban_offline") : t("not_ready")); }
+function errText(e) { return t("e_" + (e.key || "failed")) + (e.detail && ["failed", "internal", "write_failed", "bad_request"].indexOf(e.key) >= 0 ? " (" + e.detail + ")" : ""); }
+// text may be a function: it is called again when the language changes
+function say(id, text, ok) {
+  const m = $(id); if (!m) return;
+  const fn = typeof text === "function" ? text : () => text || "";
+  const s = fn();
+  m._say = s ? fn : null; m.textContent = s;
+  m.className = "note" + (s ? (ok === true ? " msg-ok" : ok === false ? " msg-bad" : "") : "");
+}
+function resay() { $$(".note").forEach((m) => { if (m._say) m.textContent = m._say(); }); }
+function post(path, obj) { return api(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(obj || {}) }); }
+
+function actionLabel(a) {
+  if (!a || a.type === "default") return "";
+  if (a.type === "disabled") return t("fx_off");
+  if (a.type === "key") { const p = modNames(a.mods || 0); if (a.code) p.push(usageName(a.code)); return p.join("+"); }
+  if (a.type === "mouse") { const m = catalog.mouse.find((x) => x.id === a.button); return m ? nameOf(m) : "?"; }
+  if (a.type === "wheel") { const w = catalog.wheel.find((x) => x.id === a.dir); return w ? nameOf(w) : "?"; }
+  if (a.type === "media") { const m = catalog.media.find((x) => x.code === a.code); return m ? nameOf(m) : "?"; }
+  if (a.type === "macro") { const m = KB.macros[a.index]; return "M" + (a.index + 1) + (m && m.name ? " " + m.name : ""); }
+  return "? " + (a.bytes || "");
+}
+
+async function loadCatalog() {
+  if (catalog) return catalog;
+  catalog = await api("/api/catalog");
+  try { cachedConfig = (await api("/api/config/cached")).config || {}; } catch (e) { cachedConfig = {}; }
+  return catalog;
+}
+
+/* --- keyboard picture */
+function sizeKbd(box) { const w = box.clientWidth; if (w) box.style.setProperty("--u", (w / 17.5) + "px"); }
+const kbdObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver((es) => es.forEach((e) => sizeKbd(e.target))) : null;
+function drawKbd(box, decorate) {
+  box.innerHTML = "";
+  const scr = el("div", "screenbox", lang === "fr" ? "écran" : "screen");
+  Object.assign(scr.style, { left: "calc(var(--u) * 15.5)", top: "0", width: "calc(var(--u) * 2 - 4px)", height: "calc(var(--u) - 4px)" });
+  box.append(scr);
+  for (const k of keysOf()) {
+    const d = el("div", "k" + (k.shape === "iso-enter" ? " iso" : ""));
+    d.dataset.idx = k.idx; d.dataset.id = k.id;
+    Object.assign(d.style, { left: `calc(var(--u) * ${k.x})`, top: `calc(var(--u) * ${k.y})`,
+      width: `calc(var(--u) * ${k.w} - 4px)`, height: `calc(var(--u) * ${k.h} - 4px)` });
+    d.append(el("span", null, legendOf(k)));
+    decorate(d, k);
+    box.append(d);
+  }
+  sizeKbd(box);
+  if (kbdObserver && !box.dataset.observed) { kbdObserver.observe(box); box.dataset.observed = "1"; }
+}
+
+/* --- reading and sending */
+async function kbRead(parts, msgId) {
+  if (!kbReady()) { say(msgId, () => kbWhy(), false); return null; }
+  KB.busy = true; renderKbButtons(); say(msgId, () => t("reading"));
+  try {
+    const r = await post("/api/config/read", { parts });
+    parts.forEach((p) => { KB.read[p] = true; });
+    for (const p of parts) {
+      const unsupported = r.unsupported.indexOf(p) >= 0;
+      const v = unsupported ? null : r.parsed[p];
+      applyRead(p, v, unsupported ? (r.cached || {})[p] : null);
+    }
+    say(msgId, () => r.unsupported.length ? t("read_unsupported") : t("read_ok"), r.unsupported.length ? null : true);
+    return r;
+  } catch (e) { say(msgId, () => errText(e), false); return null; }
+  finally { KB.busy = false; renderKbButtons(); }
+}
+
+function applyRead(part, v, cached) {
+  if (part === "keys" || part === "fnkeys") {
+    const layer = part === "keys" ? "main" : "fn";
+    KB.keys[layer] = v != null ? v : ((cached && cached.actions) || KB.keys[layer]);
+    KB.dirty[part] = false; KB.known[part] = v != null || !!cached;
+  } else if (part === "colours") {
+    KB.colours = v != null ? v : ((cached && cached.colours) || KB.colours);
+    if (cached && cached.brightness) KB.brightness = cached.brightness;
+    KB.dirty.colours = false; KB.known.colours = v != null || !!cached;
+  } else if (part === "lighting") {
+    if (v && v.effect === "custom") KB.brightness = v.brightness || KB.brightness;
+  } else if (part === "macros") {
+    if (v != null) {
+      const old = (cachedConfig.macros && cachedConfig.macros.macros) || KB.macros;
+      KB.macros = v.map((m, i) => (m ? { name: (old[i] && old[i].name) || m.name, steps: m.steps } : null));
+    } else if (cached && cached.macros) KB.macros = cached.macros;
+    KB.dirty.macros = false; KB.known.macros = v != null || !!cached;
+    if (KB.selMacro != null && !KB.macros[KB.selMacro]) KB.selMacro = null;
+  } else if (part === "settings") {
+    KB.settings = v || cached || KB.settings || { no_win: false, no_alt_f4: false, no_alt_tab: false, fn_toggle: false, sleep: 2, debounce: 2 };
+    KB.dirty.settings = false; KB.known.settings = !!(v || cached);
+  }
+  renderKbTab();
+}
+
+async function kbWrite(part, data, msgId) {
+  if (!kbReady()) { say(msgId, () => kbWhy(), false); return false; }
+  KB.busy = true; renderKbButtons(); say(msgId, () => t("sending"));
+  try {
+    await post("/api/config/write", { part, data });
+    KB.dirty[part] = false; KB.known[part] = true;
+    cachedConfig[part] = data;
+    say(msgId, () => t("sent_ok"), true);
+    return true;
+  } catch (e) { say(msgId, () => errText(e), false); return false; }
+  finally { KB.busy = false; renderKbButtons(); renderDirty(); }
+}
+
+async function ensureKB(tabName) {
+  try { await loadCatalog(); } catch (e) { return; }
+  const parts = KB_TABS[tabName];
+  if (!parts) return;
+  const todo = parts.filter((p) => !KB.read[p]);
+  if (todo.length && kbReady() && !KB.busy) {
+    await kbRead(todo, "#" + ({ perkey: "pk", keys: "keys", macros: "macros", settings: "settings" })[tabName] + "-msg");
+  } else if (todo.length) {
+    todo.forEach((p) => { if (!KB.known[p] && cachedConfig[p]) applyRead(p, null, cachedConfig[p]); });
+  }
+  renderKbTab();
+}
+
+function renderKbButtons() {
+  const ready = kbReady() && !KB.busy;
+  const why = KB.busy ? "" : kbWhy();
+  [["#pk-send", "#pk-read", "#pk-why"], ["#keys-send", "#keys-read", "#keys-why"], ["#macros-send", "#macros-read", "#macros-why"],
+   ["#settings-send", "#settings-read", "#settings-why"]].forEach(([a, b, w]) => {
+    $(a).disabled = !ready; $(b).disabled = !ready; $(w).textContent = why; });
+  $("#prof-backup").disabled = !ready;
+  $$(".prof .apply").forEach((b) => { b.disabled = !ready; });
+}
+function renderDirty() {
+  $("#pk-dirty").textContent = KB.dirty.colours ? t("dirty") : "";
+  $("#keys-dirty").textContent = (KB.dirty.keys || KB.dirty.fnkeys) ? t("dirty") + " (" + [KB.dirty.keys ? t("layer_main") : "", KB.dirty.fnkeys ? t("layer_fn") : ""].filter(Boolean).join(", ") + ")" : "";
+  $("#macros-dirty").textContent = KB.dirty.macros ? t("dirty") : "";
+  $("#settings-dirty").textContent = KB.dirty.settings ? t("dirty") : "";
+}
+function renderKbTab() {
+  if (tab === "settings") { renderSettings(); renderDirty(); renderKbButtons(); return; }
+  if (!catalog) return;
+  if (tab === "perkey") renderPerkey();
+  else if (tab === "keys") { renderKeys(); renderEditor(); }
+  else if (tab === "macros") { renderMacroList(); renderMacroEditor(); }
+  renderDirty(); renderKbButtons();
+}
+
+/* --- per-key colours */
+let painting = false, brush = PALETTE[0];
+function lum(hex) { const n = parseInt(hex.slice(1), 16); return 0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255); }
+function paintEl(d, idx) {
+  const c = KB.colours[String(idx)] || "#000000";
+  d.style.background = c; d.style.color = lum(c) > 140 ? "#111" : "#e8eaef";
+  d.style.borderColor = c === "#000000" ? "#3b414c" : c;
+}
+function paint(d, idx, colour) {
+  KB.colours[String(idx)] = colour;
+  KB.dirty.colours = true; KB.known.colours = true; paintEl(d, idx); renderDirty();
+}
+function renderPerkey() {
+  const box = $("#perkey-kbd");
+  drawKbd(box, (d, k) => {
+    paintEl(d, k.idx);
+    d.addEventListener("pointerdown", (e) => { if (e.button !== 0) return; e.preventDefault(); painting = true; paint(d, k.idx, brush); });
+    d.addEventListener("pointerenter", () => { if (painting) paint(d, k.idx, brush); });
+    d.addEventListener("contextmenu", (e) => { e.preventDefault(); setBrush(KB.colours[String(k.idx)] || "#000000"); });
+  });
+  const pal = $("#pk-pal"); pal.innerHTML = "";
+  PALETTE.forEach((c) => { const b = el("button"); b.style.background = c; b.title = c; b.className = c === brush ? "on" : "";
+    b.addEventListener("click", () => setBrush(c)); pal.append(b); });
+  const gr = $("#pk-groups"); gr.innerHTML = "";
+  Object.keys(GROUPS).forEach((g) => { const b = el("button", null, t(g)); b.addEventListener("click", () => paintGroup(g)); gr.append(b); });
+  $("#pk-bright").value = KB.brightness; $("#pk-bright-v").textContent = KB.brightness;
+}
+function setBrush(c) { brush = c; $("#pk-color").value = c; $$("#pk-pal button").forEach((b) => b.classList.toggle("on", b.title === c)); }
+function paintGroup(g) {
+  const ids = GROUPS[g];
+  const colour = ids === "off" ? "#000000" : brush;
+  keysOf().forEach((k) => { if (ids === null || ids === "off" || ids.indexOf(k.id) >= 0) KB.colours[String(k.idx)] = colour; });
+  KB.dirty.colours = true; KB.known.colours = true; renderPerkey(); renderDirty();
+}
+async function sendColours() {
+  const colours = {};
+  keysOf().forEach((k) => { colours[String(k.idx)] = KB.colours[String(k.idx)] || "#000000"; });
+  KB.colours = Object.assign(KB.colours, colours);
+  if (await kbWrite("colours", { colours, brightness: KB.brightness }, "#pk-msg")) {
+    if (status) status.lighting = { effect: "custom", brightness: KB.brightness };
+    lightingLoaded = false; loadLighting();
+  }
+}
+
+/* --- keys */
+let capturing = false, capMod = null;
+function layerPart() { return KB.layer === "main" ? "keys" : "fnkeys"; }
+function renderKeys() {
+  $$("#layer-seg button").forEach((b) => b.classList.toggle("on", b.dataset.layer === KB.layer));
+  const layer = KB.keys[KB.layer];
+  drawKbd($("#keys-kbd"), (d, k) => {
+    if (!k.remap) d.classList.add("fixed");
+    const a = layer[String(k.idx)];
+    if (a && a.type !== "default") { d.classList.add("changed"); d.append(el("span", "fx", actionLabel(a))); d.title = actionLabel(a); }
+    if (KB.selKey === k.idx) d.classList.add("sel");
+    d.addEventListener("click", () => { if (k.remap) selectKey(k.idx); });
+  });
+}
+function selectKey(idx) {
+  stopCapture();
+  KB.selKey = idx;
+  const a = KB.keys[KB.layer][String(idx)];
+  KB.editor = a ? JSON.parse(JSON.stringify(a)) : { type: "default" };
+  renderKeys(); renderEditor();
+}
+function editorDefaults(type) {
+  if (type === "key") return { type, mods: 0, code: 0 };
+  if (type === "mouse") return { type, button: "left" };
+  if (type === "media") return { type, code: 0xCD };
+  if (type === "macro") { const i = KB.macros.findIndex((m) => m); return { type, index: Math.max(0, i), mode: 0, count: 1 }; }
+  return { type };
+}
+function renderEditor() {
+  const box = $("#key-editor"); box.innerHTML = "";
+  if (KB.selKey == null || !catalog) { box.append(el("h2", null, t("nav_keys")), el("p", "note", t("ed_pick"))); return; }
+  const k = keysOf().find((x) => x.idx === KB.selKey);
+  if (!k) { KB.selKey = null; box.append(el("p", "note", t("ed_pick"))); return; }
+  const ed = KB.editor;
+  box.append(el("h2", null, t("ed_title", { key: legendOf(k), layer: t(KB.layer === "main" ? "layer_main" : "layer_fn") })));
+  const types = el("div", "types");
+  const typeOf = ed.type === "wheel" ? "mouse" : ed.type;
+  ["default", "disabled", "key", "mouse", "media", "macro"].forEach((ty) => {
+    const b = el("button", ty === typeOf ? "on" : "", t("ty_" + ty));
+    b.addEventListener("click", () => { stopCapture(); KB.editor = ty === typeOf ? KB.editor : editorDefaults(ty); renderEditor(); });
+    types.append(b);
+  });
+  box.append(types);
+  if (ed.type === "default") box.append(el("p", "note", t("ed_default_info")));
+  else if (ed.type === "disabled") box.append(el("p", "note", t("ed_disabled_info")));
+  else if (ed.type === "raw") box.append(el("p", "note", t("ed_raw", { b: ed.bytes })));
+  else if (ed.type === "key") {
+    const cap = el("div", "capture" + (capturing ? " on" : ""), capturing ? t("ed_capturing") : (actionLabel(ed) || t("ed_capture")));
+    cap.id = "capture-box"; cap.addEventListener("click", () => (capturing ? stopCapture() : startCapture()));
+    box.append(cap);
+    const mods = el("div", "mods");
+    catalog.mods.forEach((m) => {
+      const l = el("label"), c = el("input"); c.type = "checkbox"; c.checked = !!(ed.mods & m.bit);
+      c.addEventListener("change", () => { ed.mods = c.checked ? (ed.mods | m.bit) : (ed.mods & ~m.bit); renderEditorLabel(); });
+      l.append(c, el("span", null, kbLayout === "fr" ? m.fr : m.us)); mods.append(l);
+    });
+    const f1 = el("div", "field"), h1 = el("div", "field-head"); h1.append(el("span", null, t("ed_key"))); f1.append(h1);
+    const sel = el("select", "wide-select"); sel.append(opt(0, t("ed_none"), !ed.code));
+    catalog.usages.forEach((u) => sel.append(opt(u.code, kbLayout === "fr" ? u.fr : u.us, u.code === ed.code)));
+    sel.addEventListener("change", () => { ed.code = Number(sel.value); renderEditorLabel(); });
+    f1.append(sel);
+    const f0 = el("div", "field"), h0 = el("div", "field-head"); h0.append(el("span", null, t("ed_mods"))); f0.append(h0, mods);
+    const f2 = el("div", "field"), h2 = el("div", "field-head"); h2.append(el("span", null, t("ed_shortcuts"))); f2.append(h2);
+    const sc = el("select", "wide-select"); sc.append(opt("", t("ed_choose"), true));
+    catalog.shortcuts.forEach((s, i) => sc.append(opt(i, nameOf(s))));
+    sc.addEventListener("change", () => { if (sc.value === "") return; const s = catalog.shortcuts[Number(sc.value)];
+      KB.editor = { type: "key", mods: s.mods, code: s.code }; renderEditor(); });
+    f2.append(sc);
+    box.append(f1, f0, f2);
+  } else if (ed.type === "mouse" || ed.type === "wheel") {
+    const f = el("div", "field"), h = el("div", "field-head"); h.append(el("span", null, t("ed_mouse"))); f.append(h);
+    const sel = el("select", "wide-select");
+    catalog.mouse.forEach((m) => sel.append(opt("m:" + m.id, nameOf(m), ed.type === "mouse" && ed.button === m.id)));
+    catalog.wheel.forEach((w) => sel.append(opt("w:" + w.id, nameOf(w), ed.type === "wheel" && ed.dir === w.id)));
+    sel.addEventListener("change", () => { const [kind, id] = sel.value.split(":");
+      KB.editor = kind === "m" ? { type: "mouse", button: id } : { type: "wheel", dir: id }; });
+    f.append(sel); box.append(f);
+  } else if (ed.type === "media") {
+    const f = el("div", "field"), h = el("div", "field-head"); h.append(el("span", null, t("ed_media"))); f.append(h);
+    const sel = el("select", "wide-select");
+    catalog.media.forEach((m) => sel.append(opt(m.code, nameOf(m), m.code === ed.code)));
+    sel.addEventListener("change", () => { ed.code = Number(sel.value); });
+    f.append(sel); box.append(f);
+  } else if (ed.type === "macro") {
+    const any = KB.macros.some((m) => m);
+    if (!any) box.append(el("p", "why", t("ed_no_macro")));
+    const f = el("div", "field"), h = el("div", "field-head"); h.append(el("span", null, t("ed_macro"))); f.append(h);
+    const sel = el("select", "wide-select");
+    KB.macros.forEach((m, i) => { if (m) sel.append(opt(i, "M" + (i + 1) + " — " + (m.name || ""), i === ed.index)); });
+    if (KB.macros[ed.index] == null && any) { ed.index = KB.macros.findIndex((m) => m); }
+    sel.addEventListener("change", () => { ed.index = Number(sel.value); });
+    f.append(sel);
+    const f2 = el("div", "field"), h2 = el("div", "field-head"); h2.append(el("span", null, t("ed_mode"))); f2.append(h2);
+    const ms = el("select", "wide-select");
+    catalog.macro_modes.forEach((m) => ms.append(opt(m.mode, nameOf(m), m.mode === ed.mode)));
+    f2.append(ms);
+    const f3 = el("div", "field" + (ed.mode === 1 ? "" : " hidden")), h3 = el("div", "field-head"); h3.append(el("span", null, t("ed_count"))); f3.append(h3);
+    const cnt = el("input"); cnt.type = "number"; cnt.min = "1"; cnt.max = "255"; cnt.value = String(ed.count || 1);
+    cnt.addEventListener("input", () => { ed.count = Math.max(1, Math.min(255, Number(cnt.value) || 1)); });
+    f3.append(cnt);
+    ms.addEventListener("change", () => { ed.mode = Number(ms.value); f3.classList.toggle("hidden", ed.mode !== 1); });
+    box.append(f, f2, f3);
+  }
+  const acts = el("div", "actions");
+  const ok = el("button", "btn small", t("ed_apply")); ok.id = "ed-apply";
+  ok.addEventListener("click", applyEditor);
+  const rst = el("button", "btn ghost small", t("ed_reset"));
+  rst.addEventListener("click", () => { KB.editor = { type: "default" }; applyEditor(); });
+  acts.append(ok, rst); box.append(acts);
+  const w = el("div", "why"); w.id = "ed-why"; box.append(w);
+}
+function renderEditorLabel() { const c = $("#capture-box"); if (c && !capturing) c.textContent = actionLabel(KB.editor) || t("ed_capture"); }
+function applyEditor() {
+  stopCapture();
+  const ed = KB.editor, layer = KB.keys[KB.layer], key = String(KB.selKey);
+  if (ed.type === "key" && !ed.code && !ed.mods) { $("#ed-why").textContent = t("ed_need_key"); return; }
+  if (ed.type === "macro" && !KB.macros[ed.index]) { $("#ed-why").textContent = t("ed_no_macro"); return; }
+  if (ed.type === "default") delete layer[key]; else layer[key] = JSON.parse(JSON.stringify(ed));
+  KB.dirty[layerPart()] = true; KB.known[layerPart()] = true;
+  renderKeys(); renderEditor(); renderDirty();
+}
+function startCapture() { capturing = true; capMod = null; renderEditor(); }
+function stopCapture() { if (!capturing) return; capturing = false; capMod = null; const c = $("#capture-box"); if (c) { c.classList.remove("on"); renderEditorLabel(); } }
+function onCapture(e) {
+  if (!capturing) return;
+  e.preventDefault(); e.stopPropagation();
+  const u = CODE2HID[e.code];
+  if (e.type === "keydown") {
+    if (e.repeat) return;
+    if (e.code === "Escape" && !e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey) { stopCapture(); return; }
+    if (u === undefined) return;
+    if (isMod(u)) { capMod = u; return; }
+    let mods = (e.ctrlKey ? 1 : 0) | (e.shiftKey ? 2 : 0) | (e.altKey ? 4 : 0) | (e.metaKey ? 8 : 0);
+    if (e.getModifierState && e.getModifierState("AltGraph")) mods = (mods & ~5) | 0x40;
+    KB.editor = { type: "key", mods, code: u };
+    capturing = false; renderEditor();
+  } else if (e.type === "keyup" && u !== undefined && isMod(u) && capMod === u) {
+    KB.editor = { type: "key", mods: 0, code: u };
+    capturing = false; renderEditor();
+  }
+}
+async function sendLayer() { await kbWrite(layerPart(), { actions: KB.keys[KB.layer] }, "#keys-msg"); renderKeys(); }
+function resetLayer() {
+  if (!confirm(t("confirm_layer_reset"))) return;
+  KB.keys[KB.layer] = {}; KB.dirty[layerPart()] = true; KB.known[layerPart()] = true; KB.editor = { type: "default" };
+  renderKeys(); renderEditor(); renderDirty();
+}
+
+/* --- macros */
+let recording = false, recLast = 0;
+function macroSlots(steps) {
+  const acts = [];
+  for (const s of steps || []) {
+    const isDelay = s.t === "delay" || (s.t === "raw" && /50$/i.test(s.bytes || ""));
+    if (isDelay) { if (acts.length && acts[acts.length - 1] === "d") continue; acts.push("d"); continue; }
+    if (acts.length && acts[acts.length - 1] !== "d") acts.push("d");
+    acts.push("e");
+  }
+  if (acts.length && acts[acts.length - 1] !== "d") acts.push("d");
+  return acts.length;
+}
+function macroBytes() { return 400 + KB.macros.reduce((n, m) => { const s = m ? macroSlots(m.steps) : 0; return n + (s ? 8 + 4 * s : 0); }, 0); }
+function usersOf(i) {
+  const out = [];
+  [["main", ""], ["fn", "Fn+"]].forEach(([layer, pre]) => {
+    Object.entries(KB.keys[layer]).forEach(([idx, a]) => { if (a.type === "macro" && a.index === i) {
+      const k = keysOf().find((x) => String(x.idx) === idx); out.push(pre + (k ? legendOf(k) : "#" + idx)); } });
+  });
+  return out;
+}
+function renderMacroList() {
+  const list = $("#macro-list"); list.innerHTML = "";
+  KB.macros.forEach((m, i) => {
+    const b = el("button", i === KB.selMacro ? "on" : "");
+    b.append(el("div", null, "M" + (i + 1) + " — " + (m ? (m.name || "") : t("macro_empty_slot"))));
+    if (m) b.append(el("div", "sub", t("macro_steps", { n: m.steps.length })));
+    b.addEventListener("click", () => { stopRecording(); KB.selMacro = i; renderMacroList(); renderMacroEditor(); });
+    list.append(b);
+  });
+  const used = macroBytes(), cap = catalog ? catalog.macro_capacity : 3008;
+  $("#macro-space").style.width = Math.min(100, Math.round(100 * used / cap)) + "%";
+  $("#macro-space-v").textContent = used + " / " + cap + (lang === "fr" ? " octets" : " bytes");
+  $("#macro-del").disabled = KB.selMacro == null || !KB.macros[KB.selMacro];
+}
+function stepLabel(s) {
+  if (s.t === "down" || s.t === "up") return t("st_" + s.t, { k: usageName(s.code) });
+  if (s.t === "mdown" || s.t === "mup") return t("st_" + s.t, { b: t("b_" + s.button) });
+  if (s.t === "delay") return t("st_delay");
+  return t("st_raw", { b: s.bytes });
+}
+function macroChanged() { KB.dirty.macros = true; KB.known.macros = true; renderMacroList(); renderDirty(); }
+function renderMacroEditor() {
+  const box = $("#macro-editor"); box.innerHTML = "";
+  const m = KB.selMacro != null ? KB.macros[KB.selMacro] : null;
+  if (!m) { box.append(el("h2", null, t("nav_macros")), el("p", "note", t("me_pick"))); return; }
+  box.append(el("h2", null, "M" + (KB.selMacro + 1)));
+  const nf = el("div", "addrow"); nf.append(el("label", null, t("me_name")));
+  const name = el("input"); name.type = "text"; name.maxLength = 40; name.value = m.name || ""; name.style.flex = "1";
+  name.addEventListener("input", () => { m.name = name.value; macroChanged(); });
+  nf.append(name); box.append(nf);
+  const users = usersOf(KB.selMacro);
+  if (users.length) box.append(el("p", "note", t("macro_used_by", { keys: users.join(", ") })));
+  const rec = el("div", "addrow");
+  const rb = el("button", "btn small rec" + (recording ? " on" : ""), recording ? t("me_stop") : t("me_rec"));
+  rb.id = "rec-btn"; rb.addEventListener("click", () => (recording ? stopRecording() : startRecording()));
+  const fl = el("label", "check"), fc = el("input"); fc.type = "checkbox"; fc.id = "rec-fixed"; fc.checked = recFixed;
+  fc.addEventListener("change", () => { recFixed = fc.checked; });
+  fl.append(fc, el("span", null, t("me_fixed")));
+  rec.append(rb, fl); box.append(rec);
+  if (recording) box.append(el("p", "note", t("me_rec_hint")));
+  const list = el("div", "steps-list"); list.id = "steps-list";
+  if (!m.steps.length) list.append(el("div", "empty", t("me_none")));
+  m.steps.forEach((s, i) => {
+    const row = el("div", "st");
+    row.append(el("span", "what", stepLabel(s)));
+    if (s.t === "delay") {
+      const inp = el("input"); inp.type = "number"; inp.min = "10"; inp.max = "65535"; inp.value = String(s.ms);
+      inp.addEventListener("change", () => { s.ms = Math.max(10, Math.min(65535, Number(inp.value) || 10)); inp.value = String(s.ms); macroChanged(); });
+      row.append(inp);
+    }
+    const up = el("button", null, "↑"), dn = el("button", null, "↓"), del = el("button", null, "✕");
+    up.addEventListener("click", () => { if (i > 0) { [m.steps[i - 1], m.steps[i]] = [m.steps[i], m.steps[i - 1]]; macroChanged(); renderMacroEditor(); } });
+    dn.addEventListener("click", () => { if (i < m.steps.length - 1) { [m.steps[i + 1], m.steps[i]] = [m.steps[i], m.steps[i + 1]]; macroChanged(); renderMacroEditor(); } });
+    del.addEventListener("click", () => { m.steps.splice(i, 1); macroChanged(); renderMacroEditor(); });
+    row.append(up, dn, del); list.append(row);
+  });
+  box.append(list);
+  // add a key
+  const ak = el("div", "addrow"); ak.append(el("span", null, t("me_add_key")));
+  const ks = el("select"); catalog.usages.forEach((u) => ks.append(opt(u.code, kbLayout === "fr" ? u.fr : u.us)));
+  ak.append(ks);
+  [["me_press", ["down"]], ["me_release", ["up"]], ["me_tap", ["down", "up"]]].forEach(([lbl, kinds]) => {
+    const b = el("button", "btn ghost small", t(lbl));
+    b.addEventListener("click", () => { kinds.forEach((k) => m.steps.push({ t: k, code: Number(ks.value) })); macroChanged(); renderMacroEditor(); });
+    ak.append(b);
+  });
+  box.append(ak);
+  // add a mouse button
+  const am = el("div", "addrow"); am.append(el("span", null, t("me_add_mouse")));
+  const mb = el("select"); ["left", "right", "middle"].forEach((b) => mb.append(opt(b, t("b_" + b))));
+  am.append(mb);
+  [["me_press", ["mdown"]], ["me_release", ["mup"]], ["me_click", ["mdown", "mup"]]].forEach(([lbl, kinds]) => {
+    const b = el("button", "btn ghost small", t(lbl));
+    b.addEventListener("click", () => { kinds.forEach((k) => m.steps.push({ t: k, button: mb.value })); macroChanged(); renderMacroEditor(); });
+    am.append(b);
+  });
+  box.append(am);
+  // add a pause
+  const ad = el("div", "addrow"); ad.append(el("span", null, t("me_add_delay")));
+  const dv = el("input"); dv.type = "number"; dv.min = "10"; dv.max = "65535"; dv.value = "50";
+  const db = el("button", "btn ghost small", t("me_add"));
+  db.addEventListener("click", () => { m.steps.push({ t: "delay", ms: Math.max(10, Math.min(65535, Number(dv.value) || 10)) }); macroChanged(); renderMacroEditor(); });
+  const clr = el("button", "btn ghost small", t("me_clear"));
+  clr.addEventListener("click", () => { m.steps = []; macroChanged(); renderMacroEditor(); });
+  ad.append(dv, db, clr); box.append(ad);
+}
+let recFixed = false;
+function startRecording() {
+  const m = KB.macros[KB.selMacro]; if (!m) return;
+  recording = true; recLast = 0; renderMacroEditor();
+}
+function stopRecording() { if (!recording) return; recording = false; if (tab === "macros") renderMacroEditor(); }
+function onRecord(e) {
+  if (!recording) return;
+  const u = CODE2HID[e.code];
+  e.preventDefault(); e.stopPropagation();
+  if (e.repeat || u === undefined) return;
+  const m = KB.macros[KB.selMacro]; if (!m) return;
+  const now = performance.now();
+  if (m.steps.length && recLast) m.steps.push({ t: "delay", ms: recFixed ? 20 : Math.max(10, Math.min(65535, Math.round(now - recLast))) });
+  recLast = now;
+  m.steps.push({ t: e.type === "keydown" ? "down" : "up", code: u });
+  macroChanged();
+  renderMacroEditor();
+  const l2 = $("#steps-list"); if (l2) l2.scrollTop = l2.scrollHeight;
+}
+function newMacro() {
+  let i = KB.macros.findIndex((m) => !m);
+  if (i < 0) { if (KB.macros.length >= (catalog ? catalog.macro_slots : 100)) return; i = KB.macros.length; KB.macros.push(null); }
+  KB.macros[i] = { name: (lang === "fr" ? "Macro " : "Macro ") + (i + 1), steps: [] };
+  KB.selMacro = i; macroChanged(); renderMacroEditor();
+}
+function deleteMacro() {
+  const i = KB.selMacro; if (i == null || !KB.macros[i]) return;
+  const users = usersOf(i);
+  if (users.length && !confirm(t("macro_del_used", { keys: users.join(", ") }))) return;
+  KB.macros[i] = null;
+  while (KB.macros.length && !KB.macros[KB.macros.length - 1]) KB.macros.pop();
+  KB.selMacro = null; stopRecording(); macroChanged(); renderMacroEditor();
+}
+async function sendMacros() { stopRecording(); await kbWrite("macros", { macros: KB.macros }, "#macros-msg"); }
+
+/* --- settings */
+function renderSettings() {
+  const s = KB.settings || { no_win: false, no_alt_f4: false, no_alt_tab: false, fn_toggle: false, sleep: 2, debounce: 2 };
+  KB.settings = s;
+  $("#set-no-win").checked = !!s.no_win; $("#set-no-altf4").checked = !!s.no_alt_f4; $("#set-no-alttab").checked = !!s.no_alt_tab;
+  const fn = $("#set-fn"); fn.innerHTML = "";
+  [[false, "fn_hold"], [true, "fn_toggle"]].forEach(([v, l]) => { const b = el("button", !!s.fn_toggle === v ? "on" : "", t(l));
+    b.addEventListener("click", () => { s.fn_toggle = v; settingsChanged(); }); fn.append(b); });
+  const sl = $("#set-sleep"); sl.innerHTML = "";
+  [0, 1, 2, 3].forEach((v) => { const b = el("button", s.sleep === v ? "on" : "", t("sleep_" + v));
+    b.addEventListener("click", () => { s.sleep = v; settingsChanged(); }); sl.append(b); });
+  $("#set-debounce").value = s.debounce; $("#set-debounce-v").textContent = s.debounce;
+  $("#set-debounce-note").textContent = t("deb_" + s.debounce) + " " + t("deb_tip");
+}
+function settingsChanged() { if (!KB.settings) renderSettings(); KB.dirty.settings = true; KB.known.settings = true; renderSettings(); renderDirty(); }
+async function sendSettings() { await kbWrite("settings", KB.settings, "#settings-msg"); }
+
+/* --- profiles */
+let profiles = [];
+function lightingNow() {
+  const v = $("#effect").value;
+  if (v === "custom") return { effect: "custom", brightness: Number($("#brightness").value) };
+  if (v === "") return null;
+  return { effect: Number(v), color: $("#color").value, multicolour: $("#multi").checked, brightness: Number($("#brightness").value),
+    speed: Number($("#speed").value), direction };
+}
+function profileFromPanel(name) {
+  const p = { format: "gk600-profile", version: 1, name };
+  if (KB.known.keys || KB.dirty.keys) p.keys = KB.keys.main;
+  if (KB.known.fnkeys || KB.dirty.fnkeys) p.fnkeys = KB.keys.fn;
+  if (KB.known.colours || KB.dirty.colours) p.colours = { colours: KB.colours, brightness: KB.brightness };
+  const l = lightingNow(); if (l && lightingLoaded) p.lighting = l;
+  if (KB.known.macros || KB.dirty.macros) p.macros = KB.macros;
+  if (KB.known.settings || KB.dirty.settings) p.settings = KB.settings;
+  return p;
+}
+async function loadProfiles() {
+  try { profiles = (await api("/api/profiles")).profiles; } catch (e) { profiles = []; }
+  renderProfiles();
+}
+function partNames(parts) { return parts.map((p) => t("part_" + p)).join(", "); }
+function renderProfiles() {
+  const list = $("#prof-list"); list.innerHTML = "";
+  if (!profiles.length) { list.append(el("p", "note", t("prof_none"))); }
+  profiles.forEach((p) => {
+    const row = el("div", "prof");
+    const n = el("div", "pname", p.backup ? t("prof_backup_name") + " " + p.saved : p.name);
+    if (p.backup) n.append(el("span", "badge backup", t("backup_badge")));
+    row.append(n);
+    const ap = el("button", "btn small apply", t("prof_apply")); ap.addEventListener("click", () => applyProfile(p));
+    const op = el("button", "btn ghost small", t("prof_open")); op.addEventListener("click", () => openProfile(p));
+    const ex = el("button", "btn ghost small", t("prof_export")); ex.addEventListener("click", () => exportProfile(p));
+    const de = el("button", "btn ghost small", t("prof_delete")); de.addEventListener("click", () => deleteProfile(p));
+    row.append(ap, op, ex, de, el("div", "pmeta", (p.backup ? "" : p.saved + " · ") + partNames(p.parts)));
+    list.append(row);
+  });
+  renderKbButtons();
+}
+async function saveProfile() {
+  const name = ($("#prof-name").value || "").trim() || (lang === "fr" ? "Profil" : "Profile");
+  const p = profileFromPanel(name);
+  if (!["keys", "fnkeys", "colours", "lighting", "macros", "settings"].some((k) => p[k] != null)) { say("#prof-msg", () => t("prof_nothing"), false); return; }
+  try { await post("/api/profiles/save", { profile: p }); say("#prof-msg", () => t("prof_saved"), true); $("#prof-name").value = ""; }
+  catch (e) { say("#prof-msg", () => errText(e), false); }
+  loadProfiles();
+}
+async function backupKeyboard() {
+  await loadCatalog();
+  const r = await kbRead(["keys", "fnkeys", "colours", "lighting", "macros", "settings"], "#prof-msg");
+  if (!r) return;
+  const p = { format: "gk600-profile", version: 1, name: (lang === "fr" ? "Clavier le " : "Keyboard on ") + new Date().toLocaleString(lang) };
+  const P = r.parsed;
+  if (P.keys) p.keys = P.keys; if (P.fnkeys) p.fnkeys = P.fnkeys;
+  if (P.colours) p.colours = { colours: P.colours, brightness: (P.lighting && P.lighting.brightness) || 5 };
+  if (P.lighting && P.lighting.effect != null) p.lighting = P.lighting;
+  if (P.macros) p.macros = P.macros; if (P.settings) p.settings = P.settings;
+  try { await post("/api/profiles/save", { profile: p }); say("#prof-msg", () => t("prof_saved"), true); }
+  catch (e) { say("#prof-msg", () => errText(e), false); }
+  loadProfiles();
+}
+async function applyProfile(p) {
+  if (!kbReady()) { say("#prof-msg", () => kbWhy(), false); return; }
+  KB.busy = true; renderKbButtons(); say("#prof-msg", () => t("sending"));
+  try {
+    const full = (await post("/api/profiles/get", { id: p.id })).profile;
+    const r = await post("/api/profiles/apply", { id: p.id });
+    say("#prof-msg", () => t("prof_applied", { parts: partNames(r.parts) }), true);
+    openProfileData(full, false);
+  } catch (e) { say("#prof-msg", () => errText(e), false); }
+  finally { KB.busy = false; renderKbButtons(); }
+}
+function openProfileData(full, dirty) {
+  if (full.keys) { KB.keys.main = full.keys; KB.known.keys = true; KB.dirty.keys = dirty; }
+  if (full.fnkeys) { KB.keys.fn = full.fnkeys; KB.known.fnkeys = true; KB.dirty.fnkeys = dirty; }
+  if (full.colours) { KB.colours = full.colours.colours || {}; KB.brightness = full.colours.brightness || 5; KB.known.colours = true; KB.dirty.colours = dirty; }
+  if (full.macros) { KB.macros = full.macros; KB.known.macros = true; KB.dirty.macros = dirty; }
+  if (full.settings) { KB.settings = full.settings; KB.known.settings = true; KB.dirty.settings = dirty; }
+  if (full.lighting) { if (status) status.lighting = full.lighting.effect === "custom" ? full.lighting : Object.assign({}, status.lighting, full.lighting); lightingLoaded = false; loadLighting(); }
+  ["keys", "fnkeys", "colours", "macros", "settings"].forEach((k) => { if (full[k]) KB.read[k] = true; });
+  KB.selKey = null; KB.selMacro = null; renderDirty();
+}
+async function openProfile(p) {
+  try {
+    await loadCatalog();
+    const full = (await post("/api/profiles/get", { id: p.id })).profile;
+    openProfileData(full, true);
+    say("#prof-msg", () => t("prof_opened"), true);
+  } catch (e) { say("#prof-msg", () => errText(e), false); }
+}
+async function exportProfile(p) {
+  try {
+    const full = (await post("/api/profiles/get", { id: p.id })).profile;
+    const blob = new Blob([JSON.stringify(full, null, 1)], { type: "application/json" });
+    const a = el("a"); a.href = URL.createObjectURL(blob);
+    a.download = ((full.backup ? "gk600-backup-" + (full.saved || "") : "gk600-" + (full.name || "profile")).replace(/[^\w.-]+/g, "_")) + ".json";
+    document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  } catch (e) { say("#prof-msg", () => errText(e), false); }
+}
+async function deleteProfile(p) {
+  if (!confirm(t("prof_confirm_delete", { name: p.backup ? t("prof_backup_name") + " " + p.saved : p.name }))) return;
+  try { await post("/api/profiles/delete", { id: p.id }); say("#prof-msg", () => t("prof_deleted"), true); }
+  catch (e) { say("#prof-msg", () => errText(e), false); }
+  loadProfiles();
+}
+function importProfile() {
+  const input = el("input"); input.type = "file"; input.accept = "application/json,.json"; input.style.display = "none";
+  input.addEventListener("change", async () => {
+    const f = input.files[0]; input.remove(); if (!f) return;
+    try {
+      const p = JSON.parse(await f.text());
+      if (!p || p.format !== "gk600-profile") throw Object.assign(new Error("bad"), { key: "bad_profile" });
+      delete p.backup;
+      await post("/api/profiles/save", { profile: p }); say("#prof-msg", () => t("prof_saved"), true);
+    } catch (e) { say("#prof-msg", () => e.key === "bad_profile" || e instanceof SyntaxError ? t("prof_bad") : errText(e), false); }
+    loadProfiles();
+  });
+  document.body.append(input); input.click();
+}
+
 /* ------------------------------------------------------------------ misc */
 async function loadLog() {
   try { const r = await api("/api/log"); $("#log").textContent = r.lines.join("\n"); } catch (e) { }
@@ -659,7 +1684,8 @@ async function loadLog() {
 
 window.addEventListener("beforeunload", (e) => {
   const j = status && status.job;
-  if (j && ["write", "check", "cycle_on"].indexOf(j.phase) >= 0) { e.preventDefault(); e.returnValue = ""; }
+  const unsent = Object.values(KB.dirty).some(Boolean);
+  if (unsent || (j && ["write", "check", "cycle_on"].indexOf(j.phase) >= 0)) { e.preventDefault(); e.returnValue = ""; }
 });
 window.addEventListener("pagehide", () => { try { navigator.sendBeacon("/api/bye", GK.token); } catch (e) { } });
 
@@ -678,6 +1704,31 @@ $("#job-cancel").addEventListener("click", () => api("/api/job/cancel", { method
 $("#job-close").addEventListener("click", () => { $("#overlay").classList.add("hidden"); jobShownId = null; });
 $("#show-log").addEventListener("click", () => { $("#log").classList.toggle("hidden"); loadLog(); });
 $("#ver").textContent = "v" + GK.version;
+$("#effect").addEventListener("change", swatch);
+$$(".kbdlayout button").forEach((b) => b.addEventListener("click", () => { kbLayout = b.dataset.kl; try { localStorage.setItem("gk600-kbl", kbLayout); } catch (e) { } applyLang(); }));
+window.addEventListener("keydown", (e) => { onCapture(e); onRecord(e); }, true);
+window.addEventListener("keyup", (e) => { onCapture(e); onRecord(e); }, true);
+window.addEventListener("pointerup", () => { painting = false; });
+$("#pk-color").addEventListener("input", () => setBrush($("#pk-color").value));
+$("#pk-bright").addEventListener("input", () => { KB.brightness = Number($("#pk-bright").value); $("#pk-bright-v").textContent = KB.brightness; KB.dirty.colours = true; renderDirty(); });
+$("#pk-send").addEventListener("click", sendColours);
+$("#pk-read").addEventListener("click", () => kbRead(["colours", "lighting"], "#pk-msg"));
+$$("#layer-seg button").forEach((b) => b.addEventListener("click", () => { KB.layer = b.dataset.layer; KB.selKey = null; stopCapture(); renderKeys(); renderEditor(); }));
+$("#keys-send").addEventListener("click", sendLayer);
+$("#keys-read").addEventListener("click", () => kbRead(["keys", "fnkeys"], "#keys-msg"));
+$("#keys-reset").addEventListener("click", resetLayer);
+$("#macro-new").addEventListener("click", newMacro);
+$("#macro-del").addEventListener("click", deleteMacro);
+$("#macros-send").addEventListener("click", sendMacros);
+$("#macros-read").addEventListener("click", () => kbRead(["macros"], "#macros-msg"));
+[["#set-no-win", "no_win"], ["#set-no-altf4", "no_alt_f4"], ["#set-no-alttab", "no_alt_tab"]].forEach(([id, key]) =>
+  $(id).addEventListener("change", () => { if (!KB.settings) renderSettings(); KB.settings[key] = $(id).checked; settingsChanged(); }));
+$("#set-debounce").addEventListener("input", () => { if (!KB.settings) renderSettings(); KB.settings.debounce = Number($("#set-debounce").value); settingsChanged(); });
+$("#settings-send").addEventListener("click", sendSettings);
+$("#settings-read").addEventListener("click", () => kbRead(["settings"], "#settings-msg"));
+$("#prof-save").addEventListener("click", saveProfile);
+$("#prof-backup").addEventListener("click", backupKeyboard);
+$("#prof-import").addEventListener("click", importProfile);
 
 (async function start() {
   applyLang();

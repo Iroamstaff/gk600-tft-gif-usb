@@ -1,0 +1,34 @@
+# python -I test_panel_config.py frieren_v117.bin "Forge gk600 tkl wireless.bin"
+# 2026-11-23T15:25Z, Python 3.13.18, unicorn 2.1.4
+PASS  K1 catalog: ISO 84 keys, ANSI 83, functions listed
+PASS  K2 read everything the keyboard holds
+PASS  K2 the first read made a backup profile
+PASS  K3 main layer written
+PASS  K3 flash: Caps Lock = Ctrl, F12 = mute, Home off (both numbers)
+PASS  K3 read back through the server
+PASS  K4 remapping Fn refused, nothing written
+PASS  K4 unknown key code refused
+PASS  K5 per-key colours written with the custom mode
+PASS  K5 the panel remembers the custom mode
+PASS  K5 colours read back
+PASS  K5 ISO * µ key and Home written under both numbers
+PASS  K6 lighting tab can switch back to the per-key colours
+PASS  K6 an effect replaces the custom mode, colours kept
+PASS  K7 macro size computed by the server (a delay after each step, as sent)
+PASS  K7 macros written
+PASS  K7 macros read back (slot 2 empty, 3 macros)
+PASS  K7 macros over the limit refused, nothing sent
+PASS  K8 settings written, unknown bytes kept from the keyboard
+PASS  K8 no clock route: the TKL screen never draws the clock
+PASS  K9 profile saved
+PASS  K9 profile applied in MSI's order
+PASS  K9 keyboard holds the profile
+PASS  K9 a bad profile is refused before anything is written
+PASS  K9 profile ids cannot leave the folder
+PASS  K10 the session backup puts the keyboard back
+PASS  K10 profile deleted
+PASS  K11 screen flash (SPI) never touched
+PASS  K11 no program over unerased bytes, nothing refused
+PASS  K12 MSI software open: refused
+
+30/30 checks passed

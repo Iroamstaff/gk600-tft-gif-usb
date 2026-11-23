@@ -3,13 +3,16 @@
 gk600_lighting.py - EXPERIMENTAL - keyboard lighting (one effect for the whole keyboard) of the
 MSI Forge GK600 TKL Wireless, over USB, without MSI's software.
 
-Protocol (64-byte feature reports on the command interface, usage page FF13):
+Protocol (64-byte feature reports on the command interface, usage page FF13), the way MSI's
+software (DeviceDriver.exe 1.0.0.8) sends it, through gk600_config.write_block:
     04 18                -> open                     (acknowledged: byte 3 = 01)
     04 13 .. byte 8 = 01 -> select the lighting block (acknowledged)
-    64-byte settings     -> echoed back by the keyboard
-    04 02                -> apply and close          (acknowledged)
+    64-byte settings     -> stored by the keyboard
+    04 02                -> apply and close          (acknowledged; bytes 4-7 = sum read back,
+                                                      checked against what was sent)
+    04 F0                -> refresh, as MSI's software does
 Settings: [0] effect, [1:4] colour R G B, [8] multicolour, [9] brightness 1-5, [10] speed 1-5,
-[11] direction 0-3, [14:16] AA 55.
+[11] direction 0-3, [14:16] AA 55. Effect 0x80 = the per-key colours (gk600_config.py).
 
 Source: the open-source GK600 panel "MSI-Forge-GK600-Software" (ahmettahaklc, MIT licence, see
 THIRD_PARTY_NOTICES.md), which checked it on a GK600 and took it from the AULA F75 Max, a keyboard
@@ -89,33 +92,11 @@ def payload(effect, color, brightness, speed, direction, multicolour):
     return bytes(p)
 
 
-def _acked(r, op):
-    return len(r) >= 4 and r[0] == 0x04 and r[1] == op and r[3] == 0x01
-
-
 def set_lighting(t, effect, color, brightness, speed, direction, multicolour, log=print):
-    """Sends one lighting setting. Raises RestoreError when the keyboard does not acknowledge."""
+    """Sends one lighting setting. Raises RestoreError when the keyboard does not store it."""
+    import gk600_config as cfg
     data = payload(effect, color, brightness, speed, direction, multicolour)
-    r = g.command(t, 0x18, log=log)
-    if not _acked(r, 0x18):
-        raise g.RestoreError("the keyboard is busy (reply %s): switch it off and on, then try again"
-                             % r[:8].hex(" "))
-    r = g.command(t, LIGHT_BLOCK, 0, 1, log=log)
-    if not _acked(r, LIGHT_BLOCK):
-        g.command(t, 0x02, log=log)
-        raise g.RestoreError("lighting block refused (reply %s)" % r[:8].hex(" "))
-    t.sleep(g.CMD_DELAY)
-    t.set_feature(data)
-    t.sleep(g.CMD_DELAY)
-    echo = bytes(t.get_feature())
-    if log:
-        log("  -> %s" % data[:16].hex(" "))
-        log("  <- %s" % echo[:16].hex(" "))
-    r = g.command(t, 0x02, log=log)
-    if not _acked(r, 0x02):
-        raise g.RestoreError("lighting not applied (reply %s)" % r[:8].hex(" "))
-    if echo[:16] != data[:16]:
-        log("  note: the echo differs from what was sent")
+    cfg.write_block(t, "lighting", data, log=log)
     return data
 
 

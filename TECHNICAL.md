@@ -43,8 +43,11 @@ channel on its own. The firmware itself works fine over USB.
 | `04 18` | opens a transfer; byte 3 of the answer is `01` when the keyboard is idle (`00` or `FF` = busy) |
 | `04 72` | GIF upload, pages written from `0x3C0000` (what MSI's software uses) |
 | `04 38` | raw write, pages written from `0x000000`: `04 38 00 00 00 00 00 00 <page count, LE> 00…` (what the tools in `restauration/` use) |
-| `04 02` | closes the transfer |
+| `04 02` | closes the transfer; after a configuration block, bytes 4–7 of the answer hold the keyboard's read-back sum (see below) |
 | `04 13` | lighting block: one effect for the whole keyboard (see below) |
+| `04 11` `04 27` `04 23` `04 17` `04 15` | key layers, per-key colours, settings, macros; read back with `04 10` `04 26` `04 22` `04 16` `04 14` (lighting: `04 12`); see [Keys, macros, colours and settings](#keys-macros-colours-and-settings) |
+| `04 19` | opens a macro transfer (instead of `04 18`) |
+| `04 F0` | refresh, sent by MSI's software after keys, colours and lighting |
 | `04 28` | time sync, followed by a frame marked `0x5A` (the TKL stores the time but never draws it, see below) |
 
 While it receives pages from `04 38`, the keyboard draws its own progress screen,
@@ -81,22 +84,112 @@ area, using the dump for what it doesn't change:
 
 ## Lighting
 
-One effect for the whole keyboard, on the command interface (64-byte feature reports):
+One effect for the whole keyboard, written like every configuration block (next section) as
+block `0x13`, one packet:
 
-| Step | Bytes | Answer |
-|---|---|---|
-| open | `04 18` | byte 3 = `01` |
-| select the lighting block | `04 13 00 00 00 00 00 00 01` | byte 3 = `01` |
-| settings | 64 bytes: `[0]` effect, `[1:4]` R G B, `[8]` multicolour, `[9]` brightness 1–5, `[10]` speed 1–5, `[11]` direction 0–3, `[14:16]` `AA 55` | echoed |
-| apply | `04 02` | byte 3 = `01` |
+| Byte | Meaning |
+|---|---|
+| 0 | effect, 0–19; `0x80` = per-key colours |
+| 1–3 | R G B |
+| 8 | multicolour |
+| 9 | brightness 1–5 |
+| 10 | speed 1–5 |
+| 11 | direction 0–3 |
+| 14–15 | `AA 55` |
 
 Effects, in the order of MSI's software (strings 521 to 539 of its language files): 0 off,
 1 Static, 2 SingleOn, 3 SingleOff, 4 Glittering, 5 Falling, 6 Colourful, 7 Breath, 8 Spectrum,
 9 Outward, 10 Scrolling, 11 Rolling, 12 Rotating, 13 Explode, 14 Launch, 15 Ripples, 16 Flowing,
 17 Pulsating, 18 Tilt, 19 Shuttle. MSI's defaults (`rgb-keyboard.xml`): effect 11, brightness 5,
-speed 3. Run on the Frieren V1.17 firmware in an emulator, every step is acknowledged and the
-keyboard stores the settings in its MCU flash. Source: ahmettahaklc's open-source panel (MIT),
-which checked it on a GK600 and took it from the AULA F75 Max.
+speed 3. Run on the Frieren V1.17 firmware in an emulator, the keyboard stores the block in its MCU
+flash (`0x9800`). First source: ahmettahaklc's open-source panel (MIT), which checked it on a
+GK600 and took it from the AULA F75 Max; it reads an echo after the data packet, which MSI's
+software does not do (see below).
+
+## Keys, macros, colours and settings
+
+How MSI's driver (`DeviceDriver.exe`, driver 1.0.0.8) writes everything the keyboard keeps, read
+from its code and run on the Frieren V1.17 firmware in an emulator. Not yet checked on a real
+GK600.
+
+**Write** (64-byte feature reports on the command interface):
+
+| Step | Bytes | Answer |
+|---|---|---|
+| open | `04 18` (`04 19` for macros) | byte 3 = `01` |
+| select the block | `04 <block> <b2> 00 00 00 00 00 <packets, LE16>` | byte 3 = `01`, bytes 8–9 = packet count |
+| data | packets × 64 bytes, 35 ms apart | none; reading one anyway leaves a flag set that makes the next read fail until the firmware's 2 s timeout |
+| store | `04 02` | byte 3 = `01`, bytes 4–7 = sum (LE32) of the bytes the firmware read back from its flash |
+| refresh | `04 F0` (after keys, colours, lighting) | byte 3 = `01` |
+
+**Read**: `04 18`, then `04 <read block> 00 … <packets>` (acknowledged), then exactly one
+GET_FEATURE per packet, then `04 02`. The firmware has one more packet ready; reading it leaves the
+same stale flag. The panel reads each block twice and compares.
+
+MSI's software ignores the sum returned by `04 02`. The panel checks it, and when it does not match
+(a firmware that computes it another way), it reads the block back and compares it instead.
+
+| Block | Write | Read | Packets | MCU flash (Frieren V1.17) | Content |
+|---|---|---|---|---|---|
+| keys, main layer | `11` | `10` | 9 | `0x9400` | 4 bytes per key at key number × 4, `AA 55` at 574 |
+| keys, Fn layer | `27` | `26` | 9 | `0xAC00` | same |
+| lighting | `13` | `12` | 1 | `0x9800` | see above |
+| per-key colours | `23` | `22` | 9 | `0x9C00` | `[number, R, G, B]` at number × 4, `AA 55` at 574 |
+| settings | `17` (b2 = 1) | `16` | 1 | `0x9000` | see below, `AA 55` at 62 |
+| macros | `15` | `14` | up to 48 | `0xA000` | see below |
+
+**Key numbers** are MSI's `key_index` (`layouts/rgb-keyboard.xml`), the same as the LED number
+(`light_index`). That file only draws the US layout; the ISO keys come from the Frieren V1.17 key
+matrix: 110 for `* µ` (left of the ISO Enter) and 111 for `< >`. Home is 117 in MSI's file and 113
+in the Frieren matrix. The panel writes Home under 117 and 113, and the `* µ` key under 110 and 67
+(MSI's US backslash, which its own French lighting profile uses for that key); a number with no
+key behind it is never used. Fn (96) is not remappable.
+
+**Key entries** (4 bytes, main and Fn layers):
+
+| Bytes | Meaning |
+|---|---|
+| `00 00 00 00` | default (the key keeps its own job and its factory Fn shortcuts) |
+| `02 <modifiers> <usage> 00` | key or shortcut (HID keyboard usage; a modifier alone is sent as its bit: `02 08 00 00` = left Win) |
+| `01 01 <mask> 00` | mouse button: 1 left, 2 right, 4 middle, 8 back, `0x10` forward |
+| `01 03 01 00` / `01 03 FF 00` | wheel up / down |
+| `03 <usage LE16> 00` | media key (HID consumer usage) |
+| `05 03 00 00` | key disabled |
+| `05 02 <id> 00` | MSI software functions (not offered by the panel) |
+| `06 <macro> <mode> <count>` | macro: mode 0 once, 1 `count` times, 2 until pressed again, 3 while held |
+| `07 …` | multi-key entries (not offered by the panel) |
+
+**Macros**: a 400-byte directory, 100 × `[offset LE16, 00, 00]` (`FF FF FF FF` = no macro), then
+from `0x190` each macro: `[step count LE16, 6 zero bytes]` and its steps, 4 bytes each:
+
+| Step | Bytes |
+|---|---|
+| key down / up | `00 00 <usage> B0` / `00 00 <usage> 30` |
+| mouse down / up | `00 00 <mask> 90` / `00 00 <mask> 10` (1 left, 2 right, 4 middle) |
+| pause | `<ms LE16> 00 50`, 10 ms at least |
+
+MSI's software puts a pause after every key or mouse step. Packet count: `length // 64 + 1` when
+the length is a multiple of 64, `+ 2` otherwise, with `AA 55` in the last two bytes of the last
+packet. The firmware accepts 49 packets, but the 49th one goes past `0xAC00` and erases the first
+page of the Fn layer; MSI's software lets macros grow to about 3100 bytes, which can reach it. The
+panel stops at 48 packets (3008 bytes, directory included).
+
+**Settings** (64 bytes):
+
+| Byte | Meaning |
+|---|---|
+| 1 | `1` when written by MSI's software (`0` from the factory) |
+| 2 | Alt + Tab disabled |
+| 3 | Alt + F4 disabled |
+| 4 | Windows key disabled |
+| 5 | Fn key: 0 held, 1 toggled |
+| 6 | sleep: 0 never, 1 = 1 min, 2 = 5 min, 3 = 30 min (factory 2) |
+| 8 | key response level 1–5 (factory 2) |
+| 62–63 | `AA 55` |
+
+Applying a whole setup, MSI's order is macros, keys, Fn keys, colours, lighting, settings.
+Profiles live in MSI's software (and in the panel's `state/profiles` folder): the keyboard holds
+one setup.
 
 ## Home screen
 

@@ -11,6 +11,10 @@ and a random token given to the page at start-up, so no website can drive the ke
 What it uses:
   GIF            gk600_gif.py       04 72, the GIF slot at 0x3C0000, like MSI's software
   RGB effects    gk600_lighting.py  04 13, one effect for the whole keyboard
+  keys, Fn layer, per-key colours, macros, settings
+                 gk600_config.py    04 11 / 27 / 23 / 15 / 17, read back with 10 / 26 / 22 / 14 / 16,
+                                    every write checked by the keyboard's own sum
+  profiles       saved by the panel (state/profiles), like MSI's: the keyboard holds one setup
   home picture   ../restauration/gk600_home_picture.py    04 38, [0, 0x180000)
   boot animation ../restauration/gk600_boot_animation.py  04 38, [0, end of the animation)
   repair         ../restauration/gk600_restore.py         04 38, [0, 0x3C0000) from the dump
@@ -47,8 +51,10 @@ import gk600_home_picture as hp  # noqa: E402
 import gk600_boot_animation as ba  # noqa: E402
 import gk600_gif as gif  # noqa: E402
 import gk600_lighting as light  # noqa: E402
+import gk600_config as cfg  # noqa: E402
+import gk600_layout as lay  # noqa: E402
 
-__version__ = "0.1-experimental"
+__version__ = "0.2-experimental"
 
 PORT = 47600
 VALIDATED = {0x0104: "V1.04", 0x0120: "V1.20"}     # 04 38 writes confirmed on these firmwares
@@ -85,7 +91,13 @@ def error_key(e):
         return "no_reference"
     if "Pillow" in m or "not a picture" in m or "no frame" in m:
         return "bad_file"
-    if "page " in m or "ACK" in m or "04 38" in m or "04 72" in m or "04 02" in m:
+    if "not supported" in m:
+        return "not_supported"
+    if "check failed" in m or "different data" in m:
+        return "check_failed"
+    if "too long" in m or "too many" in m:
+        return "too_long"
+    if "page " in m or "ACK" in m or "04 38" in m or "04 72" in m or "04 02" in m or "refused" in m:
         return "write_failed"
     return "failed"
 
@@ -209,6 +221,11 @@ class Panel:
         self.log_file = os.path.join(HERE, "gk600_panel.log")
         self._reference = reference           # full 16 MiB dump (or None: loaded on demand)
         self._reference_error = None
+        self.kb_copy = {}                     # blocks read from (or written to) the keyboard this session
+        self.unsupported = set()              # blocks this firmware cannot read
+        self.backup_file = None               # this session's copy of what the keyboard held
+        self.backup = None
+        self.retry_after = 0.0                # after a failed transfer: the keyboard drops it after 2 s
 
     # ------------------------------------------------------------ log
     def log(self, msg):
@@ -260,7 +277,8 @@ class Panel:
                 "job": self.job.snapshot() if self.job else None,
                 "home": {"name": home.get("name"), "active": bool(self.state.home_picture())},
                 "lighting": self.state.data.get("lighting") or light.DEFAULT_JSON,
-                "effects": [{"key": k, "en": en, "fr": fr} for k, en, fr in light.EFFECTS]}
+                "effects": [{"key": k, "en": en, "fr": fr} for k, en, fr in light.EFFECTS],
+                "unsupported": sorted(self.unsupported)}
 
     # ------------------------------------------------------------ files
     def add_file(self, kind, name, data, fill=False):
@@ -315,29 +333,284 @@ class Panel:
             return f.read(), item["ctype"]
 
     # ------------------------------------------------------------ lighting
-    def apply_lighting(self, s):
+    @staticmethod
+    def _lighting_block(s):
+        """Lighting settings from the page -> (block, settings as stored)."""
         try:
+            if s.get("effect") == "custom":
+                brightness = int(s.get("brightness", 5))
+                return cfg.custom_mode(brightness), {"effect": "custom", "brightness": brightness}
             effect = int(s["effect"])
             color = s["color"].lstrip("#")
             rgb = tuple(int(color[i:i + 2], 16) for i in (0, 2, 4))
             brightness, speed, direction = int(s["brightness"]), int(s["speed"]), int(s["direction"])
             multicolour = bool(s.get("multicolour"))
-        except (KeyError, ValueError, TypeError, AttributeError):
+            data = light.payload(effect, rgb, brightness, speed, direction, multicolour)
+        except (KeyError, ValueError, TypeError, AttributeError, g.RestoreError):
             raise g.RestoreError("invalid lighting settings")
+        return data, {"effect": effect, "color": "#%02x%02x%02x" % rgb, "multicolour": multicolour,
+                      "brightness": brightness, "speed": speed, "direction": direction}
+
+    def apply_lighting(self, s):
+        data, stored = self._lighting_block(s)
+        self._with_keyboard(lambda t: self._write(t, "lighting", data))
+        self.state.data["lighting"] = stored
+        self.state.save()
+        self.log("lighting: %s" % stored)
+
+    # ------------------------------------------------------------ keys, colours, macros, settings
+    def _with_keyboard(self, fn):
+        """Runs fn(transport) alone on the keyboard. After a failed transfer, waits until the
+        keyboard has dropped it (2 s without a command) before talking to it again."""
         if self.job and self.job.active:
             raise g.RestoreError("busy: a write is in progress")
         with self.lock:
+            wait = self.retry_after - time.monotonic()
+            if wait > 0:
+                time.sleep(wait)
             info = self.backend.select(self.log)
             t = self.backend.open(info)
             try:
-                light.set_lighting(t, effect, rgb, brightness, speed, direction, multicolour, log=self.log)
+                return fn(t)
+            except g.RestoreError:
+                self.retry_after = time.monotonic() + 2.5
+                raise
             finally:
                 t.close()
-        self.state.data["lighting"] = {"effect": effect, "color": "#%02x%02x%02x" % rgb,
-                                       "multicolour": multicolour, "brightness": brightness,
-                                       "speed": speed, "direction": direction}
+
+    def _remember(self, part, data):
+        """The first time a block is read in this session, it goes into this session's backup:
+        a profile named "Keyboard backup <date>" (state/profiles), which can be applied to put
+        everything back. The raw bytes are kept in it too."""
+        if part in self.kb_copy:
+            return
+        self.kb_copy[part] = data
+        if self.backup is None:
+            stamp = time.strftime("%Y-%m-%d %H:%M")
+            self.backup = {"format": "gk600-profile", "version": 1, "backup": True, "saved": stamp,
+                           "name": "Keyboard backup %s" % stamp, "raw": {}}
+            self.backup_file = os.path.join(self._profiles_dir(), "backup-%s.json" % time.strftime("%Y%m%d-%H%M%S"))
+        b = self.backup
+        b["raw"][part] = data.hex()
+        parsed = self._parse(part, data)
+        if part in ("keys", "fnkeys"):
+            b[part] = parsed
+        elif part == "colours":
+            b["colours"] = {"colours": parsed, "brightness": (b.get("lighting") or {}).get("brightness", 5)}
+        elif part == "lighting" and parsed and parsed.get("effect") is not None:
+            b["lighting"] = parsed
+            if b.get("colours") and parsed.get("effect") == "custom":
+                b["colours"]["brightness"] = parsed.get("brightness", 5)
+        elif part == "settings" and parsed:
+            b["settings"] = parsed
+        elif part == "macros":
+            b["macros"] = parsed
+        try:
+            os.makedirs(self._profiles_dir(), exist_ok=True)
+            with open(self.backup_file, "w", encoding="utf-8") as f:
+                json.dump(b, f, indent=1, ensure_ascii=False)
+        except OSError as e:
+            self.log("could not save the backup: %s" % e)
+
+    def _read(self, t, part):
+        """Reads one block (and keeps it as the backup of this session). None if not supported."""
+        if part in self.unsupported:
+            return None
+        try:
+            data = cfg.read_block(t, part, log=self.log)
+        except cfg.NotSupported as e:
+            self.unsupported.add(part)
+            self.log(str(e))
+            return None
+        self._remember(part, data)
+        return data
+
+    def _write(self, t, part, data):
+        if part not in self.kb_copy:                 # keep a copy of what was there before
+            self._read(t, part)
+        cfg.write_block(t, part, data, log=self.log)
+        self.kb_copy.setdefault(part, data)
+
+    @staticmethod
+    def _parse(part, data):
+        if data is None:
+            return None
+        if part in ("keys", "fnkeys"):
+            return {str(k): v for k, v in cfg.parse_keys(data).items()} if cfg.keys_valid(data) else {}
+        if part == "colours":
+            return {str(k): v for k, v in cfg.parse_colours(data).items()} if cfg.keys_valid(data) else {}
+        if part == "lighting":
+            return cfg.parse_lighting(data)
+        if part == "settings":
+            return cfg.parse_settings(data)
+        return cfg.parse_macros(data)
+
+    def config_read(self, parts):
+        parts = [p for p in parts if p in cfg.BLOCKS]
+        if not parts:
+            raise g.RestoreError("invalid parts")
+
+        def run(t):
+            return {p: self._read(t, p) for p in parts}
+        raw = self._with_keyboard(run)
+        out = {p: self._parse(p, d) for p, d in raw.items()}
+        self.log("read %s" % ", ".join("%s%s" % (p, "" if raw[p] is not None else " (not supported)")
+                                       for p in parts))
+        return {"parsed": out, "unsupported": [p for p in parts if raw[p] is None],
+                "cached": {p: self.state.data.get("config", {}).get(p) for p in parts if raw[p] is None}}
+
+    def _build(self, part, data):
+        """Page data -> blocks to write, in order."""
+        if part in ("keys", "fnkeys"):
+            actions = data.get("actions")
+            if not isinstance(actions, dict):
+                raise ValueError("invalid keys")
+            return [(part, cfg.build_keys(actions))]
+        if part == "colours":
+            colours = data.get("colours")
+            if not isinstance(colours, dict):
+                raise ValueError("invalid colours")
+            return [("colours", cfg.build_colours(colours)),            # MSI's order: colours, then
+                    ("lighting", cfg.custom_mode(int(data.get("brightness", 5))))]   # the per-key mode
+        if part == "macros":
+            macros = data.get("macros")
+            if not isinstance(macros, list):
+                raise ValueError("invalid macros")
+            return [("macros", cfg.build_macros(macros))]
+        if part == "settings":
+            return [("settings", None)]                # built against the keyboard's own copy
+        if part == "lighting":
+            return [("lighting", self._lighting_block(data)[0])]
+        raise ValueError("invalid part")
+
+    def config_write(self, part, data):
+        if not isinstance(data, dict):
+            raise ValueError("invalid data")
+        blocks = self._build(part, data)
+
+        def run(t):
+            for name, block in blocks:
+                if name == "settings":
+                    base = self.kb_copy.get("settings")
+                    if base is None:
+                        base = self._read(t, "settings")
+                    block = cfg.build_settings(data, base)
+                self._write(t, name, block)
+                self.kb_copy[name] = block
+        self._with_keyboard(run)
+        stored = self.state.data.setdefault("config", {})
+        stored[part] = data
+        if part == "colours":
+            self.state.data["lighting"] = {"effect": "custom", "brightness": int(data.get("brightness", 5))}
+        elif part == "lighting":
+            self.state.data["lighting"] = self._lighting_block(data)[1]
         self.state.save()
-        self.log("lighting: %s" % self.state.data["lighting"])
+        self.log("wrote %s" % part)
+
+    # ------------------------------------------------------------ profiles
+    def _profiles_dir(self):
+        return os.path.join(self.state.folder, "profiles")
+
+    @staticmethod
+    def _profile_id(pid):
+        if not isinstance(pid, str) or not pid or len(pid) > 80 or not all(c.isalnum() or c in "-_" for c in pid):
+            raise ValueError("invalid profile")
+        return pid
+
+    def profiles(self):
+        out = []
+        folder = self._profiles_dir()
+        try:
+            names = sorted(os.listdir(folder))
+        except OSError:
+            names = []
+        for n in names:
+            if not n.endswith(".json"):
+                continue
+            try:
+                with open(os.path.join(folder, n), encoding="utf-8") as f:
+                    p = json.load(f)
+            except (OSError, ValueError):
+                continue
+            out.append({"id": n[:-5], "name": p.get("name") or n[:-5], "saved": p.get("saved", ""),
+                        "backup": bool(p.get("backup")), "parts": [k for k in cfg.ORDER if p.get(k) is not None]})
+        out.sort(key=lambda p: p["saved"], reverse=True)
+        return out
+
+    @staticmethod
+    def _check_profile(p):
+        """Every part must build into a valid block before anything is written."""
+        if not isinstance(p, dict) or p.get("format") != "gk600-profile":
+            raise ValueError("invalid profile")
+        try:
+            for part in cfg.ORDER:
+                v = p.get(part)
+                if v is None:
+                    continue
+                if part in ("keys", "fnkeys"):
+                    cfg.build_keys(v)
+                elif part == "colours":
+                    cfg.build_colours(v["colours"])
+                    cfg.custom_mode(int(v.get("brightness", 5)))
+                elif part == "macros":
+                    cfg.build_macros(v)
+                elif part == "settings":
+                    cfg.build_settings(v)
+                elif part == "lighting":
+                    Panel._lighting_block(v)
+        except (TypeError, AttributeError, KeyError, g.RestoreError):
+            raise ValueError("invalid profile")
+        return p
+
+    @staticmethod
+    def macro_bytes(macros):
+        try:
+            return {"used": cfg.macro_bytes(macros or []), "capacity": cfg.macro_capacity()}
+        except (TypeError, AttributeError):
+            raise ValueError("invalid macros")
+
+    def profile_save(self, profile):
+        p = self._check_profile(profile)
+        name = str(p.get("name") or "Profil")[:60]
+        p = dict(p, name=name, saved=time.strftime("%Y-%m-%d %H:%M"))
+        slug = "".join(c if c.isalnum() else "-" for c in name.lower())[:40].strip("-") or "profil"
+        pid = "%s-%s" % (slug, secrets.token_hex(3))
+        os.makedirs(self._profiles_dir(), exist_ok=True)
+        with open(os.path.join(self._profiles_dir(), pid + ".json"), "w", encoding="utf-8") as f:
+            json.dump(p, f, indent=1, ensure_ascii=False)
+        self.log("profile saved: %s" % name)
+        return pid
+
+    def profile_get(self, pid):
+        try:
+            with open(os.path.join(self._profiles_dir(), self._profile_id(pid) + ".json"), encoding="utf-8") as f:
+                return json.load(f)
+        except (OSError, ValueError):
+            raise g.RestoreError("unknown profile")
+
+    def profile_delete(self, pid):
+        path = os.path.join(self._profiles_dir(), self._profile_id(pid) + ".json")
+        if not os.path.isfile(path):
+            raise g.RestoreError("unknown profile")
+        os.remove(path)
+        self.log("profile deleted: %s" % pid)
+
+    def profile_apply(self, profile):
+        p = self._check_profile(profile)
+        done = []
+        for part in cfg.ORDER:
+            v = p.get(part)
+            if v is None:
+                continue
+            if part in ("keys", "fnkeys"):
+                self.config_write(part, {"actions": v})
+            elif part == "macros":
+                self.config_write(part, {"macros": v})
+            else:
+                self.config_write(part, v)
+            done.append(part)
+        self.log("profile applied: %s (%s)" % (p.get("name"), ", ".join(done)))
+        return done
 
     # ------------------------------------------------------------ writes
     def start_job(self, kind, item_id=None, keep_home=False):
@@ -579,6 +852,13 @@ class Handler(http.server.BaseHTTPRequestHandler):
             return self._json(200, panel.status())
         if path == "/api/log":
             return self._json(200, {"lines": panel.lines[-120:]})
+        if path == "/api/catalog":
+            return self._json(200, dict(lay.catalog(), macro_capacity=cfg.macro_capacity(),
+                                        macro_slots=cfg.MACRO_SLOTS))
+        if path == "/api/profiles":
+            return self._json(200, {"profiles": panel.profiles()})
+        if path == "/api/config/cached":
+            return self._json(200, {"config": panel.state.data.get("config", {})})
         if path.startswith("/api/preview/"):
             data, ctype = panel.preview(path.rsplit("/", 1)[1])
             if data is None:
@@ -610,7 +890,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     return self._error(400, "bad_file", "empty file")
                 res = panel.add_file(q.get("kind", [""])[0], name, data, q.get("fill", ["0"])[0] == "1")
                 return self._json(200, dict(res, ok=True))
-            body = json.loads(self._body(64 << 10) or b"{}")
+            body = json.loads(self._body(1 << 20) or b"{}")
             if u.path == "/api/light":
                 panel.apply_lighting(body)
                 return self._json(200, {"ok": True})
@@ -619,9 +899,27 @@ class Handler(http.server.BaseHTTPRequestHandler):
                                                                             bool(body.get("keep_home")))})
             if u.path == "/api/job/cancel":
                 return self._json(200, {"ok": panel.cancel_job()})
+            if u.path == "/api/config/read":
+                return self._json(200, dict(panel.config_read(body.get("parts") or []), ok=True))
+            if u.path == "/api/config/write":
+                panel.config_write(body.get("part"), body.get("data"))
+                return self._json(200, {"ok": True})
+            if u.path == "/api/config/bytes":                 # what a block would look like (no keyboard)
+                return self._json(200, {"ok": True, "bytes": panel.macro_bytes(body.get("macros"))})
+            if u.path == "/api/profiles/save":
+                return self._json(200, {"ok": True, "id": panel.profile_save(body.get("profile"))})
+            if u.path == "/api/profiles/get":
+                return self._json(200, {"ok": True, "profile": panel.profile_get(body.get("id"))})
+            if u.path == "/api/profiles/delete":
+                panel.profile_delete(body.get("id"))
+                return self._json(200, {"ok": True})
+            if u.path == "/api/profiles/apply":
+                prof = body.get("profile") if body.get("profile") is not None else panel.profile_get(body.get("id"))
+                return self._json(200, {"ok": True, "parts": panel.profile_apply(prof)})
             self._error(404, "not_found")
         except ValueError as e:
-            self._error(400, "bad_request", str(e))
+            m = str(e)
+            self._error(400, "too_long" if ("too long" in m or "too many" in m) else "bad_request", m)
         except g.RestoreError as e:
             self._error(400, "busy" if str(e).startswith("busy") else error_key(e), str(e))
         except Exception as e:

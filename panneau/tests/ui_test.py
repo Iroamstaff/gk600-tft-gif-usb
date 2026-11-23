@@ -25,7 +25,7 @@ chrome = sys.argv[6] if len(sys.argv) > 6 else "/usr/bin/google-chrome"
 os.makedirs(out, exist_ok=True)
 emu_backend.fw = open(fw_path, "rb").read()
 emu_backend.ref = open(dump_path, "rb").read()
-emu, backend, panel, server = emu_backend.new_panel()
+emu, backend, panel, server = emu_backend.new_panel(flash_model=True)
 url = "http://127.0.0.1:%d/" % server.port
 errors, results = [], []
 

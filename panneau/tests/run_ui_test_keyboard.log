@@ -1,0 +1,30 @@
+# python -I ui_test_keyboard.py frieren_v117.bin "Forge gk600 tkl wireless.bin" shots/
+# 2026-11-23T15:25Z, headless Google Chrome for Testing 153.0.8010.12, Playwright 1.63.0
+PASS  sidebar: screen and keyboard groups
+PASS  per-key: the keyboard was read, AZERTY ISO drawn (84 keys)
+PASS  per-key: AZERTY legends (A where QWERTY has Q)
+PASS  per-key: unsent changes flagged
+PASS  per-key: keyboard holds WASD red, F1-F4 green, the rest blue, custom mode
+PASS  per-key: the ISO keys are coloured too (* µ under 67 and 110, < > under 111)
+PASS  lighting tab now shows the per-key mode
+PASS  keys: capture of Ctrl+C
+PASS  keys: changed keys show their new job
+PASS  keys: Fn cannot be selected
+PASS  keys: main layer in the keyboard
+PASS  keys: Fn layer, Fn+F5 = Win+Shift+S
+PASS  macros: recorded from the keyboard (O down/up, K down/up, pauses)
+PASS  macros: keyboard holds M1 (o, k, left click)
+PASS  keys: F6 plays macro M1 once
+PASS  settings: factory values shown (5 min, level 2)
+PASS  settings: keyboard holds Win lock, Fn toggle, 30 min, level 3
+PASS  settings: no clock button (the TKL screen never draws the clock)
+PASS  profiles: the session backup is listed
+PASS  profiles: export is a GK600 profile with every part
+PASS  profiles: the backup put the factory keys and settings back
+PASS  profiles: 'Jeux' applied again
+PASS  QWERTY ANSI drawn (83 keys), English titles
+PASS  narrow window: the keyboard still fits
+PASS  MSI software open: keyboard buttons disabled
+PASS  no JavaScript error in the page
+PASS  screen flash (SPI) never touched
+27/27 passed

@@ -1,0 +1,80 @@
+# python -I test_config.py frieren_v117.bin
+# 2026-11-23T15:25Z, Python 3.13.18, unicorn 2.1.4
+PASS  C1 entries encoded like MSI's software
+PASS  C1 entries decoded back to the same bytes
+PASS  C1 a modifier alone is sent as its bit (MSI)
+PASS  C1 unknown entries kept as raw bytes
+PASS  C1 invalid settings refused before anything is sent
+PASS  C2 key table: 576 bytes, AA 55 at 574
+PASS  C2 key table: entry at number x 4
+PASS  C2 Home written to 117 and 113
+PASS  C2 key table read back
+PASS  C2 Fn cannot be remapped
+PASS  C2 colour table: [number, R, G, B] at number x 4
+PASS  C2 colour table read back
+PASS  C2 ISO * µ key colour written to 67 and 110
+PASS  C2 a second number given alone is written under both numbers and read back as the first
+PASS  C2 the ISO layout calls the * µ key 67, like the US backslash
+PASS  C2 every layout key number fits the table
+PASS  C2 ISO layout: 84 keys, ANSI: 83
+PASS  C3 main layer written, sum checked by the keyboard
+PASS  C3 main layer: only its flash page(s) touched
+PASS  C3 main layer: protocol idle afterwards
+PASS  C3 flash holds the main layer
+PASS  C3 04 F0 sent after the keys (display refresh, like MSI)
+PASS  C3 main layer read back (twice, identical)
+PASS  C4 Fn layer written, sum checked by the keyboard
+PASS  C4 Fn layer: only its flash page(s) touched
+PASS  C4 Fn layer: protocol idle afterwards
+PASS  C4 flash holds the Fn layer, main layer untouched
+PASS  C4 Fn layer read back
+PASS  C5 custom-colour mode (effect 0x80) written, sum checked by the keyboard
+PASS  C5 custom-colour mode (effect 0x80): only its flash page(s) touched
+PASS  C5 custom-colour mode (effect 0x80): protocol idle afterwards
+PASS  C5 lighting page: effect 0x80, brightness 4
+PASS  C5 firmware switched to its per-key pattern
+PASS  C5 per-key colours written, sum checked by the keyboard
+PASS  C5 per-key colours: only its flash page(s) touched
+PASS  C5 per-key colours: protocol idle afterwards
+PASS  C5 colours read back
+PASS  C5 lighting read back as 'custom'
+PASS  C6 macro block: directory, AA 55 at the very end
+PASS  C6 every unused macro slot marked empty (FF FF FF FF)
+PASS  C6 macros written, sum checked by the keyboard
+PASS  C6 macros: only its flash page(s) touched
+PASS  C6 macros: protocol idle afterwards
+PASS  C6 macros read back (MSI rhythm: a delay after every step, 10 ms at least)
+PASS  C6 too many macro steps refused before sending
+PASS  C6 the largest macro block is 48 packets, never 49
+PASS  C6 largest macro block written, sum checked by the keyboard
+PASS  C6 largest macro block: only its flash page(s) touched
+PASS  C6 largest macro block: protocol idle afterwards
+PASS  C6 the Fn layer survives the largest macro block (0xAC00 not erased)
+PASS  C6 macro capacity matches the packet limit
+PASS  C7 factory settings read: sleep 5 min, key response 2
+PASS  C7 settings written, sum checked by the keyboard
+PASS  C7 settings: only its flash page(s) touched
+PASS  C7 settings: protocol idle afterwards
+PASS  C7 firmware applied them: Win locked, Fn toggle, 30 min sleep, key response 4
+PASS  C7 unknown bytes kept from the keyboard (byte 1 stays 0)
+PASS  C7 settings read back
+PASS  C7 without a keyboard copy: MSI's block (byte 1 = 1)
+PASS  C8 clock set (RTC 26-11-23 18:07:42), no flash write
+PASS  C8 protocol idle afterwards
+PASS  C9 lighting effect stored through the checked writer
+PASS  C9 a read right after a lighting write works (no echo read left pending)
+PASS  C10 MCU flash: only the configuration pages changed
+PASS  C10 code pages untouched (0x8000-0x8FFF and from 0xB000)
+PASS  C10 SPI flash (screen) untouched
+PASS  C10 no program over unerased bytes, nothing refused
+PASS  C11 a corrupted packet is caught by the sum
+PASS  C11 no sum from the keyboard: the write is checked by reading it back
+PASS  C11 no sum from the keyboard: a corrupted packet is still caught
+PASS  C11 bad keys block refused before sending
+PASS  C11 bad lighting block refused before sending
+PASS  C11 bad macros block refused before sending
+PASS  C11 bad settings block refused before sending
+PASS  C11 read refused -> NotSupported
+PASS  C11 read_all reports unsupported parts
+
+76/76 checks passed

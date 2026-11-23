@@ -16,7 +16,8 @@ Tout passe par le câble USB : **rien à ouvrir, aucun flashage de firmware, et 
 réversible.**
 
 🆕 **Nouveau, en test :** un [panneau](panneau/README.md) qui fait tout ça dans une seule fenêtre,
-avec les effets RGB, sans le logiciel MSI.
+plus le clavier lui-même (effets RGB, couleurs par touche, touches, macros, réglages, profils),
+sans le logiciel MSI.
 
 <table>
   <tr>
@@ -43,7 +44,7 @@ Allumage avec une animation de démarrage personnelle : l'écran s'allume, l'ani
 
 | Je veux… | Comment | Durée | Guide |
 |---|---|---|---|
-| tout faire depuis une seule fenêtre (GIF, effets RGB, image d'accueil, animation de démarrage, réparation) | double-cliquer sur `panneau/GK600-Panel.bat` (nouveau, en test) | — | [Panneau](panneau/README.md) |
+| tout faire depuis une seule fenêtre (écran, effets RGB et couleurs par touche, touches, macros, profils) | double-cliquer sur `panneau/GK600-Panel.bat` (nouveau, en test) | — | [Panneau](panneau/README.md) |
 | afficher mes GIF, régler le RGB touche par touche | corriger une ligne du `config.xml` du logiciel MSI | 15 min | [Tuto](tuto-gk600-gif-usb.md) · [Tutorial (EN)](tutorial-gk600-gif-usb.md) |
 | avoir le logiciel MSI en français | double-cliquer sur `traduction-fr/INSTALLER_FR.bat` | 1 min | [traduction-fr](traduction-fr/README.md) |
 | réparer des menus noirs ou brouillés, ou un logo MSI noir | double-cliquer sur `restauration/GK600-Repair.bat` | 3 min | [Réparer](restauration/README.md#fr-repair) |
@@ -133,9 +134,9 @@ le logiciel, vous pouvez l'extraire de l'installateur avec
 |---|---|
 | [tuto-gk600-gif-usb.md](tuto-gk600-gif-usb.md) · [tutorial-gk600-gif-usb.md](tutorial-gk600-gif-usb.md) | GIF personnels en USB : guide pas à pas (français · anglais) |
 | [restauration/](restauration/) | Outils de l'écran : réparation, image d'accueil, animation de démarrage (français et anglais) |
-| [panneau/](panneau/README.md) | Le panneau : GIF, effets RGB, image d'accueil, animation de démarrage et réparation dans une seule fenêtre (français et anglais) |
+| [panneau/](panneau/README.md) | Le panneau : GIF, image d'accueil, animation de démarrage, réparation, effets RGB, couleurs par touche, touches, macros, réglages et profils dans une seule fenêtre (français et anglais) |
 | [traduction-fr/](traduction-fr/) | Traduction française du logiciel MSI, avec installateur en un clic |
-| [TECHNICAL.md](TECHNICAL.md) | Matériel, carte de la mémoire, protocole USB, format de l'animation, tests (en anglais) |
+| [TECHNICAL.md](TECHNICAL.md) | Matériel, carte de la mémoire, protocole USB (écran, touches, macros, couleurs, réglages), format de l'animation, tests (en anglais) |
 | [images/](images/) | Photos, captures d'écran et vidéo de démonstration |
 | [posts/](posts/) | Les messages Reddit qui ont annoncé chaque partie |
 
@@ -155,7 +156,7 @@ le logiciel, vous pouvez l'extraire de l'installateur avec
 | 18 novembre 2026 | Réparation de l'écran en un double-clic et outil d'image d'accueil, testés en V1.20 |
 | 19 novembre 2026 | Réparation complète confirmée sur un clavier abîmé en V1.04 |
 | 22 novembre 2026 | Traduction française du logiciel MSI ; animation de démarrage personnelle, testée et filmée en V1.20 |
-| 23 novembre 2026 | Panneau : tout dans une seule fenêtre, effets RGB compris, sans le logiciel MSI (en test) |
+| 23 novembre 2026 | Panneau : tout dans une seule fenêtre sans le logiciel MSI, effets RGB, couleurs par touche, touches, macros, réglages et profils compris (en test) |
 
 ## Remerciements
 

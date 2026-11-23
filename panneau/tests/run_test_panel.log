@@ -1,6 +1,6 @@
 # python -I test_panel.py frieren_v117.bin "Forge gk600 tkl wireless.bin" anim.gif picture.png
 # anim.gif = zelda_alttp_gk600_160x96.gif (35 frames, 160x96), picture.png = 320x130 test picture
-# 2026-11-23T14:05Z, Python 3.13.18, Pillow 12.3.0, unicorn 2.1.4
+# 2026-11-23T15:25Z, Python 3.13.18, Pillow 12.3.0, unicorn 2.1.4
 PASS  P1 lighting payload: effect, colour, brightness, speed, direction, AA 55
 PASS  P1 lighting 'off' sends no colour
 PASS  P1 20 effects in MSI's order
@@ -36,4 +36,4 @@ PASS  P8 repair: menus, dragon and MSI animation back (= dump up to 0x3C0000)
 PASS  P8 repair keeps the GIF slot
 PASS  P8 panel forgets the home picture after a repair
 
-34/34 passed in 212 s
+34/34 passed in 215 s
